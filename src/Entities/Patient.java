@@ -52,6 +52,7 @@ public class Patient extends Person {
         System.out.println("Allergies: " + allergies);
     }
 
+    // Add Medical Record
     public void addMedicalRecord(MedicalRecord record) {
         medicalRecords.add(record);
     }
