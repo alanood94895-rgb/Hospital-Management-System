@@ -22,4 +22,20 @@ public class MedicalRecordService {
             record.displayInfo();
         }
     }
+    // Get Records By Patient ID
+    public List<MedicalRecord> getRecordsByPatientId(String patientId) {
+
+        List<MedicalRecord> result = new ArrayList<>();
+
+        for (MedicalRecord record : records) {
+
+            if (record.getPatientId()
+                    .equalsIgnoreCase(patientId)) {
+
+                result.add(record);
+            }
+        }
+
+        return result;
+    }
 }
