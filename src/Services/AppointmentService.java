@@ -56,6 +56,53 @@ public class AppointmentService {
 
         return result;
     }
+    // Get By Date
+    public List<Appointment> getAppointmentsByDate(
+            LocalDate date) {
+
+        List<Appointment> result = new ArrayList<>();
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getAppointmentDate()
+                    .equals(date)) {
+
+                result.add(appointment);
+            }
+        }
+
+        return result;
+    }
+
+    // Reschedule
+    public void rescheduleAppointment(
+            String appointmentId,
+            LocalDate newDate,
+            String newTime) {
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getAppointmentId()
+                    .equals(appointmentId)) {
+
+                appointment.reschedule(newDate, newTime);
+            }
+        }
+    }
+
+    // Cancel
+    public void cancelAppointment(String appointmentId) {
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getAppointmentId()
+                    .equals(appointmentId)) {
+
+                appointment.cancel();
+            }
+        }
+    }
+}
 
 
 
