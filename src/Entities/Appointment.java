@@ -63,5 +63,14 @@ public class Appointment {
     public void updateBedAvailability() {
 
     }
+
+    public String getAppointmentId() {
+        return appointmentId;
+    }
+
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
+    }
+
 }
 
