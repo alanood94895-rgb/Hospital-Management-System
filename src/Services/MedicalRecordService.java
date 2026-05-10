@@ -38,4 +38,20 @@ public class MedicalRecordService {
 
         return result;
     }
+    // Get Records By Doctor ID
+    public List<MedicalRecord> getRecordsByDoctorId(String doctorId) {
+
+        List<MedicalRecord> result = new ArrayList<>();
+
+        for (MedicalRecord record : records) {
+
+            if (record.getDoctorId()
+                    .equalsIgnoreCase(doctorId)) {
+
+                result.add(record);
+            }
+        }
+
+        return result;
+    }
 }
