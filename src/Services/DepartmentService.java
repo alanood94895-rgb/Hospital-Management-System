@@ -18,9 +18,7 @@ public class DepartmentService {
     // Remove Department
     public void removeDepartment(String departmentId) {
 
-        departments.removeIf(
-                department -> department.getDepartmentId().equals(departmentId)
-        );
+        departments.removeIf(department -> department.getDepartmentId().equals(departmentId));
     }
     // Get Department By ID
     public Department getDepartmentById(
