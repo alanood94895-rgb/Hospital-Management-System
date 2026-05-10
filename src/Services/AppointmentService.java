@@ -15,6 +15,13 @@ public class AppointmentService {
     public void removeAppointment(Appointment appointment) {
         appointments.remove(appointment);
     }
+    // Display All
+    public void displayAllAppointments() {
+
+        for (Appointment appointment : appointments) {
+            appointment.displayInfo();
+        }
+    }
 
 
 }
