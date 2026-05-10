@@ -15,11 +15,8 @@ public class Department {
     private int bedCapacity;
     private int availableBeds;
 
-    public Department(String departmentId,
-                      String departmentName,
-                      String headDoctorId,
-                      int bedCapacity,
-                      int availableBeds) {
+    public Department(String departmentId, String departmentName,
+                      String headDoctorId, int bedCapacity, int availableBeds) {
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
