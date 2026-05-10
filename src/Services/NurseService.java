@@ -68,8 +68,7 @@ public class NurseService {
 
         for (Nurse nurse : nurses) {
 
-            if (nurse.getDepartmentId()
-                    .equalsIgnoreCase(departmentId)) {
+            if (nurse.getDepartmentId().equalsIgnoreCase(departmentId)) {
 
                 result.add(nurse);
             }
@@ -86,8 +85,7 @@ public class NurseService {
 
         for (Nurse nurse : nurses) {
 
-            if (nurse.getShift()
-                    .equalsIgnoreCase(shift)) {
+            if (nurse.getShift().equalsIgnoreCase(shift)) {
 
                 result.add(nurse);
             }
