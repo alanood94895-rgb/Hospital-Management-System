@@ -114,31 +114,37 @@ public class Doctor extends Person {
 
 
 
-
+    // Override displayInfo()
     @Override
     public void displayInfo() {
+
+        // Call Parent Method
         super.displayInfo();
+
         System.out.println("Doctor ID: " + doctorId);
         System.out.println("Specialization: " + specialization);
+        System.out.println("Qualification: " + qualification);
+        System.out.println("Experience Years: " + experienceYears);
+        System.out.println("Department ID: " + departmentId);
+        System.out.println("Consultation Fee: " + consultationFee);
+        System.out.println("Available Slots: " + availableSlots);
     }
 
+    // Assign Patient
     public void assignPatient(Patient patient) {
+
         assignedPatients.add(patient);
     }
 
+    // Remove Patient
     public void removePatient(Patient patient) {
+
         assignedPatients.remove(patient);
     }
 
+    // Update Availability
     public void updateAvailability(String slot) {
+
         availableSlots.add(slot);
-    }
-
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public String getSpecialization() {
-        return specialization;
     }
 }
