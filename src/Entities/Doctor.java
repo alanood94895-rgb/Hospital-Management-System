@@ -56,6 +56,61 @@ public class Doctor extends Person {
         assignedPatients = new ArrayList<>();
     }
     // Getters and Setter
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
+    public void setExperienceYears(int experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public double getConsultationFee() {
+        return consultationFee;
+    }
+
+    public void setConsultationFee(double consultationFee) {
+        this.consultationFee = consultationFee;
+    }
+
+    public List<String> getAvailableSlots() {
+        return availableSlots;
+    }
+
+    public List<Patient> getAssignedPatients() {
+        return assignedPatients;
+    }
 
 
 
