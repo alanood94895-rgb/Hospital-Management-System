@@ -22,14 +22,17 @@ public class Doctor extends Person {
                   String doctorId, String specialization,
                   int experienceYears, double consultationFee) {
 
-        super(id, firstName, lastName,
-                dateOfBirth, gender,
+        super(id, firstName, lastName, dateOfBirth, gender,
                 phoneNumber, email, address);
 
         this.doctorId = doctorId;
         this.specialization = specialization;
+        this.qualification = qualification;
         this.experienceYears = experienceYears;
+        this.departmentId = departmentId;
         this.consultationFee = consultationFee;
+        this.availableSlots = availableSlots;
+        this.assignedPatients = assignedPatients ;
     }
 
     @Override
@@ -41,6 +44,15 @@ public class Doctor extends Person {
         System.out.println("Specialization: " + specialization);
         System.out.println("Experience: " + experienceYears);
         System.out.println("Fee: " + consultationFee);
+    }
+    public void  assignPatient() {
+
+    }
+    public void removePatient() {
+
+    }
+    public void updateAvailability(){
+
     }
 
 }
