@@ -11,5 +11,8 @@ public class MedicalRecordService {
     public void addRecord(MedicalRecord record) {
         records.add(record);
     }
-
+    // Remove Record
+    public void removeRecord(MedicalRecord record) {
+        records.remove(record);
+    }
 }
