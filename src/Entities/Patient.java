@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Patient extends Person {
 
-    // Patient Specific Fields
+    // Add Specific Fields
     private String patientId;
     private String bloodGroup;
     private List<String> allergies;
