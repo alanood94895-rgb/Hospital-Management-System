@@ -1,5 +1,7 @@
 package Services;
 
+import Entities.MedicalRecord;
+
 import java.util.ArrayList;
 import java.util.List;
 
