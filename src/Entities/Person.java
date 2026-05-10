@@ -95,6 +95,7 @@ public class Person {
         this.address = address;
     }
 
+    //get and set
         public void displayInfo() {
             System.out.println("ID: " + id);
             System.out.println("Name: " + firstName + " " + lastName);
