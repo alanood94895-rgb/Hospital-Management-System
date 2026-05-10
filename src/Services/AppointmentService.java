@@ -1,5 +1,11 @@
 package Services;
 
+import Entities.Appointment;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppointmentService {
 
     private List<Appointment> appointments =
@@ -64,8 +70,7 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentDate()
-                    .equals(date)) {
+            if (appointment.getAppointmentDate().equals(date)) {
 
                 result.add(appointment);
             }
@@ -82,8 +87,7 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointment.getAppointmentId().equals(appointmentId)) {
 
                 appointment.reschedule(newDate, newTime);
             }
@@ -95,8 +99,7 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointment.getAppointmentId().equals(appointmentId)) {
 
                 appointment.cancel();
             }
@@ -105,5 +108,3 @@ public class AppointmentService {
 }
 
 
-
-}
