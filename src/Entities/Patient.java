@@ -47,6 +47,16 @@ public class Patient extends Person {
         System.out.println("Blood Group: " + bloodGroup);
         System.out.println("Insurance ID: " + insuranceId);
     }
+    public void addMedicalRecord() {
+
+    }
+
+    public void  addAppointment() {
+
+    }
+    public void  updateInsurance() {
+
+    }
 
     public void addAllergy(String allergy) {
         allergies.add(allergy);
