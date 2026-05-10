@@ -8,34 +8,26 @@ import java.util.List;
 
 public class AppointmentService {
 
-    private List<Appointment> appointments =
-            new ArrayList<>();
+    private List<Appointment> appointments = new ArrayList<>();
 
-    // CREATE - Add Appointment
+    //  Add Appointment
     public void addAppointment(Appointment appointment) {
 
         appointments.add(appointment);
 
-        System.out.println(
-                "Appointment Added Successfully"
-        );
+        System.out.println("Appointment Added Successfully");
     }
 
-    // UPDATE - Edit Appointment
-    public void editAppointment(String appointmentId,
-                                Appointment updatedAppointment) {
+    //  Edit Appointment
+    public void editAppointment(String appointmentId, Appointment updatedAppointment) {
 
         for (int i = 0; i < appointments.size(); i++) {
 
-            if (appointments.get(i)
-                    .getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointments.get(i).getAppointmentId().equals(appointmentId)) {
 
                 appointments.set(i, updatedAppointment);
 
-                System.out.println(
-                        "Appointment Updated Successfully"
-                );
+                System.out.println("Appointment Updated Successfully");
 
                 return;
             }
@@ -44,20 +36,13 @@ public class AppointmentService {
         System.out.println("Appointment Not Found");
     }
 
-    // DELETE - Remove Appointment
+    //  Remove Appointment
     public void removeAppointment(String appointmentId) {
 
-        boolean removed = appointments.removeIf(
-                appointment ->
-                        appointment.getAppointmentId()
-                                .equals(appointmentId)
-        );
-
+        boolean removed = appointments.removeIf(appointment -> appointment.getAppointmentId().equals(appointmentId));
         if (removed) {
 
-            System.out.println(
-                    "Appointment Removed Successfully"
-            );
+            System.out.println("Appointment Removed Successfully");
 
         } else {
 
@@ -65,13 +50,12 @@ public class AppointmentService {
         }
     }
 
-    // READ - Get By ID
+    //  Get By ID
     public Appointment getAppointmentById(String appointmentId) {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointment.getAppointmentId().equals(appointmentId)) {
 
                 return appointment;
             }
@@ -81,16 +65,13 @@ public class AppointmentService {
     }
 
     // Get Appointments By Patient
-    public List<Appointment> getAppointmentsByPatient(
-            String patientId) {
+    public List<Appointment> getAppointmentsByPatient(String patientId) {
 
-        List<Appointment> result =
-                new ArrayList<>();
+        List<Appointment> result = new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getPatientId()
-                    .equalsIgnoreCase(patientId)) {
+            if (appointment.getPatientId().equalsIgnoreCase(patientId)) {
 
                 result.add(appointment);
             }
@@ -100,16 +81,13 @@ public class AppointmentService {
     }
 
     // Get Appointments By Doctor
-    public List<Appointment> getAppointmentsByDoctor(
-            String doctorId) {
+    public List<Appointment> getAppointmentsByDoctor(String doctorId) {
 
-        List<Appointment> result =
-                new ArrayList<>();
+        List<Appointment> result = new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getDoctorId()
-                    .equalsIgnoreCase(doctorId)) {
+            if (appointment.getDoctorId().equalsIgnoreCase(doctorId)) {
 
                 result.add(appointment);
             }
@@ -119,16 +97,13 @@ public class AppointmentService {
     }
 
     // Get Appointments By Date
-    public List<Appointment> getAppointmentsByDate(
-            LocalDate date) {
+    public List<Appointment> getAppointmentsByDate(LocalDate date) {
 
-        List<Appointment> result =
-                new ArrayList<>();
+        List<Appointment> result = new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentDate()
-                    .equals(date)) {
+            if (appointment.getAppointmentDate().equals(date)) {
 
                 result.add(appointment);
             }
@@ -145,14 +120,11 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointment.getAppointmentId().equals(appointmentId)) {
 
                 appointment.reschedule(newDate, newTime);
 
-                System.out.println(
-                        "Appointment Rescheduled Successfully"
-                );
+                System.out.println("Appointment Rescheduled Successfully");
 
                 return;
             }
@@ -166,14 +138,11 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId()
-                    .equals(appointmentId)) {
+            if (appointment.getAppointmentId().equals(appointmentId)) {
 
                 appointment.cancel();
 
-                System.out.println(
-                        "Appointment Cancelled Successfully"
-                );
+                System.out.println("Appointment Cancelled Successfully");
 
                 return;
             }
