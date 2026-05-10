@@ -9,5 +9,12 @@ public class AppointmentService {
     // Add Appointment
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
+
     }
+    // Remove Appointment
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+    }
+
+
 }
