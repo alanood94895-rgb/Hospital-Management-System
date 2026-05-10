@@ -1,5 +1,7 @@
 package Services;
 
+import Entities.Doctor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,4 +36,3 @@ public class DoctorService {
     }
 }
 
-}
