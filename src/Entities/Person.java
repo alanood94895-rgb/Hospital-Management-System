@@ -26,6 +26,14 @@ public class Person {
         this.email = email;
         this.address = address;
 
+        }
+        public void displayInfo(){
+            System.out.println("ID :" + id);
+            System.out.println( "First Name :" + firstName);
 
-    }
+
+
+
+
+}
 }
