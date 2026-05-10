@@ -15,4 +15,11 @@ public class MedicalRecordService {
     public void removeRecord(MedicalRecord record) {
         records.remove(record);
     }
+    // Display All Records
+    public void displayAllRecords() {
+
+        for (MedicalRecord record : records) {
+            record.displayInfo();
+        }
+    }
 }
