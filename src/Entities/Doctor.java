@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Doctor extends Person {
 
+    // Add specific fields
     private String doctorId;
     private String specialization;
     private String qualification;
