@@ -1,14 +1,12 @@
 package Entities;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Patient extends Person {
 
-    // Add specific fields
-
+    // Patient Specific Fields
     private String patientId;
     private String bloodGroup;
     private List<String> allergies;
@@ -19,14 +17,30 @@ public class Patient extends Person {
     private List<MedicalRecord> medicalRecords;
     private List<Appointment> appointments;
 
-    public Patient(String id, String firstName, String lastName, LocalDate dob, String gender,
-                   String phone, String email, String address, String patientId, String bloodGroup,
-                   String emergencyContact, LocalDate registrationDate, String insuranceId) {
+    // Full Constructor
+    public Patient(String id,
+                   String firstName,
+                   String lastName,
+                   LocalDate dateOfBirth,
+                   String gender,
+                   String phoneNumber,
+                   String email,
+                   String address,
+                   String patientId,
+                   String bloodGroup,
+                   String emergencyContact,
+                   LocalDate registrationDate,
+                   String insuranceId) {
 
-         // Call Parent Constructor
-        super(id, firstName, lastName,
-                dateOfBirth, gender, phoneNumber, email, address);
-
+        // Call Parent Constructor
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address);
 
         this.patientId = patientId;
         this.bloodGroup = bloodGroup;
@@ -39,11 +53,71 @@ public class Patient extends Person {
         appointments = new ArrayList<>();
     }
 
-    // Override displayInfo()
+    // Getters and Setters
 
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getBloodGroup() {
+        return bloodGroup;
+    }
+
+    public void setBloodGroup(String bloodGroup) {
+        this.bloodGroup = bloodGroup;
+    }
+
+    public List<String> getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(List<String> allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    public String getInsuranceId() {
+        return insuranceId;
+    }
+
+    public void setInsuranceId(String insuranceId) {
+        this.insuranceId = insuranceId;
+    }
+
+    public List<MedicalRecord> getMedicalRecords() {
+        return medicalRecords;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    // Override displayInfo()
     @Override
     public void displayInfo() {
+
+        // Call Parent Method
         super.displayInfo();
+
         System.out.println("Patient ID: " + patientId);
         System.out.println("Blood Group: " + bloodGroup);
         System.out.println("Emergency Contact: " + emergencyContact);
@@ -60,12 +134,13 @@ public class Patient extends Person {
 
     // Add Appointment
     public void addAppointment(Appointment appointment) {
+
         appointments.add(appointment);
     }
 
     // Update Insurance
-    public void updateInsurance(String insuranceId) {
-        this.insuranceId = insuranceId;
-    }
+    public void updateInsurance(String newInsuranceId) {
 
+        this.insuranceId = newInsuranceId;
+    }
 }
