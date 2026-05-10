@@ -55,6 +55,10 @@ public class Doctor extends Person {
         availableSlots = new ArrayList<>();
         assignedPatients = new ArrayList<>();
     }
+    // Getters and Setter
+
+
+
 
     @Override
     public void displayInfo() {
