@@ -11,28 +11,81 @@ public class AppointmentService {
     private List<Appointment> appointments =
             new ArrayList<>();
 
-
-    // Add Appointment
+    // CREATE - Add Appointment
     public void addAppointment(Appointment appointment) {
+
         appointments.add(appointment);
 
+        System.out.println(
+                "Appointment Added Successfully"
+        );
     }
-    // Remove Appointment
-    public void removeAppointment(Appointment appointment) {
-        appointments.remove(appointment);
-    }
-    // Display All
-    public void displayAllAppointments() {
 
-        for (Appointment appointment : appointments) {
-            appointment.displayInfo();
+    // UPDATE - Edit Appointment
+    public void editAppointment(String appointmentId,
+                                Appointment updatedAppointment) {
+
+        for (int i = 0; i < appointments.size(); i++) {
+
+            if (appointments.get(i)
+                    .getAppointmentId()
+                    .equals(appointmentId)) {
+
+                appointments.set(i, updatedAppointment);
+
+                System.out.println(
+                        "Appointment Updated Successfully"
+                );
+
+                return;
+            }
+        }
+
+        System.out.println("Appointment Not Found");
+    }
+
+    // DELETE - Remove Appointment
+    public void removeAppointment(String appointmentId) {
+
+        boolean removed = appointments.removeIf(
+                appointment ->
+                        appointment.getAppointmentId()
+                                .equals(appointmentId)
+        );
+
+        if (removed) {
+
+            System.out.println(
+                    "Appointment Removed Successfully"
+            );
+
+        } else {
+
+            System.out.println("Appointment Not Found");
         }
     }
-    // Get By Patient
+
+    // READ - Get By ID
+    public Appointment getAppointmentById(String appointmentId) {
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getAppointmentId()
+                    .equals(appointmentId)) {
+
+                return appointment;
+            }
+        }
+
+        return null;
+    }
+
+    // Get Appointments By Patient
     public List<Appointment> getAppointmentsByPatient(
             String patientId) {
 
-        List<Appointment> result = new ArrayList<>();
+        List<Appointment> result =
+                new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
@@ -45,11 +98,13 @@ public class AppointmentService {
 
         return result;
     }
-    // Get By Doctor
+
+    // Get Appointments By Doctor
     public List<Appointment> getAppointmentsByDoctor(
             String doctorId) {
 
-        List<Appointment> result = new ArrayList<>();
+        List<Appointment> result =
+                new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
@@ -62,15 +117,18 @@ public class AppointmentService {
 
         return result;
     }
-    // Get By Date
+
+    // Get Appointments By Date
     public List<Appointment> getAppointmentsByDate(
             LocalDate date) {
 
-        List<Appointment> result = new ArrayList<>();
+        List<Appointment> result =
+                new ArrayList<>();
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentDate().equals(date)) {
+            if (appointment.getAppointmentDate()
+                    .equals(date)) {
 
                 result.add(appointment);
             }
@@ -79,7 +137,7 @@ public class AppointmentService {
         return result;
     }
 
-    // Reschedule
+    // Reschedule Appointment
     public void rescheduleAppointment(
             String appointmentId,
             LocalDate newDate,
@@ -87,24 +145,40 @@ public class AppointmentService {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId().equals(appointmentId)) {
+            if (appointment.getAppointmentId()
+                    .equals(appointmentId)) {
 
                 appointment.reschedule(newDate, newTime);
+
+                System.out.println(
+                        "Appointment Rescheduled Successfully"
+                );
+
+                return;
             }
         }
+
+        System.out.println("Appointment Not Found");
     }
 
-    // Cancel
+    // Cancel Appointment
     public void cancelAppointment(String appointmentId) {
 
         for (Appointment appointment : appointments) {
 
-            if (appointment.getAppointmentId().equals(appointmentId)) {
+            if (appointment.getAppointmentId()
+                    .equals(appointmentId)) {
 
                 appointment.cancel();
+
+                System.out.println(
+                        "Appointment Cancelled Successfully"
+                );
+
+                return;
             }
         }
+
+        System.out.println("Appointment Not Found");
     }
 }
-
-
