@@ -17,7 +17,7 @@ public class Patient extends Person {
     private List<MedicalRecord> medicalRecords;
     private List<Appointment> appointments;
 
-    // Full Constructor
+
     public Patient(String id,
                    String firstName,
                    String lastName,
