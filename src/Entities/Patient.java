@@ -68,7 +68,4 @@ public class Patient extends Person {
         this.insuranceId = insuranceId;
     }
 
-    public String getPatientId() {
-        return patientId;
-    }
 }
