@@ -40,6 +40,23 @@ public class DepartmentService {
             department.displayInfo();
         }
     }
+    // Assign Doctor To Department
+    public void assignDoctorToDepartment(
+            Doctor doctor,
+            String departmentId) {
 
+        Department department =
+                getDepartmentById(departmentId);
+
+        if (department != null) {
+
+            department.assignDoctor(doctor);
+
+            System.out.println(
+                    "Doctor Assigned Successfully"
+            );
+        }
+    }
+}
 
 }
