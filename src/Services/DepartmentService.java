@@ -9,6 +9,14 @@ public class DepartmentService {
     public void addDepartment(Department department) {
         departments.add(department);
     }
+    // Remove Department
+    public void removeDepartment(String departmentId) {
 
+        departments.removeIf(
+                department ->
+                        department.getDepartmentId()
+                                .equals(departmentId)
+        );
+    }
 
 }
