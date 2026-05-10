@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Nurse extends Person {
 
+    // Nurse Specific Fields
     private String nurseId;
     private String departmentId;
     private String shift;
@@ -17,14 +18,29 @@ public class Nurse extends Person {
 
     private List<Patient> assignedPatients;
 
-    public Nurse(String id, String firstName, String lastName,
-                 LocalDate dob, String gender,
-                 String phone, String email, String address,
-                 String nurseId, String departmentId,
-                 String shift, String qualification) {
+    // Full Constructor
+    public Nurse(String id,
+                 String firstName,
+                 String lastName,
+                 LocalDate dateOfBirth,
+                 String gender,
+                 String phoneNumber,
+                 String email,
+                 String address,
+                 String nurseId,
+                 String departmentId,
+                 String shift,
+                 String qualification) {
 
-        super(id, firstName, lastName, dob,
-                gender, phone, email, address);
+        // Call Parent Constructor
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address);
 
         this.nurseId = nurseId;
         this.departmentId = departmentId;
@@ -34,22 +50,66 @@ public class Nurse extends Person {
         assignedPatients = new ArrayList<>();
     }
 
-    @Override
-    public void displayInfo() {
-        super.displayInfo();
-        System.out.println("Nurse ID: " + nurseId);
-        System.out.println("Shift: " + shift);
+    // Getters and Setters
+
+    public String getNurseId() {
+        return nurseId;
     }
 
-    public void assignPatient(Patient patient) {
-        assignedPatients.add(patient);
+    public void setNurseId(String nurseId) {
+        this.nurseId = nurseId;
     }
 
     public String getDepartmentId() {
         return departmentId;
     }
 
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
     public String getShift() {
         return shift;
+    }
+
+    public void setShift(String shift) {
+        this.shift = shift;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public List<Patient> getAssignedPatients() {
+        return assignedPatients;
+    }
+
+    // Override displayInfo()
+    @Override
+    public void displayInfo() {
+
+        // Call Parent Method
+        super.displayInfo();
+
+        System.out.println("Nurse ID: " + nurseId);
+        System.out.println("Department ID: " + departmentId);
+        System.out.println("Shift: " + shift);
+        System.out.println("Qualification: " + qualification);
+    }
+
+    // Assign Patient
+    public void assignPatient(Patient patient) {
+
+        assignedPatients.add(patient);
+    }
+
+    // Remove Patient
+    public void removePatient(Patient patient) {
+
+        assignedPatients.remove(patient);
     }
 }
