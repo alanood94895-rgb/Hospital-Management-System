@@ -18,5 +18,21 @@ public class DepartmentService {
                                 .equals(departmentId)
         );
     }
+    // Get Department By ID
+    public Department getDepartmentById(
+            String departmentId) {
+
+        for (Department department : departments) {
+
+            if (department.getDepartmentId()
+                    .equals(departmentId)) {
+
+                return department;
+            }
+        }
+
+        return null;
+    }
+
 
 }
