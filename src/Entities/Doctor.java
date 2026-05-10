@@ -18,10 +18,21 @@ public class Doctor extends Person {
     private List<String> availableSlots;
     private List<Patient> assignedPatients;
 
-    public Doctor(String id, String firstName, String lastName,
-                  LocalDate dob, String gender, String phone, String email, String address,
-                  String doctorId, String specialization, String qualification,
-                  int experienceYears, String departmentId, double consultationFee) {
+    // Full Constructor
+    public Doctor(String id,
+                  String firstName,
+                  String lastName,
+                  LocalDate dateOfBirth,
+                  String gender,
+                  String phoneNumber,
+                  String email,
+                  String address,
+                  String doctorId,
+                  String specialization,
+                  String qualification,
+                  int experienceYears,
+                  String departmentId,
+                  double consultationFee) {
 
         super(id, firstName, lastName, dob,
                 gender, phone, email, address);
