@@ -23,6 +23,7 @@ public class Patient extends Person {
                    String phone, String email, String address, String patientId, String bloodGroup,
                    String emergencyContact, LocalDate registrationDate, String insuranceId) {
 
+         // Call Parent Constructor
         super(id, firstName, lastName, dob,
                 gender, phone, email, address);
 
