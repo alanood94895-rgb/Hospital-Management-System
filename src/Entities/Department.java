@@ -29,4 +29,26 @@ public class Department {
 
         doctors = new ArrayList<>();
         nurses = new ArrayList<>();
+    }
+    public void assignDoctor(Doctor doctor) {
+        doctors.add(doctor);
+    }
+
+    public void assignNurse(Nurse nurse) {
+        nurses.add(nurse);
+    }
+
+    public void updateBedAvailability(int beds) {
+        availableBeds = beds;
+    }
+
+    public void displayInfo() {
+        System.out.println("Department: " + departmentName);
+        System.out.println("Available Beds: " + availableBeds);
+    }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
 }
+
