@@ -24,8 +24,9 @@ public class Patient extends Person {
                    String emergencyContact, LocalDate registrationDate, String insuranceId) {
 
          // Call Parent Constructor
-        super(id, firstName, lastName, dob,
-                gender, phone, email, address);
+        super(id, firstName, lastName,
+                dateOfBirth, gender, phoneNumber, email, address);
+
 
         this.patientId = patientId;
         this.bloodGroup = bloodGroup;
