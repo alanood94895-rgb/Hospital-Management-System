@@ -33,6 +33,13 @@ public class DepartmentService {
 
         return null;
     }
+    // Display All Departments
+    public void displayAllDepartments() {
+
+        for (Department department : departments) {
+            department.displayInfo();
+        }
+    }
 
 
 }
