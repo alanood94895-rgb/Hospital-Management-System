@@ -39,6 +39,7 @@ public class Patient extends Person {
         appointments = new ArrayList<>();
     }
 
+    // Override displayInfo()
     @Override
     public void displayInfo() {
         super.displayInfo();
