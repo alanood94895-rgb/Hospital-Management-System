@@ -39,6 +39,24 @@ public class AppointmentService {
 
         return result;
     }
+    // Get By Doctor
+    public List<Appointment> getAppointmentsByDoctor(
+            String doctorId) {
+
+        List<Appointment> result = new ArrayList<>();
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getDoctorId()
+                    .equalsIgnoreCase(doctorId)) {
+
+                result.add(appointment);
+            }
+        }
+
+        return result;
+    }
+
 
 
 }
