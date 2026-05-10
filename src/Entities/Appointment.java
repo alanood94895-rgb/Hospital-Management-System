@@ -60,7 +60,8 @@ public class Appointment {
     public void  assignNurse() {
 
     }
+    public void updateBedAvailability() {
 
-
+    }
 }
 
