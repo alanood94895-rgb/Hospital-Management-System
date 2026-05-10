@@ -25,6 +25,16 @@ public class PatientService {
                 return patient;
             }
         }
+        return null;
+    }
+
+    public void displayAllPatients() {
+
+        for (Patient patient : patients) {
+            patient.displayInfo();
+        }
+    }
+}
 
 
 
