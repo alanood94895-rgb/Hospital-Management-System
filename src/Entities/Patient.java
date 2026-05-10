@@ -53,14 +53,16 @@ public class Patient extends Person {
     }
 
     // Add Medical Record
-    public void addMedicalRecord(MedicalRecord record) {
-        medicalRecords.add(record);
+    public void addMedicalRecord(MedicalRecord medicalRecord) {
+
+        medicalRecords.add(medicalRecord);
     }
 
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
     }
 
+    // Add Appointment
     public void updateInsurance(String insuranceId) {
         this.insuranceId = insuranceId;
     }
