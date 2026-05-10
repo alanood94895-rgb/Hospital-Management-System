@@ -22,6 +22,23 @@ public class AppointmentService {
             appointment.displayInfo();
         }
     }
+    // Get By Patient
+    public List<Appointment> getAppointmentsByPatient(
+            String patientId) {
+
+        List<Appointment> result = new ArrayList<>();
+
+        for (Appointment appointment : appointments) {
+
+            if (appointment.getPatientId()
+                    .equalsIgnoreCase(patientId)) {
+
+                result.add(appointment);
+            }
+        }
+
+        return result;
+    }
 
 
 }
