@@ -50,7 +50,7 @@ public class Nurse extends Person {
         assignedPatients = new ArrayList<>();
     }
 
-    // Getters and Setters
+    // Get and Set
 
     public String getNurseId() {
         return nurseId;
