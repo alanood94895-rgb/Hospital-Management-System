@@ -1,6 +1,7 @@
 package Entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,18 +13,17 @@ public class Doctor extends Person {
     private int experienceYears;
     private String departmentId;
     private double consultationFee;
-    private List <String> availableSlots ;
-    private List <String> assignedPatients ;
 
+    private List<String> availableSlots;
+    private List<Patient> assignedPatients;
 
     public Doctor(String id, String firstName, String lastName,
-                  LocalDate dateOfBirth, String gender,
-                  String phoneNumber, String email, String address,
-                  String doctorId, String specialization,
-                  int experienceYears, double consultationFee) {
+                  LocalDate dob, String gender, String phone, String email, String address,
+                  String doctorId, String specialization, String qualification,
+                  int experienceYears, String departmentId, double consultationFee) {
 
-        super(id, firstName, lastName, dateOfBirth, gender,
-                phoneNumber, email, address);
+        super(id, firstName, lastName, dob,
+                gender, phone, email, address);
 
         this.doctorId = doctorId;
         this.specialization = specialization;
@@ -31,28 +31,35 @@ public class Doctor extends Person {
         this.experienceYears = experienceYears;
         this.departmentId = departmentId;
         this.consultationFee = consultationFee;
-        this.availableSlots = availableSlots;
-        this.assignedPatients = assignedPatients ;
+
+        availableSlots = new ArrayList<>();
+        assignedPatients = new ArrayList<>();
     }
 
     @Override
     public void displayInfo() {
-
         super.displayInfo();
-
         System.out.println("Doctor ID: " + doctorId);
         System.out.println("Specialization: " + specialization);
-        System.out.println("Experience: " + experienceYears);
-        System.out.println("Fee: " + consultationFee);
-    }
-    public void  assignPatient() {
-
-    }
-    public void removePatient() {
-
-    }
-    public void updateAvailability(){
-
     }
 
+    public void assignPatient(Patient patient) {
+        assignedPatients.add(patient);
+    }
+
+    public void removePatient(Patient patient) {
+        assignedPatients.remove(patient);
+    }
+
+    public void updateAvailability(String slot) {
+        availableSlots.add(slot);
+    }
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
 }
