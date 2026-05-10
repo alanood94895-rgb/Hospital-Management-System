@@ -34,8 +34,16 @@ public class Doctor extends Person {
                   String departmentId,
                   double consultationFee) {
 
-        super(id, firstName, lastName, dob,
-                gender, phone, email, address);
+
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address);
+
 
         this.doctorId = doctorId;
         this.specialization = specialization;
