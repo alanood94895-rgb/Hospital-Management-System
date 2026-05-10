@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Patient extends Person {
 
+    // Add specific fields
+
     private String patientId;
     private String bloodGroup;
     private List<String> allergies;
@@ -17,13 +19,9 @@ public class Patient extends Person {
     private List<MedicalRecord> medicalRecords;
     private List<Appointment> appointments;
 
-    public Patient(String id, String firstName, String lastName,
-                   LocalDate dob, String gender,
-                   String phone, String email, String address,
-                   String patientId, String bloodGroup,
-                   String emergencyContact,
-                   LocalDate registrationDate,
-                   String insuranceId) {
+    public Patient(String id, String firstName, String lastName, LocalDate dob, String gender,
+                   String phone, String email, String address, String patientId, String bloodGroup,
+                   String emergencyContact, LocalDate registrationDate, String insuranceId) {
 
         super(id, firstName, lastName, dob,
                 gender, phone, email, address);
