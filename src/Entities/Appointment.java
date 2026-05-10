@@ -57,6 +57,9 @@ public class Appointment {
     public void  assignDoctor() {
 
     }
+    public void  assignNurse() {
+
+    }
 
 
 }
