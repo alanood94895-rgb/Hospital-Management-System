@@ -108,25 +108,43 @@ public class Person {
         System.out.println("Address: " + address);
     }
 
-
-
-
+    // toString Method
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+
+        return "Person{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender='" + gender + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 
+    // equals Method
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person)) return false;
-        Person person = (Person) o;
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
+        Person person = (Person) obj;
+
         return Objects.equals(id, person.id);
     }
 
+    // hashCode Method
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
-
 }
+
