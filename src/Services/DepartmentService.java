@@ -8,35 +8,26 @@ import java.util.List;
 
 public class DepartmentService {
 
-    private List<Department> departments =
-            new ArrayList<>();
+    private List<Department> departments = new ArrayList<>();
 
-    // CREATE - Add Department
+    // Add Department
     public void addDepartment(Department department) {
 
         departments.add(department);
 
-        System.out.println(
-                "Department Added Successfully"
-        );
+        System.out.println("Department Added Successfully");
     }
 
-    // UPDATE - Edit Department
-    public void editDepartment(String departmentId,
-                               Department updatedDepartment) {
+    //  Edit Department
+    public void editDepartment(String departmentId, Department updatedDepartment) {
 
         for (int i = 0; i < departments.size(); i++) {
 
-            if (departments.get(i)
-                    .getDepartmentId()
-                    .equals(departmentId)) {
+            if (departments.get(i).getDepartmentId().equals(departmentId)) {
 
                 departments.set(i, updatedDepartment);
 
-                System.out.println(
-                        "Department Updated Successfully"
-                );
-
+                System.out.println("Department Updated Successfully");
                 return;
             }
         }
@@ -44,36 +35,26 @@ public class DepartmentService {
         System.out.println("Department Not Found");
     }
 
-    // DELETE - Remove Department
+    //  Remove Department
     public void removeDepartment(String departmentId) {
 
-        boolean removed = departments.removeIf(
-                department ->
-                        department.getDepartmentId()
-                                .equals(departmentId)
-        );
+        boolean removed = departments.removeIf(department -> department.getDepartmentId().equals(departmentId));
 
         if (removed) {
 
-            System.out.println(
-                    "Department Removed Successfully"
-            );
-
+            System.out.println("Department Removed Successfully");
         } else {
 
             System.out.println("Department Not Found");
         }
     }
 
-    // READ - Get Department By ID
-    public Department getDepartmentById(
-            String departmentId) {
+    //  Get Department By ID
+    public Department getDepartmentById(String departmentId) {
 
         for (Department department : departments) {
 
-            if (department.getDepartmentId()
-                    .equals(departmentId)) {
-
+            if (department.getDepartmentId().equals(departmentId)) {
                 return department;
             }
         }
@@ -86,36 +67,27 @@ public class DepartmentService {
 
         if (departments.isEmpty()) {
 
-            System.out.println(
-                    "No Departments Found"
-            );
+            System.out.println("No Departments Found");
 
             return;
         }
 
-        System.out.println(
-                "===== DEPARTMENT LIST ====="
-        );
+        System.out.println(" DEPARTMENT LIST");
 
         for (Department department : departments) {
 
             department.displayInfo();
 
-            System.out.println(
-                    "----------------------"
-            );
+            System.out.println("");
         }
     }
 
     // Assign Doctor To Department
-    public void assignDoctorToDepartment(
-            Doctor doctor,
-            String departmentId) {
+    public void assignDoctorToDepartment(Doctor doctor, String departmentId) {
 
         for (Department department : departments) {
 
-            if (department.getDepartmentId()
-                    .equals(departmentId)) {
+            if (department.getDepartmentId().equals(departmentId)) {
 
                 // Add doctor to department
                 department.assignDoctor(doctor);
@@ -123,16 +95,12 @@ public class DepartmentService {
                 // Update doctor departmentId
                 doctor.setDepartmentId(departmentId);
 
-                System.out.println(
-                        "Doctor Assigned Successfully"
-                );
+                System.out.println("Doctor Assigned Successfully");
 
                 return;
             }
         }
 
-        System.out.println(
-                "Department Not Found"
-        );
+        System.out.println("Department Not Found");
     }
 }
