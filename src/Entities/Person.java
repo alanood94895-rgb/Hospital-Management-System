@@ -18,6 +18,7 @@ public class Person {
     public Person(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender,
                   String phoneNumber, String email, String address) {
 
+
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,6 +29,10 @@ public class Person {
         this.address = address;
 
         }
+
+        //get and set
+
+
         public void displayInfo() {
             System.out.println("ID: " + id);
             System.out.println("Name: " + firstName + " " + lastName);
