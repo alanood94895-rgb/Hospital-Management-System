@@ -112,8 +112,8 @@ public class PatientService {
                 registrationDate,
                 medicalRecords,
                 insuranceId,
-                appointments
-        );
+                appointments ,
+                );
 
         return patient;
     }

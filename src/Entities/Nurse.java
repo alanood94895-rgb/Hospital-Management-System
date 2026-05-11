@@ -7,11 +7,50 @@ import java.util.List;
 public class Nurse extends Person {
 
     // Nurse specific fields
+
     private String nurseId;
     private String departmentId;
     private String shift;
     private String qualification;
     private List<String> assignedPatients;
+
+    // Constructor
+
+    public Nurse(
+            String id,
+            String firstName,
+            String lastName,
+            LocalDate dateOfBirth,
+            String gender,
+            String phoneNumber,
+            String email,
+            String address,
+            String nurseId,
+            String departmentId,
+            String shift,
+            String qualification,
+            List<String> assignedPatients)
+    {
+
+        super(
+                id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address
+        );
+
+        this.nurseId = nurseId;
+        this.departmentId = departmentId;
+        this.shift = shift;
+        this.qualification = qualification;
+        this.assignedPatients = new ArrayList<>(assignedPatients);
+    }
+
+    // Getters and Setters
 
     public String getNurseId() {
         return nurseId;
@@ -53,41 +92,10 @@ public class Nurse extends Person {
         this.assignedPatients = assignedPatients;
     }
 
-    // Constructor with constructor chaining
-    public Nurse(String id,
-                 String firstName,
-                 LocalDate dateOfBirth,
-                 String lastName,
-                 String gender,
-                 String phoneNumber,
-                 String email,
-                 String address,
-                 String nurseId,
-                 String departmentId,
-                 String shift,
-                 String qualification,
-                 List<String> assignedPatients) {
-
-
-        super(id,
-                firstName,
-                dateOfBirth,
-                lastName,
-                gender,
-                phoneNumber,
-                email,
-                address);
-
-
-        this.nurseId = nurseId;
-        this.departmentId = departmentId;
-        this.shift = shift;
-        this.qualification = qualification;
-        this.assignedPatients = new ArrayList<>();
-    }
-
+    // Display Nurse Information
     @Override
     public void displayInfo() {
+
         super.displayInfo();
 
         System.out.println("Nurse ID: " + nurseId);
@@ -97,21 +105,31 @@ public class Nurse extends Person {
         System.out.println("Assigned Patients: " + assignedPatients);
     }
 
-    // Method to assign patient
+    // Assign Patient
+    public void assignPatient(String patientId) {
 
-    public void assignPatient(String patientId ,String nurseId ) {
-        assignedPatients.add(patientId);
-        System.out.println(patientId + " assigned to Nurse " + nurseId);
-    }
+        if (!assignedPatients.contains(patientId)) {
 
-    // Method to remove patient
+            assignedPatients.add(patientId);
 
-    public void removePatient(String patientId ,String nurseId) {
-        if (assignedPatients.remove(patientId)) {
-            System.out.println(patientId + " removed from Nurse " + nurseId);
+            System.out.println("Patient " + patientId + " assigned to Nurse " + nurseId);
+
         } else {
-            System.out.println("Patient not found");
+
+            System.out.println("Patient already assigned.");
         }
     }
 
+    // Remove Patient
+    public void removePatient(String patientId) {
+
+        if (assignedPatients.remove(patientId)) {
+
+            System.out.println("Patient " + patientId + " removed from Nurse " + nurseId);
+
+        } else {
+
+            System.out.println("Patient not found.");
+        }
+    }
 }
