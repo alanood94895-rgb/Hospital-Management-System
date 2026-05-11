@@ -13,27 +13,16 @@ public class Appointment {
     private String reason;
     private String notes;
 
-    // Full Constructor
-    public Appointment(String appointmentId,
-                       String patientId,
-                       String doctorId,
-                       LocalDate appointmentDate,
-                       String appointmentTime,
-                       String status,
-                       String reason,
-                       String notes) {
-
-        this.appointmentId = appointmentId;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
-        this.status = status;
-        this.reason = reason;
+    public Appointment(String notes, String reason, String status, String appointmentTime, LocalDate appointmentDate, String doctorId, String patientId, String appointmentId) {
         this.notes = notes;
+        this.reason = reason;
+        this.status = status;
+        this.appointmentTime = appointmentTime;
+        this.appointmentDate = appointmentDate;
+        this.doctorId = doctorId;
+        this.patientId = patientId;
+        this.appointmentId = appointmentId;
     }
-
-    // Get and Set
 
     public String getAppointmentId() {
         return appointmentId;
@@ -99,9 +88,7 @@ public class Appointment {
         this.notes = notes;
     }
 
-    // displayInfo Method
-    public void displayInfo() {
-
+    public void displayInfo(){
         System.out.println("Appointment ID: " + appointmentId);
         System.out.println("Patient ID: " + patientId);
         System.out.println("Doctor ID: " + doctorId);
@@ -112,23 +99,29 @@ public class Appointment {
         System.out.println("Notes: " + notes);
     }
 
-    // Reschedule Appointment
+    // reschedule() method
     public void reschedule(LocalDate newDate, String newTime) {
 
         this.appointmentDate = newDate;
         this.appointmentTime = newTime;
         this.status = "Rescheduled";
+
+        System.out.println("Appointment rescheduled successfully.");
     }
 
-    // Cancel Appointment
+    // cancel() method
     public void cancel() {
 
         this.status = "Cancelled";
+
+        System.out.println("Appointment cancelled.");
     }
 
     // Complete Appointment
     public void complete() {
-
         this.status = "Completed";
+
+        System.out.println("Appointment marked as completed.");
     }
+
 }
