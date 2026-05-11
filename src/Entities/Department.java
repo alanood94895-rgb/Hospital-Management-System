@@ -15,8 +15,15 @@ public class Department {
     private int bedCapacity;
     private int availableBeds;
 
-    // full constructor
-    public Department(String departmentId, String departmentName, String headDoctorId, List<Doctor> doctors, List<Nurse> nurses, int bedCapacity, int availableBeds) {
+    // Full Constructor
+    public Department(String departmentId,
+                      String departmentName,
+                      String headDoctorId,
+                      List<Doctor> doctors,
+                      List<Nurse> nurses,
+                      int bedCapacity,
+                      int availableBeds) {
+
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
@@ -94,7 +101,7 @@ public class Department {
         System.out.println("Available Beds: " + availableBeds);
     }
 
-    // Assign doctor
+    // Assign Doctor
     public void assignDoctor(Doctor doctor) {
 
         if (!doctors.contains(doctor)) {
