@@ -1,117 +1,180 @@
 package Services;
+import Entity.Doctor;
+import Entity.Nurse;
 
-import Entities.Nurse;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class NurseService {
+    Scanner scanner = new Scanner(System.in);
 
-    // List To Store Nurses
-    private List<Nurse> nurses = new ArrayList<>();
+    static List<Nurse> nurseList = new ArrayList<>();
+    List<String> assignedPatients = new ArrayList<>();
 
-    // Add Nurse
-    public void addNurse(Nurse nurse) {
+    public Nurse addNurse() {
 
-        nurses.add(nurse);
+        System.out.println("Enter Nurse id :");
+        String id = scanner.nextLine();
 
-        System.out.println("Nurse Added Successfully");
+        System.out.println("Enter Nurse first name :");
+        String nurseFName = scanner.nextLine();
+
+        System.out.println("Enter Nurse last name :");
+        String nurseLName = scanner.nextLine();
+
+        System.out.println("Enter Nurse DOB: ");
+        String dateOfBirth = scanner.nextLine();
+        LocalDate DOB = LocalDate.parse(dateOfBirth);
+
+        System.out.println("Enter Nurse gender :");
+        String gender = scanner.nextLine();
+
+        System.out.println("Enter Nurse phone number :");
+        String phone = scanner.nextLine();
+
+        System.out.println("Enter Nurse email :");
+        String email = scanner.nextLine();
+
+        System.out.println("Enter Nurse address :");
+        String address = scanner.nextLine();
+
+        System.out.println("Enter Nurse nurse Id :");
+        String nurseId = scanner.nextLine();
+
+        System.out.println("Enter Nurse department Id :");
+        String departmentId = scanner.nextLine();
+
+        System.out.println("Enter Nurse shift :");
+        String shift = scanner.nextLine();
+
+        System.out.println("Enter Nurse qualification :");
+        String qualification = scanner.nextLine();
+
+        Nurse nurse = new Nurse(id, nurseFName, DOB, nurseLName, gender, phone, email, address, nurseId, departmentId, shift, qualification, assignedPatients);
+
+        return nurse;
     }
 
-    // Edit Nurse
-    public void editNurse(String nurseId, Nurse updatedNurse) {
+    public List<Nurse> addNurses() {
 
-        for (int i = 0; i < nurses.size(); i++) {
+        Boolean continueFlag = true;
+        while (continueFlag) {
 
-            if (nurses.get(i).getNurseId().equals(nurseId)) {
+            nurseList.add(addNurse());
+            System.out.println("Nurse add successfully");
 
-                nurses.set(i, updatedNurse);
-
-                System.out.println("Nurse Updated Successfully");
-                return;
+            System.out.println("Enter c to add more , and q to exit");
+            if (scanner.nextLine().equalsIgnoreCase("q")) {
+                continueFlag = false;
             }
         }
+        return nurseList;
 
-        System.out.println("Nurse Not Found");
     }
 
-    // Remove Nurse
-    public void removeNurse(String nurseId) {
+    public void editNurse(String nurseId) {
 
-        boolean removed = nurses.removeIf(nurse -> nurse.getNurseId().equals(nurseId));
+        for (Nurse nurse : nurseList){
 
-        if (removed) {
+            if(nurse.getNurseId().equals(nurseId)){
 
-            System.out.println("Nurse Removed Successfully");
+                System.out.println("Enter updated Nurse first name :");
+                nurse.setFirstName(scanner.nextLine());
 
-        } else {
+                System.out.println("Enter updated Nurse last name :");
+                nurse.setLastName(scanner.nextLine());
 
-            System.out.println("Nurse Not Found");
+                System.out.println("Enter updated Nurse DOB: ");
+                String dateOfBirth = scanner.nextLine();
+                LocalDate DOB = LocalDate.parse(dateOfBirth);
+                nurse.setDateOfBirth(DOB);
+
+                System.out.println("Enter updated Nurse gender :");
+                nurse.setGender(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse phone number :");
+                nurse.setPhoneNumber(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse email :");
+                nurse.setEmail(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse address :");
+                nurse.setAddress(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse department Id :");
+                nurse.setDepartmentId(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse shift :");
+                nurse.setShift(scanner.nextLine());
+
+                System.out.println("Enter updated Nurse qualification :");
+                nurse.setQualification(scanner.nextLine());
+
+            }
+
         }
+
     }
 
-    // Get Nurse By ID
-    public Nurse getNurseById(String nurseId) {
+    // remove nurse by ID
+    public void removeNurse(String nurseId){
 
-        for (Nurse nurse : nurses) {
+        nurseList.removeIf(N -> N.getNurseId() == nurseId);
+        System.out.println("Nurse removed successfully");
 
-            if (nurse.getNurseId().equals(nurseId)) {
+        System.out.println("Nurse not found");
+
+    }
+
+    //retrieve nurse
+    public Nurse getNurseById(String nurseId){
+
+        for(Nurse nurse: nurseList){
+            if(nurse.getNurseId().equals(nurseId)){
                 return nurse;
             }
+
         }
+        System.out.println("Nurse not found");
         return null;
     }
 
-    // Display All Nurses
-    public void displayAllNurses() {
+    //display all nurses with formatted output
+    public void displayAllNurses(){
 
-        if (nurses.isEmpty()) {
-
-            System.out.println("No Nurses Found");
-
-            return;
-        }
-
-        System.out.println(" NURSE LIST");
-
-        for (Nurse nurse : nurses) {
-
+        for(Nurse nurse: nurseList){
             nurse.displayInfo();
-
-            System.out.println("");
         }
+
     }
 
-    // Get Nurses By Department
-    public List<Nurse> getNursesByDepartment(
-            String departmentId) {
+    // get Nurse By Department
+    public List<Nurse> getNursesByDepartment(String department){
 
-        List<Nurse> result = new ArrayList<>();
-
-        for (Nurse nurse : nurses) {
-
-            if (nurse.getDepartmentId().equalsIgnoreCase(departmentId)) {
-
-                result.add(nurse);
+        List<Nurse> departmentNurse = new ArrayList<>();
+        for(Nurse nurse : nurseList){
+            if(nurse.getDepartmentId().equals(department)){
+                departmentNurse.add(nurse);
             }
         }
-
-        return result;
+        return departmentNurse;
     }
 
-    // Get Nurses By Shift
-    public List<Nurse> getNursesByShift(String shift) {
+    // get Nurse By Shift
+    public List<Nurse> getNursesByShift(String shift){
 
-        List<Nurse> result = new ArrayList<>();
+        List<Nurse> shiftNurse = new ArrayList<>();
 
-        for (Nurse nurse : nurses) {
-
-            if (nurse.getShift().equalsIgnoreCase(shift)) {
-
-                result.add(nurse);
+        for(Nurse nurse : nurseList){
+            if(nurse.getShift().equals(shift)){
+                shiftNurse.add(nurse);
             }
         }
-
-        return result;
+        return shiftNurse;
     }
+
+
+
 }
