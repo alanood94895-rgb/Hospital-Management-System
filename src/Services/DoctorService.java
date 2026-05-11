@@ -72,6 +72,7 @@ public class DoctorService {
         List<String> assignedPatients = new ArrayList<>();
 
         Doctor doctor;
+
         doctor = new Doctor(
                 id,
                 firstName,
@@ -88,7 +89,7 @@ public class DoctorService {
                 departmentId,
                 consultationFee,
                 availableSlots,
-                assignedPatients,
+                assignedPatients
         );
 
         return doctor;

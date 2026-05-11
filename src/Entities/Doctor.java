@@ -16,8 +16,8 @@ public class Doctor extends Person{
 
     public Doctor(String id,
                   String firstName,
-                  LocalDate dateOfBirth,
                   String lastName,
+                  LocalDate dateOfBirth,
                   String gender,
                   String phoneNumber,
                   String email,
