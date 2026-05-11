@@ -248,9 +248,7 @@ public class PatientService {
     }
 
 
-    // =========================================
     // DISPLAY ALL PATIENTS
-    // =========================================
 
     public void displayAllPatients() {
 
