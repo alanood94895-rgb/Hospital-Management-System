@@ -71,7 +71,8 @@ public class DoctorService {
         List<String> availableSlots = new ArrayList<>();
         List<String> assignedPatients = new ArrayList<>();
 
-        Doctor doctor = new Doctor(
+        Doctor doctor;
+        doctor = new Doctor(
                 id,
                 firstName,
                 lastName,
@@ -87,7 +88,7 @@ public class DoctorService {
                 departmentId,
                 consultationFee,
                 availableSlots,
-                assignedPatients
+                assignedPatients,
         );
 
         return doctor;
@@ -130,7 +131,7 @@ public class DoctorService {
             return;
         }
 
-        System.out.println("========== UPDATE DOCTOR ==========");
+        System.out.println("UPDATE DOCTOR");
 
         System.out.print("Enter Updated First Name: ");
         doctor.setFirstName(scanner.nextLine());
@@ -178,9 +179,7 @@ public class DoctorService {
     // Remove Doctor
     public void removeDoctor(String doctorId) {
 
-        boolean removed = doctors.removeIf(
-                doctor -> doctor.getDoctorId().equals(doctorId)
-        );
+        boolean removed = doctors.removeIf(doctor -> doctor.getDoctorId().equals(doctorId));
 
         if (removed) {
 
@@ -222,18 +221,12 @@ public class DoctorService {
     }
 
     // Get Doctors By Specialization
-    public List<Doctor> getDoctorsBySpecialization(
-            String specialization
-    ) {
+    public List<Doctor> getDoctorsBySpecialization(String specialization) {
 
-        List<Doctor> specializationDoctors =
-                new ArrayList<>();
+        List<Doctor> specializationDoctors = new ArrayList<>();
 
         for (Doctor doctor : doctors) {
-
-            if (doctor.getSpecialization()
-                    .equalsIgnoreCase(specialization)) {
-
+            if (doctor.getSpecialization().equalsIgnoreCase(specialization)) {
                 specializationDoctors.add(doctor);
             }
         }
@@ -244,8 +237,7 @@ public class DoctorService {
     // Get Available Doctors
     public List<Doctor> getAvailableDoctors() {
 
-        List<Doctor> availableDoctors =
-                new ArrayList<>();
+        List<Doctor> availableDoctors = new ArrayList<>();
 
         for (Doctor doctor : doctors) {
 
