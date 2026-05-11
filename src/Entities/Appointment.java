@@ -117,7 +117,7 @@ public class Appointment {
         System.out.println("Appointment rescheduled successfully.");
     }
 
-    // cancel() method
+    // Cancel Method
     public void cancel() {
 
         this.status = "Cancelled";
