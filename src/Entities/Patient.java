@@ -150,5 +150,7 @@ public class Patient extends Person {
     public void updateInsurance(String newInsuranceId) {
 
         this.insuranceId = newInsuranceId;
+
+        System.out.println( "Insurance Updated");
     }
 }
