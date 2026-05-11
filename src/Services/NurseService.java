@@ -63,9 +63,11 @@ public class NurseService {
                 phone,
                 email,
                 address,
+                nurseId,
                 departmentId,
                 shift,
-                qualification
+                qualification,
+                new ArrayList<>()
         );
 
         return nurse;
