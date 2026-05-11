@@ -119,9 +119,7 @@ public class PatientService {
     }
 
 
-    // =========================================
     // ADD MULTIPLE PATIENTS
-    // =========================================
 
     public List<Patient> addPatients() {
 
