@@ -110,7 +110,7 @@ public class Nurse extends Person {
         if (assignedPatients.remove(patientId)) {
             System.out.println(patientId + " removed from Nurse " + nurseId);
         } else {
-            System.out.println("Patient not found.");
+            System.out.println("Patient not found");
         }
     }
 
