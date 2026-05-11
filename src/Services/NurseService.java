@@ -1,6 +1,6 @@
 package Services;
-import Entity.Doctor;
-import Entity.Nurse;
+import Entities.Doctor;
+import Entities.Nurse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -52,7 +52,19 @@ public class NurseService {
         System.out.println("Enter Nurse qualification :");
         String qualification = scanner.nextLine();
 
-        Nurse nurse = new Nurse(id, nurseFName, DOB, nurseLName, gender, phone, email, address, nurseId, departmentId, shift, qualification, assignedPatients);
+        Nurse nurse = new Nurse(id,
+                nurseFName,
+                dateOfBirth,
+                nurseLName,
+                gender,
+                phone,
+                email,
+                address,
+                nurseId,
+                departmentId,
+                shift,
+                qualification,
+                assignedPatients);
 
         return nurse;
     }
@@ -118,7 +130,7 @@ public class NurseService {
 
     }
 
-    // remove nurse by ID
+    // Remove nurse by ID
     public void removeNurse(String nurseId){
 
         nurseList.removeIf(N -> N.getNurseId() == nurseId);
@@ -128,7 +140,7 @@ public class NurseService {
 
     }
 
-    //retrieve nurse
+    //Retrieve nurse
     public Nurse getNurseById(String nurseId){
 
         for(Nurse nurse: nurseList){
@@ -141,7 +153,7 @@ public class NurseService {
         return null;
     }
 
-    //display all nurses with formatted output
+    //Display all nurses with formatted output
     public void displayAllNurses(){
 
         for(Nurse nurse: nurseList){
@@ -150,7 +162,7 @@ public class NurseService {
 
     }
 
-    // get Nurse By Department
+    // Get Nurse By Department
     public List<Nurse> getNursesByDepartment(String department){
 
         List<Nurse> departmentNurse = new ArrayList<>();
