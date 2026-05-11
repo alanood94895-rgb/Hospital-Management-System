@@ -72,7 +72,7 @@ public class PatientService {
         while (continueFlag) {
 
             allergies.add(scanner.nextLine());
-            System.out.println("Enter c to add more allergies , and q to exit");
+            System.out.println("Enter a to add more allergies , and q to exit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 continueFlag = false;
             }
@@ -91,7 +91,7 @@ public class PatientService {
             patients.add(addPatient());
             System.out.println("Patient add successfully");
 
-            System.out.println("Enter c to add more , and q to exit");
+            System.out.println("Enter a to add more , and q to exit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 continueFlag = false;
             }
@@ -154,7 +154,7 @@ public class PatientService {
                 while (continueFlag) {
 
                     allergies.add(scanner.nextLine());
-                    System.out.println("Enter c to add more allergies , and q to exit");
+                    System.out.println("Enter a to add more allergies , and q to exit");
                     if (scanner.nextLine().equalsIgnoreCase("q")) {
                         continueFlag = false;
                     }
