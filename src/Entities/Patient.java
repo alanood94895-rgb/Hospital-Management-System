@@ -113,20 +113,21 @@ public class Patient extends Person {
         return appointments;
     }
 
-    // Override isplayInfo()
+    // Override displayInfo()
 
     @Override
     public void displayInfo() {
-
-        // Call Parent Method
         super.displayInfo();
 
-        System.out.println("Patient ID: " + patientId);
-        System.out.println("Blood Group: " + bloodGroup);
-        System.out.println("Emergency Contact: " + emergencyContact);
-        System.out.println("Registration Date: " + registrationDate);
-        System.out.println("Insurance ID: " + insuranceId);
-        System.out.println("Allergies: " + allergies);
+        System.out.println("patient Id : "+ patientId);
+        System.out.println("patient blood Group : "+ bloodGroup);
+        System.out.println("patient allergies : "+ allergies);
+        System.out.println("patient emergency Contact : "+ emergencyContact);
+        System.out.println("patient registration Date : "+ registrationDate);
+        System.out.println("patient insuranceId : "+ insuranceId);
+        System.out.println("patient medical Records : "+ medicalRecords);
+        System.out.println("patient appointments : "+ appointments);
+
     }
 
     // Add Medical Record
