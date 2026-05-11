@@ -188,7 +188,8 @@ public class PatientService {
         return null;
     }
 
-    //display all patients with formatted output
+    //Display all patients
+
     public void displayAllPatients(){
 
         for(Patient patient: patients){
@@ -197,11 +198,10 @@ public class PatientService {
 
     }
 
-    //search functionality
+    //Search functionality
     public void searchPatientsByName(String name) {
 
         boolean found = false;
-
 
         for(Patient patient : patients){
 
