@@ -70,7 +70,7 @@ public class PatientService {
             allergies.add(Arrays.toString(allergiesInput.split(",")));
         }
 
-        Patient patient= new Patient(
+        Patient patient = new Patient(
                 id,
                 firstName,
                 lastName,
@@ -79,13 +79,12 @@ public class PatientService {
                 phone,
                 email,
                 address,
+                id,
                 bloodGroup,
                 emergencyContact,
                 LocalDate.now(),
-                insuranceId,
-                allergies
+                insuranceId
         );
-
 
         System.out.println(Constants.PATIENT_ADDED_SUCCESSFULLY);
         return patient;
@@ -138,8 +137,6 @@ public class PatientService {
             p.displayInfo();
         }
     }
-
-
 
 
 }
