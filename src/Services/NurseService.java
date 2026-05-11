@@ -174,7 +174,7 @@ public class NurseService {
         return departmentNurse;
     }
 
-    // get Nurse By Shift
+    // Get Nurse By Shift
     public List<Nurse> getNursesByShift(String shift){
 
         List<Nurse> shiftNurse = new ArrayList<>();
