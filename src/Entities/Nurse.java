@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Nurse extends Person {
 
-    // Nurse-specific fields
+    // Nurse specific fields
     private String nurseId;
     private String departmentId;
     private String shift;
