@@ -113,7 +113,8 @@ public class Patient extends Person {
         return appointments;
     }
 
-    // Override displayInfo()
+    // Override isplayInfo()
+
     @Override
     public void displayInfo() {
 
