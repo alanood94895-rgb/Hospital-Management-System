@@ -1,7 +1,7 @@
 package Services;
 
 import Entities.Appointment;
-import Entity.MedicalRecord;
+import Entities.MedicalRecord;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
