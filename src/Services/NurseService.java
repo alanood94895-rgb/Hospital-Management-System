@@ -77,7 +77,7 @@ public class NurseService {
             nurseList.add(addNurse());
             System.out.println("Nurse add successfully");
 
-            System.out.println("Enter c to add more , and q to exit");
+            System.out.println("Enter a to add more , and q to exit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 continueFlag = false;
             }
@@ -98,7 +98,7 @@ public class NurseService {
                 System.out.println("Enter updated Nurse last name :");
                 nurse.setLastName(scanner.nextLine());
 
-                System.out.println("Enter updated Nurse DOB: ");
+                System.out.println("Enter updated Nurse dateOfBirth: ");
                 String dateOfBirth = scanner.nextLine();
                 LocalDate DOB = LocalDate.parse(dateOfBirth);
                 nurse.setDateOfBirth(DOB);
