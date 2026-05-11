@@ -142,6 +142,8 @@ public class Patient extends Person {
     public void addAppointment(Appointment appointment) {
 
         appointments.add(appointment);
+
+        System.out.println( "Appointment added");
     }
 
     // Update Insurance
