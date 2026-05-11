@@ -54,8 +54,31 @@ public class Nurse extends Person {
     }
 
     // Constructor with constructor chaining
-    public Nurse(String id, String firstName, LocalDate dateOfBirth, String lastName, String gender, String phoneNumber, String email, String address, String nurseId, String departmentId, String shift, String qualification, List<String> assignedPatients) {
-        super(id, firstName, dateOfBirth, lastName, gender, phoneNumber, email, address);
+    public Nurse(String id,
+                 String firstName,
+                 LocalDate dateOfBirth,
+                 String lastName,
+                 String gender,
+                 String phoneNumber,
+                 String email,
+                 String address,
+                 String nurseId,
+                 String departmentId,
+                 String shift,
+                 String qualification,
+                 List<String> assignedPatients) {
+
+
+        super(id,
+                firstName,
+                dateOfBirth,
+                lastName,
+                gender,
+                phoneNumber,
+                email,
+                address);
+
+
         this.nurseId = nurseId;
         this.departmentId = departmentId;
         this.shift = shift;
@@ -75,12 +98,14 @@ public class Nurse extends Person {
     }
 
     // Method to assign patient
+
     public void assignPatient(String patientId ,String nurseId ) {
         assignedPatients.add(patientId);
         System.out.println(patientId + " assigned to Nurse " + nurseId);
     }
 
     // Method to remove patient
+
     public void removePatient(String patientId ,String nurseId) {
         if (assignedPatients.remove(patientId)) {
             System.out.println(patientId + " removed from Nurse " + nurseId);
@@ -89,4 +114,4 @@ public class Nurse extends Person {
         }
     }
 
-}}
+}
