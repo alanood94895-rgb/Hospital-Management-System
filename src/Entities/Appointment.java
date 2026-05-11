@@ -32,6 +32,10 @@ public class Appointment {
         this.appointmentId = appointmentId;
     }
 
+    public Appointment() {
+
+    }
+
     public String getAppointmentId() {
         return appointmentId;
     }

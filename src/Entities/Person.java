@@ -30,6 +30,10 @@ public class Person {
 
         }
 
+    public Person() {
+
+    }
+
     // Getters and Setters
 
     public String getId() {
