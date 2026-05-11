@@ -68,6 +68,5 @@ public class Consultant extends Doctor {
 
     public void provideSecondOpinion(){
 
-
     }
 }

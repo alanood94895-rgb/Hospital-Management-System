@@ -1,4 +1,4 @@
-package Entities.Patient;
+package Entities;
 
 import Entities.Patient;
 
