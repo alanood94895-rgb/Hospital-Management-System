@@ -44,7 +44,14 @@ public class AppointmentService {
         String notes = scanner.nextLine();
 
         Appointment appointment = new Appointment(
-                appointmentId,patientId,doctorId,appointmentDate,appointmentTime,status,reason,notes
+                appointmentId,
+                patientId,
+                doctorId,
+                appointmentTime,
+                appointmentDate,
+                status,
+                reason,
+                notes
         );
 
         return appointment;
