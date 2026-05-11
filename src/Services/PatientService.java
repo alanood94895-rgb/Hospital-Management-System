@@ -219,8 +219,7 @@ public class PatientService {
 
 
 
-    // REMOVE PATIENT
-
+    // Remove Patient
 
     public void removePatient(String patientId) {
 
