@@ -257,7 +257,7 @@ public class PatientService {
             return;
         }
 
-        System.out.println("========== ALL PATIENTS ==========");
+        System.out.println("ALL PATIENTS");
 
         for (Patient patient : patients) {
 
