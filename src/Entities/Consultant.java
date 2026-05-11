@@ -1,6 +1,7 @@
 package Entities;
 
 import Entities.Doctor;
+import Entities.Patient;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,8 +27,6 @@ public class Consultant extends Doctor {
                       Integer experienceYears,
                       String departmentId,
                       double consultationFee) {
-
-
 
         super( id,
                 firstName,
