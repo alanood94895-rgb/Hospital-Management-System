@@ -84,12 +84,14 @@ public class DoctorService {
                 phone,
                 email,
                 address,
+                doctorId,
                 specialization,
                 qualification,
                 experienceYears,
                 departmentId,
-                consultationFee
-
+                consultationFee,
+                new ArrayList<>(),
+                new ArrayList<>()
         );
 
         return doctor;
