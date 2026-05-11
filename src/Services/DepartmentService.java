@@ -32,14 +32,19 @@ public class DepartmentService {
         List<String> doctors = new ArrayList<>();
         List<String> nurses = new ArrayList<>();
 
+
         System.out.print("Enter Available Beds: ");
         int availableBeds = scanner.nextInt();
+        scanner.nextLine();
+
         Department department = new Department(
                 departmentId,
                 departmentName,
                 headDoctorId,
-                bedCapacity
-
+                new ArrayList<>(),
+                new ArrayList<>(),
+                bedCapacity,
+                availableBeds
         );
 
         return department;
