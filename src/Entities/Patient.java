@@ -1,12 +1,16 @@
 package Entities;
 
-import javax.xml.crypto.Data;
+import Utils.Constants;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Patient extends Person {
+
+    static Scanner scanner = new Scanner(System.in);
+
 
     // Patient Specific Fields
     private String patientId;
@@ -16,8 +20,8 @@ public class Patient extends Person {
     private LocalDate registrationDate;
     private String insuranceId;
 
-    private List<MedicalRecord> medicalRecords;
-    private List<Appointment> appointments;
+    private List<String> medicalRecords;
+    private List<String> appointments;
 
 
     public Patient(String id,
@@ -51,8 +55,8 @@ public class Patient extends Person {
         this.insuranceId = insuranceId;
 
         allergies = new ArrayList<>();
-        medicalRecords = new ArrayList<>();
-        appointments = new ArrayList<>();
+        medicalRecords = new ArrayList<String>();
+        appointments = new ArrayList<String>();
     }
 
     // Get and Set
@@ -105,11 +109,11 @@ public class Patient extends Person {
         this.insuranceId = insuranceId;
     }
 
-    public List<MedicalRecord> getMedicalRecords() {
+    public List<String> getMedicalRecords() {
         return medicalRecords;
     }
 
-    public List<Appointment> getAppointments() {
+    public List<String> getAppointments() {
         return appointments;
     }
 
@@ -118,39 +122,38 @@ public class Patient extends Person {
     @Override
     public void displayInfo() {
         super.displayInfo();
+        System.out.println("Blood Group       :"+bloodGroup );
+        System.out.println("Allergies");
+        for(String x : allergies){
+            System.out.print(x + ",");
+        }
 
-        System.out.println("patient Id : "+ patientId);
-        System.out.println("patient blood Group : "+ bloodGroup);
-        System.out.println("patient allergies : "+ allergies);
-        System.out.println("patient emergency Contact : "+ emergencyContact);
-        System.out.println("patient registration Date : "+ registrationDate);
-        System.out.println("patient insuranceId : "+ insuranceId);
-        System.out.println("patient medical Records : "+ medicalRecords);
-        System.out.println("patient appointments : "+ appointments);
+        System.out.println("Emergency Contact :"+emergencyContact);
+        System.out.println("Registration Date :"+registrationDate);
+        System.out.println("Insurance Id      :"+insuranceId);
+
+        System.out.println("Medical Records");
+        System.out.println();
+        medicalRecords.stream().map(x -> x + ",").forEach(System.out::print);
+        System.out.println("Appointments");
+        System.out.println();
+        appointments.stream().map(x -> x + ",").forEach(System.out::print);
 
     }
 
-    // Add Medical Record
-    public void addMedicalRecord(MedicalRecord medicalRecord) {
-        medicalRecords.add(medicalRecord);
-
-        System.out.println( "Medical record added ");
-
+    public void addMedicalRecord(){
+        System.out.println(Constants.ADD_MEDICAL_RECORD);
+        medicalRecords.add(scanner.nextLine());
     }
 
-    // Add Appointment
-    public void addAppointment(Appointment appointment) {
-
-        appointments.add(appointment);
-
-        System.out.println( "Appointment added");
+    public void addAppointment(){
+        System.out.println(Constants.ADD_APPOINTMENT);
+        appointments.add(scanner.nextLine());
     }
 
-    // Update Insurance
-    public void updateInsurance(String newInsuranceId) {
-
-        this.insuranceId = newInsuranceId;
-
-        System.out.println( "Insurance Updated");
+    public void updateInsurance(){
+        System.out.println(Constants.ENTER_INSURANCE);
+        this.insuranceId = scanner.nextLine();
     }
+
 }
