@@ -233,7 +233,7 @@ public class PatientService {
     }
 
 
-    // GET PATIENT BY ID
+    // Get Patient by ID
 
     public Patient getPatientById(String patientId) {
 
