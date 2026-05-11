@@ -274,8 +274,7 @@ public class PatientService {
 
         for (Patient patient : patients) {
 
-            String fullName =
-                    patient.getFirstName() + " " + patient.getLastName();
+            String fullName = patient.getFirstName() + " " + patient.getLastName();
 
             if (fullName.toLowerCase().contains(name.toLowerCase())) {
 
