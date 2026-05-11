@@ -119,7 +119,6 @@ public class PatientService {
     }
 
 
-    // ADD MULTIPLE PATIENTS
 
     public List<Patient> addPatients() {
 
@@ -134,7 +133,7 @@ public class PatientService {
                 System.out.println("Patient added successfully.");
             }
 
-            System.out.println("Enter c to continue or q to exit");
+            System.out.println("Enter a to continue or q to exit");
 
             String choice = scanner.nextLine();
 
@@ -147,7 +146,6 @@ public class PatientService {
     }
 
 
-    // =========================================
     // EDIT PATIENT
     // =========================================
 
