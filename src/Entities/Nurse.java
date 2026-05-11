@@ -13,7 +13,7 @@ public class Nurse extends Person {
     // Nurse Specific Fields
     private String nurseId;
     private String departmentId;
-    private String shift;
+    private String shift;   // ( Morning / Evening / Night)
     private String qualification;
 
     private List<Patient> assignedPatients;
