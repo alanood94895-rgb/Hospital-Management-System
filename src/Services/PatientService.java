@@ -14,16 +14,18 @@ public class PatientService {
     static Scanner scanner = new Scanner(System.in);
     private List<Patient> patients = new ArrayList<>();
 
-    public void addPatients(){
+    public void addPatients() {
         patients.add(addPatient());
+
         System.out.println("Press q to quit or enter key to continue:");
-        if(scanner.nextLine().equalsIgnoreCase("q") ){
+        if (scanner.nextLine().equalsIgnoreCase("q")) {
             return;
         }
         addPatients();
 
     }
-    public Patient addPatient(){
+
+    public Patient addPatient() {
 
         System.out.println("Enter patient id:");
         String id = scanner.nextLine();
@@ -64,7 +66,7 @@ public class PatientService {
         String hasAllergies = scanner.nextLine();
 
         List<String> allergies = new ArrayList<>();
-        if(hasAllergies.equalsIgnoreCase("yes")){
+        if (hasAllergies.equalsIgnoreCase("yes")) {
             System.out.println("Enter allergies separated by commas:");
             String allergiesInput = scanner.nextLine();
             allergies.add(Arrays.toString(allergiesInput.split(",")));
@@ -90,10 +92,11 @@ public class PatientService {
         return patient;
 
     }
-    public void updatePatient(String patientId, Patient updatedPatient){
-        for(Patient p : patients){
 
-            if(p.getId().equals(patientId)){
+    public void updatePatient(String patientId, Patient updatedPatient) {
+        for (Patient p : patients) {
+
+            if (p.getId().equals(patientId)) {
                 p.setPhoneNumber(updatedPatient.getPhoneNumber());
                 p.setEmail(updatedPatient.getEmail());
                 p.setAddress(updatedPatient.getAddress());
@@ -106,17 +109,19 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
 
     }
-    public void removePatient(String patientId){
-        for(Patient p : patients){
-            if(p.getId().equals(patientId)){
+
+    public void removePatient(String patientId) {
+        for (Patient p : patients) {
+            if (p.getId().equals(patientId)) {
                 patients.remove(p);
                 System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
             }
         }
     }
-    public void getPatientById(String patientId){
-        for(Patient p : patients){
-            if(p.getId().equals(patientId)){
+
+    public void getPatientById(String patientId) {
+        for (Patient p : patients) {
+            if (p.getId().equals(patientId)) {
                 p.displayInfo();
                 return;
             }
@@ -124,19 +129,40 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    public void searchPatientsByName(String name){
-        for(Patient p : patients){
-            if(p.getFirstName().equalsIgnoreCase(name) || p.getLastName().equalsIgnoreCase(name)){
+    public void searchPatientsByName(String name) {
+        for (Patient p : patients) {
+            if (p.getFirstName().equalsIgnoreCase(name) || p.getLastName().equalsIgnoreCase(name)) {
                 p.displayInfo();
             }
         }
     }
 
-    public void displayAllPatients(){
-        for(Patient p : patients){
-            p.displayInfo();
+    public void displayPatients(String filter) {
+        for (Patient p : patients) {
+            System.out.println("Filtered By " + filter);
+            if (p.getInsuranceId().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getBloodGroup().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getGender().equals(filter)) {
+                System.out.println();
+            }
+            if (p.getRegistrationDate().equals(filter)) {
+                System.out.println();
+            }
+
+
         }
     }
 
-
+    public void displayPatients(int limit) {
+        while (limit != 0) {
+            for (Patient p : patients) {
+                p.displayInfo();
+                limit--;
+            }
+        }
+    }
 }

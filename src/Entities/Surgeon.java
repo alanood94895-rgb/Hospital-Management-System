@@ -80,7 +80,5 @@ public class Surgeon extends Doctor {
             System.out.println(Constants.SURGEON_CANNOT_OPERATE);
         }
 
-
-
     }
 }
