@@ -55,7 +55,7 @@ public class Patient extends Person {
         appointments = new ArrayList<>();
     }
 
-    // Getters and Setters
+    // Get and Set
 
     public String getPatientId() {
         return patientId;
