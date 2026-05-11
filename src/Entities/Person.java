@@ -128,19 +128,10 @@ public class Person {
     // equals Method
     @Override
     public boolean equals(Object obj) {
-
-        if (this == obj) {
-            return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(dateOfBirth, person.dateOfBirth) && Objects.equals(gender, person.gender) && Objects.equals(phoneNumber, person.phoneNumber) && Objects.equals(email, person.email) && Objects.equals(address, person.address);
         }
-
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
-
-        Person person = (Person) obj;
-
-        return Objects.equals(id, person.id);
-    }
 
     // hashCode Method
     @Override
