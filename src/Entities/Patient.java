@@ -132,8 +132,10 @@ public class Patient extends Person {
 
     // Add Medical Record
     public void addMedicalRecord(MedicalRecord medicalRecord) {
-
         medicalRecords.add(medicalRecord);
+
+        System.out.println( "Medical record added ");
+
     }
 
     // Add Appointment
