@@ -54,8 +54,8 @@ public class NurseService {
 
         Nurse nurse = new Nurse(id,
                 nurseFName,
-                dateOfBirth,
                 nurseLName,
+                dateOfBirth,
                 gender,
                 phone,
                 email,

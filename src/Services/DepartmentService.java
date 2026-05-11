@@ -2,13 +2,21 @@ package Services;
 
 import Entities.Department;
 import Entities.Doctor;
+import Entities.Nurse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 
 public class DepartmentService {
 
-    private List<Department> departments = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
+
+    static List<Department> departmentList = new ArrayList<>();
+    List<Doctor> doctors = new ArrayList<>();
+    List<Nurse> nurses = new ArrayList<>();
+
 
     // Add Department
     public void addDepartment(Department department) {

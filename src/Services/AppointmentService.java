@@ -1,153 +1,196 @@
 package Services;
 
 import Entities.Appointment;
+import Entity.MedicalRecord;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AppointmentService {
 
-    private List<Appointment> appointments = new ArrayList<>();
+    static List<Appointment> appointmentList = new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
 
-    //  Add Appointment
-    public void addAppointment(Appointment appointment) {
+    //add new appointment
+    public Appointment addAppointment(){
 
-        appointments.add(appointment);
+        System.out.println("Enter appointment Id :");
+        String appointmentId = scanner.nextLine();
 
-        System.out.println("Appointment Added Successfully");
+        System.out.println("Enter patient Id :");
+        String patientId = scanner.nextLine();
+
+        System.out.println("Enter doctor Id :");
+        String doctorId = scanner.nextLine();
+
+        System.out.println("Enter appointment Date :");
+        String appointmentDate = scanner.nextLine();
+        LocalDate date = LocalDate.parse(appointmentDate);
+
+        System.out.println("Enter appointment Time :");
+        String appointmentTime = scanner.nextLine();
+
+        System.out.println("Enter status :");
+        String status = scanner.nextLine();
+
+        System.out.println("Enter reason :");
+        String reason = scanner.nextLine();
+
+        System.out.println("Enter notes :");
+        String notes = scanner.nextLine();
+
+        Appointment appointment = new Appointment(notes,reason,status,appointmentTime,date,doctorId,patientId,appointmentId);
+
+
+        return appointment;
     }
 
-    //  Edit Appointment
-    public void editAppointment(String appointmentId, Appointment updatedAppointment) {
+    public List<Appointment> addAppointments(){
+        Boolean continueFlag = true;
+        while (continueFlag) {
 
-        for (int i = 0; i < appointments.size(); i++) {
+            appointmentList.add(addAppointment());
+            System.out.println("Appointment add successfully");
 
-            if (appointments.get(i).getAppointmentId().equals(appointmentId)) {
-
-                appointments.set(i, updatedAppointment);
-
-                System.out.println("Appointment Updated Successfully");
-
-                return;
+            System.out.println("Enter c to add more , and q to exit");
+            if (scanner.nextLine().equalsIgnoreCase("q")) {
+                continueFlag = false;
             }
         }
+        return appointmentList;
 
-        System.out.println("Appointment Not Found");
     }
 
-    //  Remove Appointment
-    public void removeAppointment(String appointmentId) {
+    // edit appointment by ID
 
-        boolean removed = appointments.removeIf(appointment -> appointment.getAppointmentId().equals(appointmentId));
-        if (removed) {
+    public void editAppointment(String appointmentId){
 
-            System.out.println("Appointment Removed Successfully");
+        for(Appointment appointment : appointmentList){
+            if(appointment.getAppointmentId().equals(appointmentId)){
 
-        } else {
+                System.out.println("Enter updated patient Id :");
+                appointment.setPatientId(scanner.nextLine());
 
-            System.out.println("Appointment Not Found");
+                System.out.println("Enter updated doctor Id :");
+                appointment.setDoctorId(scanner.nextLine());
+
+                System.out.println("Enter updated appointment Date :");
+                String appointmentDate = scanner.nextLine();
+                LocalDate date = LocalDate.parse(appointmentDate);
+                appointment.setAppointmentDate(date);
+
+                System.out.println("Enter updated appointment Time :");
+                appointment.setAppointmentTime(scanner.nextLine());
+
+                System.out.println("Enter updated status :");
+                appointment.setStatus(scanner.nextLine());
+
+                System.out.println("Enter updated reason :");
+                appointment.setReason(scanner.nextLine());
+
+                System.out.println("Enter updated notes :");
+                appointment.setNotes(scanner.nextLine());
+
+            }
+
         }
+
     }
 
-    //  Get By ID
-    public Appointment getAppointmentById(String appointmentId) {
+    // Delete appointment by ID
+    public void removeAppointment(String appointmentId ){
 
-        for (Appointment appointment : appointments) {
+        appointmentList.removeIf(A -> A.getAppointmentId() == appointmentId);
+        System.out.println("Appointment removed successfully");
 
-            if (appointment.getAppointmentId().equals(appointmentId)) {
+        System.out.println("Appointment record not found");
+    }
 
+    //retrieve appointment
+    public Appointment getAppointment(String appointmentId){
+
+        for(Appointment appointment: appointmentList){
+            if(appointment.getAppointmentId().equals(appointmentId)){
                 return appointment;
             }
-        }
 
+        }
+        System.out.println("appointment Record not found");
         return null;
     }
 
-    // Get Appointments By Patient
-    public List<Appointment> getAppointmentsByPatient(String patientId) {
+    //get Appointments By Patient
 
-        List<Appointment> result = new ArrayList<>();
+    public List<Appointment> getAppointmentsByPatient(String patientId){
+        List<Appointment> patientAppointments = new ArrayList<>();
 
-        for (Appointment appointment : appointments) {
+        for(Appointment appointment : appointmentList){
 
-            if (appointment.getPatientId().equalsIgnoreCase(patientId)) {
+            if(appointment.getPatientId().equals(patientId)){
+                patientAppointments.add(appointment);
 
-                result.add(appointment);
             }
         }
-
-        return result;
+        return patientAppointments;
     }
 
-    // Get Appointments By Doctor
+    // get Appointments By Doctor
+
     public List<Appointment> getAppointmentsByDoctor(String doctorId) {
 
-        List<Appointment> result = new ArrayList<>();
+        List<Appointment> doctorAppointments = new ArrayList<>();
 
-        for (Appointment appointment : appointments) {
+        for(Appointment appointment : appointmentList){
+            if(appointment.getDoctorId().equals(doctorId)){
 
-            if (appointment.getDoctorId().equalsIgnoreCase(doctorId)) {
+                doctorAppointments.add(appointment);
+            }
+        }
+        return doctorAppointments;
+    }
 
-                result.add(appointment);
+    // get Appointments By Date
+
+    public List<Appointment> getAppointmentsByDate(LocalDate date){
+
+        List<Appointment> dateAppointments = new ArrayList<>();
+
+        for(Appointment appointment : appointmentList){
+            if(appointment.getAppointmentDate().equals(date)){
+                dateAppointments.add(appointment);
+            }
+
+        }
+        return dateAppointments;
+    }
+
+    // reschedule Appointment
+    public void rescheduleAppointment(String appointmentId, LocalDate newDate, String newTime){
+
+        for(Appointment appointment : appointmentList){
+            if(appointment.getAppointmentId().equals(appointmentId)){
+                appointment.setAppointmentDate(newDate);
+                appointment.setAppointmentTime(newTime);
             }
         }
 
-        return result;
     }
 
-    // Get Appointments By Date
-    public List<Appointment> getAppointmentsByDate(LocalDate date) {
+    // cancel Appointment
 
-        List<Appointment> result = new ArrayList<>();
+    public void cancelAppointment(String appointmentId){
 
-        for (Appointment appointment : appointments) {
+        for(Appointment appointment : appointmentList){
 
-            if (appointment.getAppointmentDate().equals(date)) {
-
-                result.add(appointment);
+            if(appointment.getAppointmentId().equals(appointmentId)){
+                appointment.setStatus("Cancelled");
             }
         }
 
-        return result;
     }
 
-    // Reschedule Appointment
-    public void rescheduleAppointment(
-            String appointmentId,
-            LocalDate newDate,
-            String newTime) {
 
-        for (Appointment appointment : appointments) {
-
-            if (appointment.getAppointmentId().equals(appointmentId)) {
-
-                appointment.reschedule(newDate, newTime);
-
-                System.out.println("Appointment Rescheduled Successfully");
-
-                return;
-            }
-        }
-
-        System.out.println("Appointment Not Found");
-    }
-
-    // Cancel Appointment
-    public void cancelAppointment(String appointmentId) {
-
-        for (Appointment appointment : appointments) {
-
-            if (appointment.getAppointmentId().equals(appointmentId)) {
-
-                appointment.cancel();
-
-                System.out.println("Appointment Cancelled Successfully");
-
-                return;
-            }
-        }
-
-        System.out.println("Appointment Not Found");
-    }
+}
 }
