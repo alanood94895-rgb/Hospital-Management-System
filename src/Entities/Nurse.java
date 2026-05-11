@@ -1,56 +1,17 @@
 package Entities;
 
-import Entities.Patient;
-import Entities.Person;
-
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Nurse extends Person {
 
-    // Nurse Specific Fields
+    // Nurse-specific fields
     private String nurseId;
     private String departmentId;
-    private String shift;   // ( Morning / Evening / Night)
+    private String shift; // Morning / Evening / Night
     private String qualification;
-
-    private List<Patient> assignedPatients;
-
-    // Full Constructor
-    public Nurse(String id,
-                 String firstName,
-                 String lastName,
-                 LocalDate dateOfBirth,
-                 String gender,
-                 String phoneNumber,
-                 String email,
-                 String address,
-                 String nurseId,
-                 String departmentId,
-                 String shift,
-                 String qualification) {
-
-        // Call Parent Constructor
-        super(id,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phoneNumber,
-                email,
-                address);
-
-        this.nurseId = nurseId;
-        this.departmentId = departmentId;
-        this.shift = shift;
-        this.qualification = qualification;
-
-        assignedPatients = new ArrayList<>();
-    }
-
-    // Get and Set
+    private List<String> assignedPatients;
 
     public String getNurseId() {
         return nurseId;
@@ -84,32 +45,48 @@ public class Nurse extends Person {
         this.qualification = qualification;
     }
 
-    public List<Patient> getAssignedPatients() {
+    public List<String> getAssignedPatients() {
         return assignedPatients;
     }
 
-    // Override displayInfo()
+    public void setAssignedPatients(List<String> assignedPatients) {
+        this.assignedPatients = assignedPatients;
+    }
+
+    // Constructor with constructor chaining
+    public Nurse(String id, String firstName, LocalDate dateOfBirth, String lastName, String gender, String phoneNumber, String email, String address, String nurseId, String departmentId, String shift, String qualification, List<String> assignedPatients) {
+        super(id, firstName, dateOfBirth, lastName, gender, phoneNumber, email, address);
+        this.nurseId = nurseId;
+        this.departmentId = departmentId;
+        this.shift = shift;
+        this.qualification = qualification;
+        this.assignedPatients = new ArrayList<>();
+    }
+
     @Override
     public void displayInfo() {
-
-        // Call Parent Method
         super.displayInfo();
 
         System.out.println("Nurse ID: " + nurseId);
         System.out.println("Department ID: " + departmentId);
         System.out.println("Shift: " + shift);
         System.out.println("Qualification: " + qualification);
+        System.out.println("Assigned Patients: " + assignedPatients);
     }
 
-    // Assign Patient
-    public void assignPatient(Patient patient) {
-
-        assignedPatients.add(patient);
+    // Method to assign patient
+    public void assignPatient(String patientId ,String nurseId ) {
+        assignedPatients.add(patientId);
+        System.out.println(patientId + " assigned to Nurse " + nurseId);
     }
 
-    // Remove Patient
-    public void removePatient(Patient patient) {
-
-        assignedPatients.remove(patient);
+    // Method to remove patient
+    public void removePatient(String patientId ,String nurseId) {
+        if (assignedPatients.remove(patientId)) {
+            System.out.println(patientId + " removed from Nurse " + nurseId);
+        } else {
+            System.out.println("Patient not found.");
+        }
     }
-}
+
+}}
