@@ -1,7 +1,7 @@
 package Services;
 
 import Entities.MedicalRecord;
-import Entity.Nurse;
+import Entities.Nurse;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,7 +40,9 @@ public class MedicalRecordService {
         System.out.println("Enter notes :");
         String notes = scanner.nextLine();
 
-        MedicalRecord medicalRecord = new MedicalRecord(recordId,patientId,doctorId,date,diagnosis,testResults,prescription,notes);
+        MedicalRecord medicalRecord = new MedicalRecord(recordId,
+                patientId,doctorId,date,
+                diagnosis,testResults,prescription,notes);
 
         return medicalRecord;
     }
@@ -53,7 +55,7 @@ public class MedicalRecordService {
             medicalRecordList.add(addMedicalRecord());
             System.out.println("Medical record add successfully");
 
-            System.out.println("Enter c to add more , and q to exit");
+            System.out.println("Enter a to add more , and q to exit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 continueFlag = false;
             }
@@ -97,7 +99,7 @@ public class MedicalRecordService {
 
     }
 
-    // remove medical record by ID
+    // Remove medical record by ID
     public void removeMedicalRecord(String recordId){
 
         medicalRecordList.removeIf(M -> M.getRecordId() == recordId);
@@ -107,7 +109,7 @@ public class MedicalRecordService {
 
     }
 
-    //retrieve medical record
+    //Retrieve medical record
     public MedicalRecord getMedicalRecord(String recordId){
 
         for(MedicalRecord medicalRecord: medicalRecordList){
@@ -120,7 +122,7 @@ public class MedicalRecordService {
         return null;
     }
 
-    //get Records By PatientId
+    //Get Records By PatientId
     public List<MedicalRecord> getRecordsByPatientId(String patientId){
 
         List<MedicalRecord> patientMedicalRecords = new ArrayList<>();
@@ -135,7 +137,7 @@ public class MedicalRecordService {
         return patientMedicalRecords;
     }
 
-    // get Records By DoctorId
+    // Get Records By DoctorId
 
     public List<MedicalRecord> getRecordsByDoctorId(String doctorId){
 
@@ -151,7 +153,7 @@ public class MedicalRecordService {
         return doctorMedicalRecords;
     }
 
-    //display PatientHistory
+    //Display PatientHistory
 
     public void displayPatientHistory(String patientId) {
 
