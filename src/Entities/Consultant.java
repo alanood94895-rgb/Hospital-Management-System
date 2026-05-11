@@ -28,7 +28,8 @@ public class Consultant extends Doctor {
                       double consultationFee) {
 
 
-        super(id,
+
+        super( id,
                 firstName,
                 lastName,
                 dateOfBirth,
@@ -36,11 +37,15 @@ public class Consultant extends Doctor {
                 phoneNumber,
                 email,
                 address,
+                id,
                 specialization,
                 qualification,
                 experienceYears,
                 departmentId,
-                consultationFee);
+                consultationFee,
+                new ArrayList<>(),
+                new ArrayList<>()
+        );
 
         this.consultationTypes = new ArrayList<>();
     }
