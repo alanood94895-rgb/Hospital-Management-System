@@ -146,8 +146,7 @@ public class PatientService {
     }
 
 
-    // EDIT PATIENT
-    // =========================================
+    // Edit patient
 
     public void editPatient(String patientId) {
 
@@ -158,7 +157,7 @@ public class PatientService {
             return;
         }
 
-        System.out.println("========== UPDATE PATIENT ==========");
+        System.out.println("UPDATE PATIENT ");
 
         System.out.print("Enter updated patient first name: ");
         patient.setFirstName(scanner.nextLine());
