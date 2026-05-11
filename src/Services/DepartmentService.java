@@ -14,50 +14,82 @@ public class DepartmentService {
     Scanner scanner = new Scanner(System.in);
 
     static List<Department> departmentList = new ArrayList<>();
-    List<Doctor> doctors = new ArrayList<>();
-    List<Nurse> nurses = new ArrayList<>();
 
 
-    // Add Department
-    public void addDepartment(Department department) {
+    // CREATE DEPARTMENT
 
-        departments.add(department);
+    public Department createDepartment() {
 
-        System.out.println("Department Added Successfully");
-    }
+        System.out.println("Enter Department ID: ");
+        String departmentId = scanner.nextLine();
 
-    //  Edit Department
-    public void editDepartment(String departmentId, Department updatedDepartment) {
-
-        for (int i = 0; i < departments.size(); i++) {
-
-            if (departments.get(i).getDepartmentId().equals(departmentId)) {
-
-                departments.set(i, updatedDepartment);
-
-                System.out.println("Department Updated Successfully");
-                return;
-            }
+        if (getDepartmentById(departmentId) != null) {
+            System.out.println("Department already exists!");
+            return null;
         }
 
-        System.out.println("Department Not Found");
+        System.out.println("Enter Department Name: ");
+        String departmentName = scanner.nextLine();
+
+        Department department = new Department(
+                departmentId,
+                departmentName,
+                new ArrayList<>()
+        );
+
+        return department;
     }
 
-    //  Remove Department
-    public void removeDepartment(String departmentId) {
+    // =========================================
+    // ADD DEPARTMENT
+    // =========================================
+    public void addDepartment() {
 
-        boolean removed = departments.removeIf(department -> department.getDepartmentId().equals(departmentId));
+        Department department = createDepartment();
+
+        if (department != null) {
+            departments.add(department);
+            System.out.println("Department added successfully.");
+        }
+    }
+
+    // =========================================
+    // UPDATE DEPARTMENT
+    // =========================================
+    public void updateDepartment(String departmentId) {
+
+        Department department = getDepartmentById(departmentId);
+
+        if (department == null) {
+            System.out.println("Department not found.");
+            return;
+        }
+
+        System.out.println("Enter new Department Name: ");
+        department.setDepartmentName(scanner.nextLine());
+
+        System.out.println("Department updated successfully.");
+    }
+
+    // =========================================
+    // DELETE DEPARTMENT
+    // =========================================
+    public void deleteDepartment(String departmentId) {
+
+        boolean removed = departments.removeIf(
+                d -> d.getDepartmentId().equals(departmentId)
+        );
 
         if (removed) {
-
-            System.out.println("Department Removed Successfully");
+            System.out.println("Department removed successfully.");
         } else {
-
-            System.out.println("Department Not Found");
+            System.out.println("Department not found.");
         }
     }
 
-    //  Get Department By ID
+    // =========================================
+    // GET DEPARTMENT BY ID
+    // =========================================
     public Department getDepartmentById(String departmentId) {
 
         for (Department department : departments) {
@@ -70,45 +102,48 @@ public class DepartmentService {
         return null;
     }
 
-    // Display All Departments
+    // =========================================
+    // DISPLAY ALL DEPARTMENTS
+    // =========================================
     public void displayAllDepartments() {
 
         if (departments.isEmpty()) {
-
-            System.out.println("No Departments Found");
-
+            System.out.println("No departments found.");
             return;
         }
 
-        System.out.println(" DEPARTMENT LIST");
-
         for (Department department : departments) {
-
-            department.displayInfo();
-
-            System.out.println("");
+            System.out.println("Department ID: " + department.getDepartmentId());
+            System.out.println("Department Name: " + department.getDepartmentName());
+            System.out.println("Doctors: " + department.getDoctorIds());
+            System.out.println("-----------------------------------");
         }
     }
 
-    // Assign Doctor To Department
-    public void assignDoctorToDepartment(Doctor doctor, String departmentId) {
+    // =========================================
+    // ASSIGN DOCTOR TO DEPARTMENT
+    // =========================================
+    public void assignDoctorToDepartment(String doctorId, String departmentId) {
 
-        for (Department department : departments) {
+        Department department = getDepartmentById(departmentId);
 
-            if (department.getDepartmentId().equals(departmentId)) {
-
-                // Add doctor to department
-                department.assignDoctor(doctor);
-
-                // Update doctor departmentId
-                doctor.setDepartmentId(departmentId);
-
-                System.out.println("Doctor Assigned Successfully");
-
-                return;
-            }
+        if (department == null) {
+            System.out.println("Department not found.");
+            return;
         }
 
-        System.out.println("Department Not Found");
+        if (!department.getDoctorIds().contains(doctorId)) {
+
+            department.getDoctorIds().add(doctorId);
+
+            System.out.println("Doctor " + doctorId +
+                    " assigned to Department " + departmentId);
+
+        } else {
+
+            System.out.println("Doctor already assigned to this department.");
+        }
     }
+}
+
 }
