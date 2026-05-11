@@ -77,7 +77,6 @@ public class PatientService {
         System.out.print("Enter insurance id: ");
         String insuranceId = scanner.nextLine();
 
-        // allergies
         List<String> allergies = new ArrayList<>();
 
         System.out.println("Enter patient allergies:");
