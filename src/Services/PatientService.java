@@ -266,9 +266,7 @@ public class PatientService {
     }
 
 
-    // =========================================
-    // SEARCH PATIENT BY NAME
-    // =========================================
+    // Search Patient by Name
 
     public void searchPatientsByName(String name) {
 
