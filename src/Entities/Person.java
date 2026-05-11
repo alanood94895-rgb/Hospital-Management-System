@@ -143,7 +143,8 @@ public class Person {
     // hashCode Method
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
+        public int hashCode() {
+            return Objects.hash(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
+        }
 }
 
