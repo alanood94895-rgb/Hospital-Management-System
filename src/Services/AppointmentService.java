@@ -41,7 +41,14 @@ public class AppointmentService {
         System.out.println("Enter notes :");
         String notes = scanner.nextLine();
 
-        Appointment appointment = new Appointment(notes,reason,status,appointmentTime,date,doctorId,patientId,appointmentId);
+        Appointment appointment = new Appointment(notes,
+                reason,
+                status,
+                appointmentTime,
+                date,
+                doctorId,
+                patientId,
+                appointmentId);
 
 
         return appointment;
@@ -54,7 +61,7 @@ public class AppointmentService {
             appointmentList.add(addAppointment());
             System.out.println("Appointment add successfully");
 
-            System.out.println("Enter c to add more , and q to exit");
+            System.out.println("Enter a to add more , and q to exit");
             if (scanner.nextLine().equalsIgnoreCase("q")) {
                 continueFlag = false;
             }
