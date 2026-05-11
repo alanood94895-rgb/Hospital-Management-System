@@ -223,9 +223,7 @@ public class PatientService {
 
     public void removePatient(String patientId) {
 
-        boolean removed = patients.removeIf(
-                patient -> patient.getPatientId().equals(patientId)
-        );
+        boolean removed = patients.removeIf(patient -> patient.getPatientId().equals(patientId));
 
         if (removed) {
             System.out.println("Patient removed successfully.");
@@ -235,9 +233,7 @@ public class PatientService {
     }
 
 
-    // =========================================
     // GET PATIENT BY ID
-    // =========================================
 
     public Patient getPatientById(String patientId) {
 
