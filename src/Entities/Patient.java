@@ -1,8 +1,10 @@
 package Entities;
 
+import javax.xml.crypto.Data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Patient extends Person {
 
