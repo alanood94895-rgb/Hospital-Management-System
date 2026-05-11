@@ -19,7 +19,7 @@ public class PatientService {
     List<Appointment> appointments = new ArrayList<>();
 
 
-    // ADD  PATIENT
+    // Add Patient
 
 
     public Patient addPatient() {
