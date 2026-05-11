@@ -1,61 +1,257 @@
 package Services;
 
+import Entities.Appointment;
+import Entities.MedicalRecord;
 import Entities.Patient;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PatientService {
 
-    private static List<Patient> patients =
-            new ArrayList<>();
+    Scanner scanner = new Scanner(System.in);
 
-    // Add Patient
-    public void addPatient(Patient patient) {
+    static List<Patient> patients = new ArrayList<>();
 
-        patients.add(patient);
+    List<MedicalRecord> medicalRecords = new ArrayList<>();
+    List<Appointment> appointments = new ArrayList<>();
 
-        System.out.println("Patient Added Successfully");
-    }
 
-    // Edit Patient
-    public void editPatient(String patientId, Patient updatedPatient) {
+    // =========================================
+    // ADD  PATIENT
 
-        for (int i = 0; i < patients.size(); i++) {
 
-            if (patients.get(i).getPatientId().equals(patientId)) {
+    public Patient addPatient() {
 
-                patients.set(i, updatedPatient);
+        System.out.println("========== ADD NEW PATIENT ==========");
 
-                System.out.println("Patient Updated Successfully");
-                return;
+        System.out.print("Enter patient id: ");
+        String id = scanner.nextLine();
+
+        // check duplicate patient
+        if (getPatientById(id) != null) {
+            System.out.println("Patient already exists.");
+            return null;
+        }
+
+        System.out.print("Enter patient first name: ");
+        String patientFName = scanner.nextLine();
+
+        System.out.print("Enter patient last name: ");
+        String patientLName = scanner.nextLine();
+
+        System.out.print("Enter patient DOB (YYYY-MM-DD): ");
+        LocalDate DOB = LocalDate.parse(scanner.nextLine());
+
+        System.out.print("Enter patient gender: ");
+        String gender = scanner.nextLine();
+
+        System.out.print("Enter patient phone number: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("Enter patient email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter patient address: ");
+        String address = scanner.nextLine();
+
+        System.out.print("Enter patient blood group: ");
+        String bloodGroup = scanner.nextLine();
+
+        System.out.print("Enter emergency contact: ");
+        String emergencyContact = scanner.nextLine();
+
+        System.out.print("Enter registration date (YYYY-MM-DD) or press Enter for today: ");
+
+        String registrationInput = scanner.nextLine();
+
+        LocalDate registrationDate;
+
+        if (registrationInput.isEmpty()) {
+            registrationDate = LocalDate.now();
+        } else {
+            registrationDate = LocalDate.parse(registrationInput);
+        }
+
+        System.out.print("Enter insurance id: ");
+        String insuranceId = scanner.nextLine();
+
+        // allergies
+        List<String> allergies = new ArrayList<>();
+
+        System.out.println("Enter patient allergies:");
+
+        while (true) {
+
+            String allergy = scanner.nextLine();
+
+            allergies.add(allergy);
+
+            System.out.println("Enter c to continue or q to stop");
+
+            String choice = scanner.nextLine();
+
+            if (choice.equalsIgnoreCase("q")) {
+                break;
             }
         }
 
-        System.out.println("Patient Not Found");
+        Patient patient = new Patient(
+                id,
+                patientFName,
+                patientLName,
+                DOB,
+                gender,
+                phone,
+                email,
+                address,
+                id,
+                bloodGroup,
+                allergies,
+                emergencyContact,
+                registrationDate,
+                medicalRecords,
+                insuranceId,
+                appointments
+        );
+
+        return patient;
     }
 
-    // Remove Patient
+
+    // =========================================
+    // ADD MULTIPLE PATIENTS
+    // =========================================
+
+    public List<Patient> addPatients() {
+
+        while (true) {
+
+            Patient patient = addPatient();
+
+            if (patient != null) {
+
+                patients.add(patient);
+
+                System.out.println("Patient added successfully.");
+            }
+
+            System.out.println("Enter c to continue or q to exit");
+
+            String choice = scanner.nextLine();
+
+            if (choice.equalsIgnoreCase("q")) {
+                break;
+            }
+        }
+
+        return patients;
+    }
+
+
+    // =========================================
+    // EDIT PATIENT
+    // =========================================
+
+    public void editPatient(String patientId) {
+
+        Patient patient = getPatientById(patientId);
+
+        if (patient == null) {
+            System.out.println("Patient not found.");
+            return;
+        }
+
+        System.out.println("========== UPDATE PATIENT ==========");
+
+        System.out.print("Enter updated patient first name: ");
+        patient.setFirstName(scanner.nextLine());
+
+        System.out.print("Enter updated patient last name: ");
+        patient.setLastName(scanner.nextLine());
+
+        System.out.print("Enter updated patient DOB (YYYY-MM-DD): ");
+        patient.setDateOfBirth(LocalDate.parse(scanner.nextLine()));
+
+        System.out.print("Enter updated patient gender: ");
+        patient.setGender(scanner.nextLine());
+
+        System.out.print("Enter updated patient phone number: ");
+        patient.setPhoneNumber(scanner.nextLine());
+
+        System.out.print("Enter updated patient email: ");
+        patient.setEmail(scanner.nextLine());
+
+        System.out.print("Enter updated patient address: ");
+        patient.setAddress(scanner.nextLine());
+
+        System.out.print("Enter updated patient blood group: ");
+        patient.setBloodGroup(scanner.nextLine());
+
+        System.out.print("Enter updated emergency contact: ");
+        patient.setEmergencyContact(scanner.nextLine());
+
+        System.out.print("Enter updated registration date (YYYY-MM-DD): ");
+        patient.setRegistrationDate(LocalDate.parse(scanner.nextLine()));
+
+        System.out.print("Enter updated insurance id: ");
+        patient.setInsuranceId(scanner.nextLine());
+
+        // update allergies
+        List<String> allergies = new ArrayList<>();
+
+        System.out.println("Enter updated allergies:");
+
+        while (true) {
+
+            String allergy = scanner.nextLine();
+
+            allergies.add(allergy);
+
+            System.out.println("Enter c to continue or q to stop");
+
+            String choice = scanner.nextLine();
+
+            if (choice.equalsIgnoreCase("q")) {
+                break;
+            }
+        }
+
+        patient.setAllergies(allergies);
+
+        System.out.println("Patient updated successfully.");
+    }
+
+
+    // =========================================
+    // REMOVE PATIENT
+    // =========================================
+
     public void removePatient(String patientId) {
 
-        boolean removed = patients.removeIf(patient -> patient.getPatientId().equals(patientId));
+        boolean removed = patients.removeIf(
+                patient -> patient.getPatientId().equals(patientId)
+        );
 
         if (removed) {
-            System.out.println("Patient Removed Successfully");
-
+            System.out.println("Patient removed successfully.");
         } else {
-
-            System.out.println("Patient Not Found");
+            System.out.println("Patient not found.");
         }
     }
 
-    // Get Patient By ID
+
+    // =========================================
+    // GET PATIENT BY ID
+    // =========================================
+
     public Patient getPatientById(String patientId) {
 
         for (Patient patient : patients) {
 
             if (patient.getPatientId().equals(patientId)) {
-
                 return patient;
             }
         }
@@ -63,40 +259,50 @@ public class PatientService {
         return null;
     }
 
-    // Display All Patients
+
+    // =========================================
+    // DISPLAY ALL PATIENTS
+    // =========================================
+
     public void displayAllPatients() {
 
         if (patients.isEmpty()) {
-
-            System.out.println("No Patients Found");
+            System.out.println("No patients found.");
             return;
         }
 
-        System.out.println(" PATIENT LIST");
+        System.out.println("========== ALL PATIENTS ==========");
 
         for (Patient patient : patients) {
 
             patient.displayInfo();
-
-            System.out.println(" ");
         }
     }
 
-    // Search Patients By Name
-    public List<Patient> searchPatientsByName(String name) {
 
-        List<Patient> result = new ArrayList<>();
+    // =========================================
+    // SEARCH PATIENT BY NAME
+    // =========================================
+
+    public void searchPatientsByName(String name) {
+
+        boolean found = false;
 
         for (Patient patient : patients) {
 
-            String fullName = patient.getFirstName() + " " + patient.getLastName();
+            String fullName =
+                    patient.getFirstName() + " " + patient.getLastName();
 
             if (fullName.toLowerCase().contains(name.toLowerCase())) {
 
-                result.add(patient);
+                patient.displayInfo();
+
+                found = true;
             }
         }
 
-        return result;
+        if (!found) {
+            System.out.println("No patients found with this name.");
+        }
     }
 }
