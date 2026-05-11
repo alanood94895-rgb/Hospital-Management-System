@@ -33,8 +33,8 @@ public class Doctor extends Person{
 
         super(id,
                 firstName,
-                dateOfBirth,
                 lastName,
+                dateOfBirth,
                 gender,
                 phoneNumber,
                 email,
