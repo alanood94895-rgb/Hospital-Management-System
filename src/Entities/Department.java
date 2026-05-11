@@ -112,7 +112,7 @@ public class Department {
         }
     }
 
-    // Assign nurse
+    // Assign Nurse
     public void assignNurse(Nurse nurse) {
 
         if (!nurses.contains(nurse)) {
