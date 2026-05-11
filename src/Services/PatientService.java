@@ -24,7 +24,7 @@ public class PatientService {
 
     public Patient addPatient() {
 
-        System.out.println("========== ADD NEW PATIENT ==========");
+        System.out.println("ADD NEW PATIENT");
 
         System.out.print("Enter patient id: ");
         String id = scanner.nextLine();
