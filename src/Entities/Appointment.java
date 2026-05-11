@@ -13,7 +13,15 @@ public class Appointment {
     private String reason;
     private String notes;
 
-    public Appointment(String notes, String reason, String status, String appointmentTime, LocalDate appointmentDate, String doctorId, String patientId, String appointmentId) {
+    public Appointment(String notes,
+                       String reason,
+                       String status,
+                       String appointmentTime,
+                       LocalDate appointmentDate,
+                       String doctorId,
+                       String patientId,
+                       String appointmentId) {
+
         this.notes = notes;
         this.reason = reason;
         this.status = status;
@@ -99,7 +107,7 @@ public class Appointment {
         System.out.println("Notes: " + notes);
     }
 
-    // reschedule() method
+    // reschedule Method
     public void reschedule(LocalDate newDate, String newTime) {
 
         this.appointmentDate = newDate;
