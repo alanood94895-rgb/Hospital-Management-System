@@ -203,7 +203,7 @@ public class PatientService {
 
             allergies.add(allergy);
 
-            System.out.println("Enter c to continue or q to stop");
+            System.out.println("Enter a to continue or q to stop");
 
             String choice = scanner.nextLine();
 
@@ -218,9 +218,9 @@ public class PatientService {
     }
 
 
-    // =========================================
+
     // REMOVE PATIENT
-    // =========================================
+
 
     public void removePatient(String patientId) {
 
