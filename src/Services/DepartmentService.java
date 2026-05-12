@@ -105,91 +105,50 @@ public class DepartmentService {
 
 
     // DISPLAY ALL DEPARTMENTS
-
     public void displayAllDepartments() {
-
         for (Department d : departments) {
-
             d.displayInfo();
         }
     }
 
-    // ==================================================
     // ASSIGN DOCTOR TO DEPARTMENT
-    // ==================================================
 
-    public void assignDoctorToDepartment(
-            String doctorId,
-            String departmentId
-    ) {
-
+    public void assignDoctorToDepartment(String doctorId, String departmentId) {
         for (Department d : departments) {
-
-            if (
-                    d.getDepartmentId()
-                            .equals(departmentId)
-            ) {
-
+            if (d.getDepartmentId().equals(departmentId)) {
                 d.setHeadDoctorId(doctorId);
-
-                System.out.println(
-                        "Doctor assigned successfully."
-                );
-
+                System.out.println("Doctor assigned successfully.");
                 return;
             }
         }
 
-        System.out.println(
-                Constants.DEPARTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
-    // ==================================================
+
     // HANDLE DEPARTMENT MENU
-    // ==================================================
 
-    public Boolean handleDepartmentMenu(
-            Integer option
-    ) {
-
+    public Boolean handleDepartmentMenu(Integer option) {
         switch (option) {
 
             case 1 -> {
-
-                Department department =
-                        addDepartment();
-
+                Department department = addDepartment();
                 addDepartment(department);
             }
 
             case 2 -> {
 
-                System.out.print(
-                        "Enter ID to edit: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                Department updatedDepartment =
-                        addDepartment();
-
-                editDepartment(
-                        id,
-                        updatedDepartment
-                );
+                System.out.print("Enter ID to edit: ");
+                String id = scanner.nextLine().trim();
+                Department updatedDepartment = addDepartment();
+                editDepartment(id, updatedDepartment);
             }
 
             case 3 -> {
 
-                System.out.print(
-                        "Enter ID to remove: "
-                );
+                System.out.print("Enter ID to remove: ");
 
-                removeDepartment(
-                        scanner.nextLine().trim()
-                );
+                removeDepartment(scanner.nextLine().trim());
             }
 
             case 4 -> {
@@ -199,17 +158,11 @@ public class DepartmentService {
 
             case 5 -> {
 
-                System.out.print(
-                        "Enter Department ID to view details: "
-                );
+                System.out.print("Enter Department ID to view details: ");
 
-                Department d =
-                        getDepartmentById(
-                                scanner.nextLine().trim()
-                        );
+                Department d = getDepartmentById(scanner.nextLine().trim());
 
                 if (d != null) {
-
                     d.displayInfo();
                 }
 
@@ -225,10 +178,7 @@ public class DepartmentService {
             }
 
             default -> {
-
-                System.out.println(
-                        "Invalid option."
-                );
+                System.out.println("Invalid option.");
             }
         }
 
