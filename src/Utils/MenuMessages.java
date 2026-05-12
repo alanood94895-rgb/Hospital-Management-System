@@ -69,15 +69,15 @@ public class MenuMessages {
             0.Exit
             """;
     public static String APPOINTMENT_MENU_MESSAGE = """
-            1. Schedule New Appointment
-            2. View All Appointments
-            3. View Appointments by Patient
-            4. View Appointments by Doctor
-            5. View Appointments by Date
-            6. Reschedule Appointment
-            7. Cancel Appointment
-            8. Complete Appointment
-            9. View Upcoming Appointments
+            6.1 Schedule New Appointment
+            6.2 View All Appointments
+            6.3 View Appointments by Patient
+            6.4 View Appointments by Doctor
+            6.5 View Appointments by Date
+            6.6 Reschedule Appointment
+            6.7 Cancel Appointment
+            6.8 Complete Appointment
+            6.9 View Upcoming Appointments
             0.Exit
             """;
 
