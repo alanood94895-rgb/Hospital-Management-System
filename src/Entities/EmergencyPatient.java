@@ -1,11 +1,12 @@
 package Entities;
 
 import Entities.Patient;
+import Behaviour.Displayable;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class EmergencyPatient extends Patient {
+public class EmergencyPatient extends InPatient implements Displayable {
 
     String emergencyType;
     String arrivalMode;
@@ -30,8 +31,7 @@ public class EmergencyPatient extends Patient {
                             Integer triageLevel ,
                             Boolean admittedViaER) {
 
-
-        super( id,
+        super(id,
                 firstName,
                 lastName,
                 dateOfBirth,
@@ -39,13 +39,11 @@ public class EmergencyPatient extends Patient {
                 phoneNumber,
                 email,
                 address,
-                id,
                 bloodGroup,
                 emergencyContact,
                 registrationDate,
-                insuranceId
-        );
-
+                insuranceId,
+                allergies);
 
         this.emergencyType = emergencyType;
         this.arrivalMode = arrivalMode;
@@ -62,6 +60,11 @@ public class EmergencyPatient extends Patient {
         System.out.println("Arrival Mode: " + arrivalMode);
         System.out.println("Triage Level: " + triageLevel);
         System.out.println("Admitted Via ER: " + admittedViaER);
+
+    }
+
+    @Override
+    public void displaySummary() {
 
     }
 }
