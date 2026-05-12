@@ -45,9 +45,7 @@ public class HelperUtils {
     }
 
 
-    // ID GENERATION
-
-
+    // Id Generation
     public static UUID generateId() {
         return UUID.randomUUID();
     }
