@@ -125,7 +125,6 @@ public class NurseService {
     public void getNurseById(String nurseId) {
 
         for (Nurse n : nurses) {
-
             if (n.getId().equals(nurseId)) {
 
                 n.displayInfo();
@@ -137,25 +136,19 @@ public class NurseService {
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    // ==================================================
-    // GET NURSES BY DEPARTMENT
-    // ==================================================
+    // Get Nurse By Department
 
     public void getNursesByDepartment(String departmentId) {
 
         for (Nurse n : nurses) {
-
-            if (n.getDepartmentId()
-                    .equals(departmentId)) {
-
+            if (n.getDepartmentId().equals(departmentId)) {
                 n.displayInfo();
             }
         }
     }
 
-    // ==================================================
-    // GET NURSES BY SHIFT
-    // ==================================================
+
+    // Get Nurse By Shift
 
     public void getNursesByShift(String shift) {
 
