@@ -1,38 +1,31 @@
-package Entity;
+package Entities;
 
-import Entities.Appointment;
-import Entities.MedicalRecord;
-import Entities.Patient;
+import Behaviour.Displayable;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class OutPatient extends Patient {
-
-    private int visitCount;
-    private LocalDate lastVisitDate;
-    private String preferredDoctorId;
+public class OutPatient extends Patient implements Displayable {
+    Integer visitCount;
+    LocalDate lastVisitDate;
+    String preferredDoctorId;
 
     public OutPatient(String id,
                       String firstName,
-                      LocalDate dateOfBirth,
                       String lastName,
+                      LocalDate dateOfBirth,
                       String gender,
                       String phoneNumber,
                       String email,
                       String address,
-                      String patientId,
                       String bloodGroup,
-                      List<String> allergies,
                       String emergencyContact,
                       LocalDate registrationDate,
-                      List<MedicalRecord> medicalRecords,
                       String insuranceId,
-                      List<Appointment> appointments,
-                      int visitCount,
+                      List<String> allergies,
+                      Integer visitCount,
                       LocalDate lastVisitDate,
-                      String preferredDoctorId) {
-
+                      String preferredDoctorId    ) {
 
         super(id,
                 firstName,
@@ -42,56 +35,45 @@ public class OutPatient extends Patient {
                 phoneNumber,
                 email,
                 address,
-                patientId,
                 bloodGroup,
                 emergencyContact,
                 registrationDate,
-                insuranceId
-
-        );
+                insuranceId,
+                allergies);
 
         this.visitCount = visitCount;
         this.lastVisitDate = lastVisitDate;
-        this.preferredDoctorId = preferredDoctorId;
-    }
-
-    public int getVisitCount() {
-        return visitCount;
-    }
-
-    public void setVisitCount(int visitCount) {
-        this.visitCount = visitCount;
-    }
-
-    public LocalDate getLastVisitDate() {
-        return lastVisitDate;
-    }
-
-    public void setLastVisitDate(LocalDate lastVisitDate) {
-        this.lastVisitDate = lastVisitDate;
-    }
-
-    public String getPreferredDoctorId() {
-        return preferredDoctorId;
-    }
-
-    public void setPreferredDoctorId(String preferredDoctorId) {
         this.preferredDoctorId = preferredDoctorId;
     }
 
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("Visit Count        : " + visitCount);
-        System.out.println("Last Visit Date    : " + lastVisitDate);
-        System.out.println("Preferred DoctorId : " + preferredDoctorId);
+        System.out.println("Visit Count: " + visitCount);
+        System.out.println("Last Visit Date: " + lastVisitDate);
+        System.out.println("Preferred Doctor ID: " + preferredDoctorId);
+    }
+
+    @Override
+    public void displaySummary() {
 
     }
 
-    // scheduleFollowUp()
-    public void scheduleFollowUp(LocalDate followUpDate ) {
+    public void scheduleFollowUp(){
+        List<String> appointments =  getAppointments();
 
-        System.out.println("Follow-up scheduled successfully.");
-        System.out.println("Follow-up Date : " + followUpDate);
+        System.out.println("Enter next appointment");
+        appointments.add(scanner.nextLine());
+        setAppointments(appointments);
+
+
     }
+
+    public void updateVisitCount() {
+        this.visitCount++;
+        this.lastVisitDate = LocalDate.now();
+        System.out.println("Visit count updated to: " + visitCount);
+    }
+
+
 }
