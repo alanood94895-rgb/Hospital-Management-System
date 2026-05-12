@@ -49,13 +49,13 @@ public class MenuMessages {
             0.Exit
             """;
     public static String NURSE_MENU_MESSAGE = """
-            1. Add Nurse
-            2. View All Nurses
-            3. View Nurses by Department
-            4. View Nurses by Shift
-            5. Assign Nurse to Patient
-            6. Update Nurse Information
-            7. Remove Nurse
+            4.1 Add Nurse
+            4.2 View All Nurses
+            4.3 View Nurses by Department
+            4.4 View Nurses by Shift
+            4.5 Assign Nurse to Patient
+            4.6 Update Nurse Information
+            4.7 Remove Nurse
             0.Exit
             """;
     public static String MEDICAL_RECORD_MENU_MESSAGE = """
