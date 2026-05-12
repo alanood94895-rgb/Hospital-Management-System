@@ -47,9 +47,7 @@ public class AppointmentService implements Manageable , Searchable , Appointable
         System.out.println("Enter notes: ");
         String notes = scanner.nextLine();
 
-        Appointment appointment = new Appointment(
-                appointmentId,patientId,doctorId,appointmentDate,appointmentTime,status,reason,notes
-        );
+        Appointment appointment = new Appointment(appointmentId,patientId,doctorId,appointmentDate,appointmentTime,status,reason,notes);
 
         return appointment;
     }
