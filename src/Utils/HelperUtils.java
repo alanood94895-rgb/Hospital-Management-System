@@ -45,7 +45,7 @@ public class HelperUtils {
     }
 
 
-    // Id Generation
+    // ID GENERATION
     public static UUID generateId() {
         return UUID.randomUUID();
     }
@@ -90,8 +90,8 @@ public class HelperUtils {
         return date != null && date.equals(LocalDate.now());
     }
 
-    // NUMERIC VALIDATION
 
+    // NUMERIC VALIDATION
 
     public static Boolean isValidNumber(int num, int min, int max) {
         return num >= min && num <= max;
@@ -119,7 +119,6 @@ public class HelperUtils {
 
 
     // AGE VALIDATION
-
 
     public static boolean isValidAge(int age) {
         return age >= 0 && age <= 120;
