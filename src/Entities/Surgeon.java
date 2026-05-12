@@ -1,6 +1,5 @@
 package Entities;
-
-import Entities.Doctor;
+import Behaviour.Displayable;
 import Utils.Constants;
 
 import java.time.LocalDate;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Surgeon extends Doctor {
+public class Surgeon extends Doctor implements Displayable {
     static Scanner scanner = new Scanner(System.in);
     private Integer surgeriesPerformed;
     private List<String> surgeryTypes;
@@ -31,8 +30,7 @@ public class Surgeon extends Doctor {
                    Integer surgeriesPerformed ,
                    Boolean operationTheatreAccess) {
 
-
-        super( id,
+        super(id,
                 firstName,
                 lastName,
                 dateOfBirth,
@@ -40,15 +38,11 @@ public class Surgeon extends Doctor {
                 phoneNumber,
                 email,
                 address,
-                id,
                 specialization,
                 qualification,
                 experienceYears,
                 departmentId,
-                consultationFee,
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
+                consultationFee);
 
 
         this.surgeriesPerformed = surgeriesPerformed;
@@ -79,6 +73,8 @@ public class Surgeon extends Doctor {
         }else{
             System.out.println(Constants.SURGEON_CANNOT_OPERATE);
         }
+
+
 
     }
 }
