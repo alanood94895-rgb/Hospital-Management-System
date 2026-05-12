@@ -172,7 +172,7 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    // REMOVE PATIENT
+    // Remove Patient
 
     public void removePatient(String patientId) {
 
@@ -182,9 +182,7 @@ public class PatientService {
 
                 patients.remove(p);
 
-                System.out.println(
-                        Constants.PATIENT_REMOVED_SUCCESSFULLY
-                );
+                System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
 
                 return;
             }
