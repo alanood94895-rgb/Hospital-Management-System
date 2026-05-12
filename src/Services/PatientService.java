@@ -208,11 +208,8 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    // ==================================================
-    // OVERLOADED searchPatients()
-    // ==================================================
 
-    // Search by keyword
+    //  searchPatients()
     public void searchPatients(String keyword) {
 
         for (Patient p : patients) {
