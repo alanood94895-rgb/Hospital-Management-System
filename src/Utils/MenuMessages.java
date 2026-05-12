@@ -82,11 +82,11 @@ public class MenuMessages {
             """;
 
     static public String ReportsMenu ="""
-                1. Daily Appointments Report
-                2. Doctor Performance Report
-                3. Department Occupancy Report
-                4. Patient Statistics
-                5. Emergency Cases Report
+                1.1 Daily Appointments Report
+                1.2 Doctor Performance Report
+                1.3 Department Occupancy Report
+                1.4 Patient Statistics
+                1.5 Emergency Cases Report
                 0.Exit
                 """;
 }
