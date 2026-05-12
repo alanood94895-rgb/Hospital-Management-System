@@ -169,24 +169,19 @@ public class DoctorService {
         }
     }
 
-    // ==================================================
-    // GET AVAILABLE DOCTORS
-    // ==================================================
 
+    // GET AVAILABLE DOCTORS
     public void getAvailableDoctors() {
 
         for (Doctor d : doctors) {
-
             if (!d.getAvailableSlots().isEmpty()) {
-
                 d.displayInfo();
             }
         }
     }
 
-    // ==================================================
+
     // HANDLE DOCTOR MENU
-    // ==================================================
 
     public Boolean handleDoctorMenu(
             Integer doctorOption
