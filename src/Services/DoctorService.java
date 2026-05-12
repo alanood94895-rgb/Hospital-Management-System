@@ -182,81 +182,48 @@ public class DoctorService {
 
 
     // HANDLE DOCTOR MENU
-
-    public Boolean handleDoctorMenu(
-            Integer doctorOption
-    ) {
-
+    public Boolean handleDoctorMenu(Integer doctorOption) {
         switch (doctorOption) {
 
             case 1 -> {
 
                 Doctor doctor = addDoctor();
-
                 addDoctor(doctor);
             }
 
             case 2 -> {
-
-                System.out.print(
-                        "Enter Doctor ID to edit: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                Doctor updatedDoctor =
-                        addDoctor();
-
+                System.out.print("Enter Doctor ID to edit: ");
+                String id = scanner.nextLine().trim();
+                Doctor updatedDoctor = addDoctor();
                 editDoctor(id, updatedDoctor);
             }
 
             case 3 -> {
 
-                System.out.print(
-                        "Enter Doctor ID to remove: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
+                System.out.print("Enter Doctor ID to remove: ");
+                String id = scanner.nextLine().trim();
                 removeDoctor(id);
             }
 
             case 4 -> {
 
-                System.out.print(
-                        "Enter Doctor ID to search: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                Doctor d =
-                        getDoctorById(id);
+                System.out.print("Enter Doctor ID to search: ");
+                String id = scanner.nextLine().trim();
+                Doctor d = getDoctorById(id);
 
                 if (d != null) {
-
                     d.displayInfo();
                 }
 
                 else {
-
-                    System.out.println(
-                            "Doctor not found."
-                    );
+                    System.out.println("Doctor not found");
                 }
             }
 
             case 5 -> {
 
-                System.out.print(
-                        "Enter specialization to search: "
-                );
-
-                String spec =
-                        scanner.nextLine().trim();
-
+                System.out.print("Enter specialization to search: ");
+                String spec = scanner.nextLine().trim();
                 getDoctorsBySpecialization(spec);
             }
 
@@ -271,10 +238,7 @@ public class DoctorService {
             }
 
             default -> {
-
-                System.out.println(
-                        "Invalid option. Please choose 1-7."
-                );
+                System.out.println("Invalid option , Please choose 1-7.");
             }
         }
 
