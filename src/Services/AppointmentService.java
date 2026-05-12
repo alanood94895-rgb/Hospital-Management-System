@@ -95,109 +95,73 @@ public class AppointmentService {
         System.out.println(Constants.APPOINTMENT_NOT_FOUND);
     }
 
-    // ==================================================
+
     // CANCEL APPOINTMENT
-    // ==================================================
 
     public void cancelAppointment(String appointmentId) {
 
         for (Appointment a : appointmentList) {
-
-            if (
-                    a.getAppointmentId()
-                            .equals(appointmentId)
-            ) {
-
+            if (a.getAppointmentId().equals(appointmentId)) {
                 a.setStatus("Cancelled");
-
-                System.out.println(
-                        Constants.APPOINTMENT_CANCELLED_SUCCESSFULLY
-                );
-
+                System.out.println(Constants.APPOINTMENT_CANCELLED_SUCCESSFULLY);
                 return;
             }
         }
 
-        System.out.println(
-                Constants.APPOINTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.APPOINTMENT_NOT_FOUND);
     }
 
-    // ==================================================
+
     // GET BY PATIENT ID
-    // ==================================================
 
     public void getAppointmentsByPatient(String patientId) {
 
         for (Appointment a : appointmentList) {
 
-            if (
-                    a.getPatientId()
-                            .equals(patientId)
-            ) {
-
+            if (a.getPatientId().equals(patientId)) {
                 a.displayInfo();
             }
         }
     }
 
-    // FIXED NAME (was wrong in your code)
     public void getAppointmentsByPatientId(String patientId) {
-
         getAppointmentsByPatient(patientId);
     }
 
-    // ==================================================
+
     // GET BY DOCTOR ID
-    // ==================================================
 
     public void getAppointmentsByDoctor(String doctorId) {
 
         for (Appointment a : appointmentList) {
-
-            if (
-                    a.getDoctorId()
-                            .equals(doctorId)
-            ) {
-
+            if (a.getDoctorId().equals(doctorId)) {
                 a.displayInfo();
             }
         }
     }
 
-    // ==================================================
     // GET BY DATE
-    // ==================================================
 
     public void getAppointmentsByDate(LocalDate date) {
 
         for (Appointment a : appointmentList) {
-
-            if (
-                    a.getAppointmentDate()
-                            .equals(date)
-            ) {
-
+            if (a.getAppointmentDate().equals(date)) {
                 a.displayInfo();
             }
         }
     }
 
-    // ==================================================
-    // DISPLAY ALL
-    // ==================================================
 
+    // DISPLAY ALL
     public void displayAllAppointments() {
 
         for (Appointment a : appointmentList) {
-
             a.displayInfo();
         }
     }
 
-    // ==================================================
+
     // HANDLE MENU
-    // ==================================================
 
     public Boolean handleAppointmentMenu(Integer option) {
 
