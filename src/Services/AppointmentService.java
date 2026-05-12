@@ -64,41 +64,21 @@ public class AppointmentService {
 
 
     // EDIT APPOINTMENT
-
-    public void editAppointment(
-            String appointmentId,
-            Appointment updatedAppointment
-    ) {
-
+    public void editAppointment(String appointmentId, Appointment updatedAppointment) {
         for (Appointment a : appointmentList) {
-
-            if (
-                    a.getAppointmentId()
-                            .equals(appointmentId)
-            ) {
-
-                a.setNotes(
-                        updatedAppointment.getNotes()
-                );
-
-                a.setReason(
-                        updatedAppointment.getReason()
-                );
-
-                System.out.println(
-                        Constants.APPOINTMENT_UPDATED_SUCCESSFULLY
-                );
+            if (a.getAppointmentId().equals(appointmentId)) {
+                a.setNotes(updatedAppointment.getNotes());
+                a.setReason(updatedAppointment.getReason());
+                System.out.println(Constants.APPOINTMENT_UPDATED_SUCCESSFULLY);
 
                 return;
             }
         }
 
-        System.out.println(
-                Constants.APPOINTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.APPOINTMENT_NOT_FOUND);
     }
 
-    // ==================================================
+
     // RESCHEDULE APPOINTMENT
     // ==================================================
 
