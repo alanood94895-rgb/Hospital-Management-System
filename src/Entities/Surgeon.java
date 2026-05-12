@@ -74,7 +74,6 @@ public class Surgeon extends Doctor implements Displayable {
             System.out.println(Constants.SURGEON_CANNOT_OPERATE);
         }
 
-
-
     }
 }
+//oo
