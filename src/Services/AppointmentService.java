@@ -168,100 +168,53 @@ public class AppointmentService {
         switch (option) {
 
             case 1 -> {
-
-                Appointment appointment =
-                        addNewAppointment();
-
+                Appointment appointment = addNewAppointment();
                 addAppointment(appointment);
             }
 
             case 2 -> {
 
-                System.out.print(
-                        "Enter ID to reschedule: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                System.out.print(
-                        "Enter New Date (YYYY-MM-DD): "
-                );
-
-                String dateStr =
-                        scanner.nextLine().trim();
-
-                LocalDate date =
-                        LocalDate.parse(dateStr);
-
-                System.out.print(
-                        "Enter New Time: "
-                );
-
-                String time =
-                        scanner.nextLine().trim();
-
+                System.out.print("Enter ID to reschedule: ");
+                String id = scanner.nextLine().trim();
+                System.out.print("Enter New Date (YYYY-MM-DD): ");
+                String dateStr = scanner.nextLine().trim();
+                LocalDate date = LocalDate.parse(dateStr);
+                System.out.print("Enter New Time: ");
+                String time = scanner.nextLine().trim();
                 rescheduleAppointment(id, date, time);
             }
 
             case 3 -> {
 
-                System.out.print(
-                        "Enter ID to cancel: "
-                );
-
-                cancelAppointment(
-                        scanner.nextLine().trim()
-                );
+                System.out.print("Enter ID to cancel: ");
+                cancelAppointment(scanner.nextLine().trim());
             }
 
             case 4 -> {
-
-                System.out.print(
-                        "Enter Patient ID: "
-                );
-
-                getAppointmentsByPatientId(
-                        scanner.nextLine().trim()
-                );
+                System.out.print("Enter Patient ID: ");
+                getAppointmentsByPatientId(scanner.nextLine().trim());
             }
 
             case 5 -> {
+                System.out.print("Enter Doctor ID: ");
 
-                System.out.print(
-                        "Enter Doctor ID: "
-                );
-
-                getAppointmentsByDoctor(
-                        scanner.nextLine().trim()
-                );
+                getAppointmentsByDoctor(scanner.nextLine().trim());
             }
 
             case 6 -> {
-
-                System.out.print(
-                        "Enter Date (YYYY-MM-DD): "
-                );
-
-                getAppointmentsByDate(
-                        LocalDate.parse(
-                                scanner.nextLine().trim()
-                        )
-                );
+                System.out.print("Enter Date (YYYY-MM-DD): ");
+                getAppointmentsByDate(LocalDate.parse(scanner.nextLine().trim()));
             }
 
             case 7 -> {
-
                 displayAllAppointments();
             }
 
             case 8 -> {
-
                 return false;
             }
 
             default -> {
-
                 System.out.println("Invalid option.");
             }
         }
