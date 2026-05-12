@@ -21,14 +21,12 @@ public class NurseService {
 
         nurses.add(nurse);
 
-        System.out.println(
-                Constants.NURSE_ADDED_SUCCESSFULLY
-        );
+        System.out.println(Constants.NURSE_ADDED_SUCCESSFULLY);
     }
 
-    // ==================================================
-    // CREATE NURSE OBJECT
-    // ==================================================
+
+    // Crate Nurse Object
+
 
     public Nurse addNurses() {
 
