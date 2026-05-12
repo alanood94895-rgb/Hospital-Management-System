@@ -191,9 +191,7 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    // ==================================================
-    // GET PATIENT BY ID
-    // ==================================================
+    // Get Patient By ID
 
     public void getPatientById(String patientId) {
 
