@@ -4,7 +4,12 @@ public class MenuMessages {
 
     public static String MAIN_MENU_MESSAGE = """
             1- Patient Mene
-            2- Exit
+            2- Doctor Menu
+            3- Nurse Menu
+            4- Medical Record Menu
+            5- Appointment Menu
+            6- Department Menu
+            7- Exit
             """;
     public static String PATIENT_MENU_MESSAGE = """
             1- Add New Patient
