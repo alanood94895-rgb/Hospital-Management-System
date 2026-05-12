@@ -72,56 +72,30 @@ public class DepartmentService {
             }
         }
 
-        System.out.println(
-                Constants.DEPARTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
-    // ==================================================
-    // REMOVE DEPARTMENT
-    // ==================================================
 
-    public void removeDepartment(
-            String departmentId
-    ) {
+    // REMOVE DEPARTMENT
+    public void removeDepartment(String departmentId) {
 
         for (Department d : departments) {
-
-            if (
-                    d.getDepartmentId()
-                            .equals(departmentId)
-            ) {
-
+            if (d.getDepartmentId().equals(departmentId)) {
                 departments.remove(d);
-
-                System.out.println(
-                        Constants.DEPARTMENT_REMOVED_SUCCESSFULLY
-                );
-
+                System.out.println(Constants.DEPARTMENT_REMOVED_SUCCESSFULLY);
                 return;
             }
         }
 
-        System.out.println(
-                Constants.DEPARTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
-    // ==================================================
+
     // GET DEPARTMENT BY ID
-    // ==================================================
 
-    public Department getDepartmentById(
-            String departmentId
-    ) {
-
+    public Department getDepartmentById(String departmentId) {
         for (Department d : departments) {
-
-            if (
-                    d.getDepartmentId()
-                            .equals(departmentId)
-            ) {
-
+            if (d.getDepartmentId().equals(departmentId)) {
                 return d;
             }
         }
@@ -129,9 +103,8 @@ public class DepartmentService {
         return null;
     }
 
-    // ==================================================
+
     // DISPLAY ALL DEPARTMENTS
-    // ==================================================
 
     public void displayAllDepartments() {
 
