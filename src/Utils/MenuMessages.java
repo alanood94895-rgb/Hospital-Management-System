@@ -4,11 +4,11 @@ public class MenuMessages {
 
     public static String MAIN_MENU_MESSAGE = """
             1. Patient Menu
-            2. Doctor Menu
-            3. Nurse Menu
-            4. Appointment Menu
-            5. Medical Records Menu
-            6. Department Menu
+            2. Department Menu
+            3. Doctor Menu
+            4. Nurse Menu
+            5. Medical Record Menu
+            6. Appointment Menu
             7. Reports and Statistics
             0. Exit
             """;
