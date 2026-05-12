@@ -123,28 +123,20 @@ public class MedicalRecordService {
     public void displayAllRecords() {
 
         for (MedicalRecord m : medicalRecords) {
-
             m.displayInfo();
         }
     }
 
-    // ==================================================
     // DISPLAY PATIENT HISTORY
-    // ==================================================
 
     public void displayPatientHistory(String patientId) {
 
-        System.out.println(
-                "Patient Medical History:"
-        );
+        System.out.println("Patient Medical History:");
 
         getRecordsByPatientId(patientId);
     }
 
-    // ==================================================
     // HANDLE MEDICAL RECORD MENU
-    // ==================================================
-
     public Boolean handleMedicalRecordMenu(Integer option) {
 
         switch (option) {
