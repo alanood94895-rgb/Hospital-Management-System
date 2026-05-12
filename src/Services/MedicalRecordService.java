@@ -21,9 +21,7 @@ public class MedicalRecordService {
 
 
     // CREATE NEW RECORD OBJECT
-
     public MedicalRecord addNewRecords() {
-
         System.out.println("Enter Record Id:");
         String recordId = scanner.nextLine();
 
@@ -62,10 +60,7 @@ public class MedicalRecordService {
         return medicalRecord;
     }
 
-    // ==================================================
     // EDIT RECORD
-    // ==================================================
-
     public void editMedicalRecord(String recordId,
                                   MedicalRecord updatedRecord) {
 
