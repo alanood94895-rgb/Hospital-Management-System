@@ -19,9 +19,8 @@ public class MedicalRecordService {
         System.out.println(Constants.RECORD_ADDED_SUCCESSFULLY);
     }
 
-    // ==================================================
+
     // CREATE NEW RECORD OBJECT
-    // ==================================================
 
     public MedicalRecord addNewRecords() {
 
