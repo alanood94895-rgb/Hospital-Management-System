@@ -11,12 +11,12 @@ public class DepartmentService {
     static Scanner scanner = new Scanner(System.in);
     List<Department> departments = new ArrayList<>();
 
-    public void addDepartment(Department department){
+    public void addDepartment(Department department) {
         departments.add(department);
         System.out.println(Constants.DEPARTMENT_ADDED_SUCCESSFULLY);
     }
 
-    public Department addDepartment(){
+    public Department addDepartment() {
         System.out.print("Enter Department ID: ");
         String departmentId = scanner.nextLine();
 
@@ -72,9 +72,9 @@ public class DepartmentService {
         System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
-    public void getDepartmentById(String departmentId){
-        for(Department d : departments){
-            if(d.getDepartmentId().equals(departmentId)){
+    public void getDepartmentById(String departmentId) {
+        for (Department d : departments) {
+            if (d.getDepartmentId().equals(departmentId)) {
                 d.displayInfo();
                 return;
             }
@@ -82,29 +82,21 @@ public class DepartmentService {
         System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
-    public void displayAllDepartments(){
-        for(Department d : departments){
+    public void displayAllDepartments() {
+        for (Department d : departments) {
             d.displayInfo();
         }
     }
 
 
-    public void assignDoctorToDepartment(String doctorId, String departmentId){
-        for(Department d : departments){
-            if(d.getDepartmentId().equals(departmentId)){
+    public void assignDoctorToDepartment(String doctorId, String departmentId) {
+        for (Department d : departments) {
+            if (d.getDepartmentId().equals(departmentId)) {
                 d.setHeadDoctorId(doctorId);
                 return;
             }
         }
         System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
-
-
-
-
-
-
-
-
 
 }

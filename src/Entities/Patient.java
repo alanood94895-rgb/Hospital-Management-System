@@ -13,6 +13,7 @@ public class Patient extends Person {
 
 
     // Patient Specific Fields
+
     private String patientId;
     private String bloodGroup;
     private List<String> allergies;
@@ -39,6 +40,7 @@ public class Patient extends Person {
                    String insuranceId) {
 
         // Call Parent Constructor
+
         super(id,
                 firstName,
                 lastName,
@@ -57,6 +59,10 @@ public class Patient extends Person {
         allergies = new ArrayList<>();
         medicalRecords = new ArrayList<String>();
         appointments = new ArrayList<String>();
+    }
+
+    public Patient() {
+
     }
 
     // Get and Set
@@ -122,7 +128,7 @@ public class Patient extends Person {
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("Blood Group       :"+bloodGroup );
+        System.out.println("Blood Group :"+bloodGroup );
         System.out.println("Allergies");
         for(String x : allergies){
             System.out.print(x + ",");
