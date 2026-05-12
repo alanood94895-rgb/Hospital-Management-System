@@ -1,13 +1,13 @@
 package Entities;
 
-import Entities.Doctor;
+import Behaviour.Displayable;
 import Entities.Patient;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Consultant extends Doctor {
+public class Consultant extends Doctor implements Displayable {
 
     private List<String> consultationTypes;
     Boolean onlineConsultationAvailable;
@@ -26,9 +26,10 @@ public class Consultant extends Doctor {
                       String qualification,
                       Integer experienceYears,
                       String departmentId,
-                      double consultationFee) {
+                      double consultationFee
+    ) {
 
-        super( id,
+        super(id,
                 firstName,
                 lastName,
                 dateOfBirth,
@@ -36,15 +37,11 @@ public class Consultant extends Doctor {
                 phoneNumber,
                 email,
                 address,
-                id,
                 specialization,
                 qualification,
                 experienceYears,
                 departmentId,
-                consultationFee,
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
+                consultationFee);
 
         this.consultationTypes = new ArrayList<>();
     }
@@ -60,13 +57,20 @@ public class Consultant extends Doctor {
         }
     }
 
+    @Override
+    public void displaySummary() {
+
+    }
+
     public void scheduleConsultation(String patientId, String type) {
         System.out.println("Consultation scheduled for patient: " + patientId);
         System.out.println("Type: " + type);
         System.out.println("Duration: " + consultationDuration + " minutes");
     }
 
-    public void provideSecondOpinion(){
+    public void provideSecondOpinion(String patientCase) {
 
+        System.out.println("Providing second opinion for case:");
+        System.out.println(patientCase);
     }
 }

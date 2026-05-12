@@ -1,101 +1,26 @@
 package Entities;
+
+import Behaviour.Displayable;
+import Entities.Patient;
+import Entities.Person;
+import Services.PatientService;
+import Utils.Constants;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-public class Doctor extends Person{
+public class Doctor extends Person implements Displayable {
+    static Scanner scanner = new Scanner(System.in);
+    PatientService patientService = new PatientService();
 
-    private String doctorId;
-    private String specialization;
-    private String qualification;
-    private int experienceYears;
-    private String departmentId;
-    private double consultationFee;
-    private List<String> availableSlots;
-    private List<String> assignedPatients;
-
-    public Doctor(String id,
-                  String firstName,
-                  String lastName,
-                  LocalDate dateOfBirth,
-                  String gender,
-                  String phoneNumber,
-                  String email,
-                  String address,
-                  String doctorId,
-                  String specialization,
-                  String qualification,
-                  int experienceYears,
-                  String departmentId,
-                  double consultationFee,
-                  List<String> availableSlots,
-                  List<String> assignedPatients) {
-
-        super(id,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phoneNumber,
-                email,
-                address);
-
-        this.doctorId = doctorId;
-        this.specialization = specialization;
-        this.qualification = qualification;
-        this.experienceYears = experienceYears;
-        this.departmentId = departmentId;
-        this.consultationFee = consultationFee;
-        this.availableSlots = new ArrayList<>();
-        this.assignedPatients =new ArrayList<>();
+    public List<Patient> getAssignedPatients() {
+        return assignedPatients;
     }
 
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
-    }
-
-    public String getQualification() {
-        return qualification;
-    }
-
-    public void setQualification(String qualification) {
-        this.qualification = qualification;
-    }
-
-    public int getExperienceYears() {
-        return experienceYears;
-    }
-
-    public void setExperienceYears(int experienceYears) {
-        this.experienceYears = experienceYears;
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public double getConsultationFee() {
-        return consultationFee;
-    }
-
-    public void setConsultationFee(double consultationFee) {
-        this.consultationFee = consultationFee;
+    public void setAssignedPatients(List<Patient> assignedPatients) {
+        this.assignedPatients = assignedPatients;
     }
 
     public List<String> getAvailableSlots() {
@@ -106,49 +31,166 @@ public class Doctor extends Person{
         this.availableSlots = availableSlots;
     }
 
-    public List<String> getAssignedPatients() {
-        return assignedPatients;
+    public double getConsultationFee() {
+        return consultationFee;
     }
 
-    public void setAssignedPatients(List<String> assignedPatients) {
-        this.assignedPatients = assignedPatients;
+    public void setConsultationFee(double consultationFee) {
+        this.consultationFee = consultationFee;
     }
+
+    public String getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(String departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public Integer getExperienceYears() {
+        return experienceYears;
+    }
+
+    public void setExperienceYears(Integer experienceYears) {
+        this.experienceYears = experienceYears;
+    }
+
+    public String getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(String qualification) {
+        this.qualification = qualification;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
+    }
+
+    public PatientService getPatientService() {
+        return patientService;
+    }
+
+    public void setPatientService(PatientService patientService) {
+        this.patientService = patientService;
+    }
+
+    public static Scanner getScanner() {
+        return scanner;
+    }
+
+    public static void setScanner(Scanner scanner) {
+        Doctor.scanner = scanner;
+    }
+
+    private String specialization;
+    private String qualification;
+    private Integer experienceYears;
+    private String departmentId;
+    private double consultationFee;
+    private List<String> availableSlots;
+    private List<Patient> assignedPatients;
+
+    //call parent constructor
+
+    public Doctor() {
+        super();
+
+    }
+
+    public Doctor(String id,
+                  String firstName,
+                  String lastName,
+                  LocalDate dateOfBirth,
+                  String gender,
+                  String phoneNumber,
+                  String email,
+                  String address ,
+                  String specialization,
+                  String qualification ,
+                  Integer experienceYears ,
+                  String departmentId,
+                  double consultationFee) {
+
+
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address);
+
+        this.specialization = specialization;
+        this.qualification = qualification;
+        this.experienceYears = experienceYears;
+        this.departmentId = departmentId;
+        this.consultationFee = consultationFee;
+        this.availableSlots = new ArrayList<>();
+        this.assignedPatients = new ArrayList<>();
+    }
+
+
+    public void assignPatient() {
+
+    }
+
+
+    public void removePatient(Patient patient) {
+        assignedPatients.remove(patient);
+        System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
+    }
+
+    public void updateAvailability(String slot) {
+        availableSlots.add(slot);
+        System.out.println(Constants.AVAILABILITY_UPDATED);
+    }
+
+
+
 
     @Override
     public void displayInfo() {
         super.displayInfo();
+        System.out.println(specialization);
+        System.out.println(qualification);
+        System.out.println(experienceYears);
+        System.out.println(departmentId);
+        System.out.println(consultationFee);
 
-        System.out.println("Doctor ID: " + doctorId);
-        System.out.println("Specialization: " + specialization);
-        System.out.println("Qualification: " + qualification);
-        System.out.println("Experience: " + experienceYears + " years");
-        System.out.println("Department ID: " + departmentId);
-        System.out.println("Consultation Fee:" + consultationFee);
+        System.out.println("Available Slots");
+        for(String slot : availableSlots){
+            System.out.print(slot + ",");
+        }
 
-        System.out.println("Available Slots: " + availableSlots);
-        System.out.println("Assigned Patients: " + assignedPatients);
-    }
-
-    // Method to assign a patient
-
-    public void assignPatient(String patientId , String doctorId) {
-        assignedPatients.add(patientId);
-        System.out.println(patientId + " assigned to Doctor " + doctorId);
-    }
-
-    // Method to remove a patient
-
-    public void removePatient(String patientId,String doctorId) {
-        if (assignedPatients.remove(patientId)) {
-            System.out.println(doctorId + " removed from Doctor " + doctorId);
-        } else {
-            System.out.println("Patient not found");
+        System.out.println("Assigned Patients");
+        for(Patient patient : assignedPatients){
+            patient.displayInfo();
         }
     }
 
-    // Method to update availability
-    public void updateAvailability(List<String> newSlots) {
-        availableSlots = newSlots;
-        System.out.println("Availability updated.");
+    @Override
+    public void displaySummary() {
+
     }
+
+    public void updateFee(double fee){
+        this.consultationFee = fee;
+    }
+
+
+    public void addAvailability(String slot){
+        this.availableSlots.add(slot);
+    }
+
+    public void addAvailability(List<String> slots){
+        this.availableSlots = slots;
+    }
+
+
 }
