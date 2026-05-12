@@ -59,13 +59,13 @@ public class MenuMessages {
             0.Exit
             """;
     public static String MEDICAL_RECORD_MENU_MESSAGE = """
-            1. Create Medical Record
-            2. View All Records
-            3. View Records by Patient
-            4. View Records by Doctor
-            5. Update Medical Record
-            6. Delete Medical Record
-            7. Generate Patient History Report
+            5.1 Create Medical Record
+            5.2 View All Records
+            5.3 View Records by Patient
+            5.4 View Records by Doctor
+            5.5 Update Medical Record
+            5.6 Delete Medical Record
+            5.7 Generate Patient History Report
             0.Exit
             """;
     public static String APPOINTMENT_MENU_MESSAGE = """
