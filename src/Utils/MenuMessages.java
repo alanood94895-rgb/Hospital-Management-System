@@ -13,39 +13,39 @@ public class MenuMessages {
             0. Exit
             """;
     public static String PATIENT_MENU_MESSAGE = """
-            1. Register New Patient
-            2. Register InPatient
-            3. Register OutPatient
-            4. Register Emergency Patient
-            5. View All Patients
-            6. Search Patient
-            7. Update Patient Information
-            8. Remove Patient
-            9. View Patient Medical History
+            1.1 Register New Patient
+            1.2 Register InPatient
+            1.3 Register OutPatient
+            1.4 Register Emergency Patient
+            1.5 View All Patients
+            1.6 Search Patient
+            1.7 Update Patient Information
+            1.8 Remove Patient
+            1.9 View Patient Medical History
             0. Exit
             """;
 
     public static String DEPARTMENT_MENU_MESSAGE = """
-           1. Add Department
-           2. View All Departments
-           3. View Department Details
-           4. Assign Doctor to Department
-           5. Assign Nurse to Department
-           6. Update Department Information
-           7. View Department Statistics
+           2.1 Add Department
+           2.2 View All Departments
+           2.3 View Department Details
+           2.4 Assign Doctor to Department
+           2.5 Assign Nurse to Department
+           2.6 Update Department Information
+           2.7 View Department Statistics
            0.Exit
             """;
     public static String DOCTOR_MENU_MESSAGE = """
-            1. Add Doctor
-            2. Add Surgeon
-            3. Add Consultant
-            4. Add General Practitioner
-            5. View All Doctors
-            6. Search Doctor by Specialization
-            7. View Available Doctors
-            8. Assign Patient to Doctor
-            9. Update Doctor Information
-            10. Remove Doctor
+            3.1 Add Doctor
+            3.2 Add Surgeon
+            3.3 Add Consultant
+            3.4 Add General Practitioner
+            3.5 View All Doctors
+            3.6 Search Doctor by Specialization
+            3.7 View Available Doctors
+            3.8 Assign Patient to Doctor
+            3.9 Update Doctor Information
+            3.10 Remove Doctor
             0.Exit
             """;
     public static String NURSE_MENU_MESSAGE = """
