@@ -21,7 +21,6 @@ public class DoctorService {
     }
 
     // CREATE DOCTOR OBJECT
-
     public Doctor addDoctor() {
 
         System.out.println("Enter doctor id:");
@@ -104,22 +103,11 @@ public class DoctorService {
         for (Doctor d : doctors) {
 
             if (d.getId().equals(doctorId)) {
+                d.setPhoneNumber(updatedDoctor.getPhoneNumber());
+                d.setEmail(updatedDoctor.getEmail());
+                d.setAddress(updatedDoctor.getAddress());
 
-                d.setPhoneNumber(
-                        updatedDoctor.getPhoneNumber()
-                );
-
-                d.setEmail(
-                        updatedDoctor.getEmail()
-                );
-
-                d.setAddress(
-                        updatedDoctor.getAddress()
-                );
-
-                System.out.println(
-                        Constants.DOCTOR_UPDATED_SUCCESSFULLY
-                );
+                System.out.println(Constants.DOCTOR_UPDATED_SUCCESSFULLY);
 
                 return;
             }
@@ -128,9 +116,8 @@ public class DoctorService {
         System.out.println(Constants.DOCTOR_NOT_FOUND);
     }
 
-    // ==================================================
+
     // REMOVE DOCTOR
-    // ==================================================
 
     public void removeDoctor(String doctorId) {
 
@@ -139,10 +126,7 @@ public class DoctorService {
             if (d.getId().equals(doctorId)) {
 
                 doctors.remove(d);
-
-                System.out.println(
-                        Constants.DOCTOR_REMOVED_SUCCESSFULLY
-                );
+                System.out.println(Constants.DOCTOR_REMOVED_SUCCESSFULLY);
 
                 return;
             }
@@ -151,16 +135,11 @@ public class DoctorService {
         System.out.println(Constants.DOCTOR_NOT_FOUND);
     }
 
-    // ==================================================
     // GET DOCTOR BY ID
-    // ==================================================
-
     public Doctor getDoctorById(String doctorId) {
 
         for (Doctor d : doctors) {
-
             if (d.getId().equals(doctorId)) {
-
                 return d;
             }
         }
@@ -168,10 +147,8 @@ public class DoctorService {
         return null;
     }
 
-    // ==================================================
-    // DISPLAY ALL DOCTORS
-    // ==================================================
 
+    // DISPLAY ALL DOCTORS
     public void displayAllDoctors() {
 
         for (Doctor d : doctors) {
@@ -180,22 +157,12 @@ public class DoctorService {
         }
     }
 
-    // ==================================================
-    // GET DOCTORS BY SPECIALIZATION
-    // ==================================================
 
-    public void getDoctorsBySpecialization(
-            String specialization
-    ) {
+    // GET DOCTORS BY SPECIALIZATION
+    public void getDoctorsBySpecialization(String specialization) {
 
         for (Doctor d : doctors) {
-
-            if (
-                    d.getSpecialization()
-                            .equalsIgnoreCase(
-                                    specialization
-                            )
-            ) {
+            if (d.getSpecialization().equalsIgnoreCase(specialization)) {
 
                 d.displayInfo();
             }
