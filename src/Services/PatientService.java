@@ -147,9 +147,8 @@ public class PatientService {
         System.out.println("Patient object added.");
     }
 
-    // ==================================================
-    // UPDATE PATIENT
-    // ==================================================
+
+    // Update Patient
 
     public void updatePatient(String patientId,
                               Patient updatedPatient) {
