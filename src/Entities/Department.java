@@ -22,7 +22,10 @@ public class Department implements Displayable {
     public Department(String departmentId,
                       String departmentName,
                       String headDoctorId,
-                      int bedCapacity) {
+                      List<Doctor> doctors,
+                      List<Nurse> nurses,
+                      int bedCapacity,
+                      int availableBeds) {
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
