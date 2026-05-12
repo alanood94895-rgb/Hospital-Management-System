@@ -223,18 +223,12 @@ public class PatientService {
     }
 
     // Search by first and last name
-    public void searchPatients(String firstName,
-                               String lastName) {
+    public void searchPatients(String firstName, String lastName) {
 
         for (Patient p : patients) {
 
-            if (
-                    p.getFirstName()
-                            .equalsIgnoreCase(firstName)
-                            &&
-                            p.getLastName()
-                                    .equalsIgnoreCase(lastName)
-            ) {
+            if (p.getFirstName().equalsIgnoreCase(firstName) &&
+                    p.getLastName().equalsIgnoreCase(lastName)) {
 
                 p.displayInfo();
             }
