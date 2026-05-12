@@ -16,7 +16,6 @@ public class NurseService {
 
 
     // Add Nurse
-
     public void addNurse(Nurse nurse) {
 
         nurses.add(nurse);
@@ -26,8 +25,6 @@ public class NurseService {
 
 
     // Crate Nurse Object
-
-
     public Nurse addNurses() {
 
         System.out.println("Enter Nurse id:");
@@ -84,8 +81,8 @@ public class NurseService {
         return nurse;
     }
 
-    // Edit Nurse
 
+    // Edit Nurse
     public void editNurse(String nurseId, Nurse updatedNurse) {
 
         for (Nurse n : nurses) {
@@ -107,7 +104,6 @@ public class NurseService {
     }
 
     // Remove Nurse
-
     public void removeNurse(String nurseId) {
 
         for (Nurse n : nurses) {
@@ -137,9 +133,7 @@ public class NurseService {
     }
 
     // Get Nurse By Department
-
     public void getNursesByDepartment(String departmentId) {
-
         for (Nurse n : nurses) {
             if (n.getDepartmentId().equals(departmentId)) {
                 n.displayInfo();
@@ -149,7 +143,6 @@ public class NurseService {
 
 
     // Get Nurse By Shift
-
     public void getNursesByShift(String shift) {
 
         for (Nurse n : nurses) {
@@ -161,17 +154,16 @@ public class NurseService {
         }
     }
 
-    // DISPLAY ALL NURSES
-
+    // Display all Nurse
     public void displayAllNurses() {
 
         for (Nurse n : nurses) {
-
             n.displayInfo();
         }
     }
-    // HANDLE NURSE MENU
 
+
+    // HANDLE NURSE MENU
     public Boolean handleNurseMenu(Integer option) {
 
         switch (option) {
