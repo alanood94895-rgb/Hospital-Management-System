@@ -1,5 +1,7 @@
 package Services;
 
+import Behaviour.Manageable;
+import Behaviour.Searchable;
 import Entities.Department;
 import Utils.Constants;
 
@@ -7,23 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DepartmentService {
+public class DepartmentService implements Manageable, Searchable {
 
     static Scanner scanner = new Scanner(System.in);
-
     List<Department> departments = new ArrayList<>();
 
-
     // ADD DEPARTMENT
-    public void addDepartment(Department department) {
 
+    public void addDepartment(Department department) {
         departments.add(department);
         System.out.println(Constants.DEPARTMENT_ADDED_SUCCESSFULLY);
     }
 
-
     // CREATE DEPARTMENT OBJECT
-
     public Department addDepartment() {
 
         System.out.print("Enter Department ID: ");
@@ -41,67 +39,44 @@ public class DepartmentService {
         System.out.print("Enter Available Beds: ");
         int availableBeds = Integer.parseInt(scanner.nextLine());
 
-
-        Department department = new Department(
-                        departmentId,
-                        departmentName,
-                        headDoctorId,
-                        bedCapacity,
-                        availableBeds,
-                        new ArrayList<>(),
-                new ArrayList<>()
-                );
-
-        return department;
+        return new Department(
+                departmentId,
+                departmentName,
+                headDoctorId,
+                new ArrayList<>(),
+                new ArrayList<>(),
+                bedCapacity,
+                availableBeds
+        );
     }
-
 
     // EDIT DEPARTMENT
     public void editDepartment(String departmentId, Department updatedDepartment) {
-
         for (Department d : departments) {
-
             if (d.getDepartmentId().equals(departmentId)) {
                 d.setBedCapacity(updatedDepartment.getBedCapacity());
                 d.setAvailableBeds(updatedDepartment.getAvailableBeds());
-
-                System.out.println(Constants.DEPARTMENT_UPDATED_SUCCESSFULLY);
-
                 return;
             }
         }
-
         System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
-
 
     // REMOVE DEPARTMENT
     public void removeDepartment(String departmentId) {
-
-        for (Department d : departments) {
-            if (d.getDepartmentId().equals(departmentId)) {
-                departments.remove(d);
-                System.out.println(Constants.DEPARTMENT_REMOVED_SUCCESSFULLY);
-                return;
-            }
-        }
-
-        System.out.println(Constants.DEPARTMENT_NOT_FOUND);
+        departments.removeIf(d -> d.getDepartmentId().equals(departmentId));
     }
 
-
     // GET DEPARTMENT BY ID
-
     public Department getDepartmentById(String departmentId) {
         for (Department d : departments) {
             if (d.getDepartmentId().equals(departmentId)) {
                 return d;
             }
         }
-
+        System.out.println(Constants.DEPARTMENT_NOT_FOUND);
         return null;
     }
-
 
     // DISPLAY ALL DEPARTMENTS
     public void displayAllDepartments() {
@@ -111,23 +86,36 @@ public class DepartmentService {
     }
 
     // ASSIGN DOCTOR TO DEPARTMENT
-
     public void assignDoctorToDepartment(String doctorId, String departmentId) {
         for (Department d : departments) {
             if (d.getDepartmentId().equals(departmentId)) {
                 d.setHeadDoctorId(doctorId);
-                System.out.println("Doctor assigned successfully.");
                 return;
             }
         }
-
         System.out.println(Constants.DEPARTMENT_NOT_FOUND);
     }
 
 
-    // HANDLE DEPARTMENT MENU
+    @Override
+    public void add(Object entity) {}
 
+    @Override
+    public void remove(String id) {}
+
+    @Override
+    public Void getAll() { return null; }
+
+    @Override
+    public void search(String keyword) {}
+
+    @Override
+    public void searchById(String id) {}
+
+
+    // HANDLE DEPARTMENT MENU
     public Boolean handleDepartmentMenu(Integer option) {
+
         switch (option) {
 
             case 1 -> {
@@ -136,49 +124,34 @@ public class DepartmentService {
             }
 
             case 2 -> {
-
                 System.out.print("Enter ID to edit: ");
                 String id = scanner.nextLine().trim();
-                Department updatedDepartment = addDepartment();
-                editDepartment(id, updatedDepartment);
+
+                Department updated = addDepartment();
+                editDepartment(id, updated);
             }
 
             case 3 -> {
-
                 System.out.print("Enter ID to remove: ");
-
                 removeDepartment(scanner.nextLine().trim());
             }
 
-            case 4 -> {
-
-                displayAllDepartments();
-            }
+            case 4 -> displayAllDepartments();
 
             case 5 -> {
-
-                System.out.print("Enter Department ID to view details: ");
-
+                System.out.print("Enter Department ID: ");
                 Department d = getDepartmentById(scanner.nextLine().trim());
 
                 if (d != null) {
                     d.displayInfo();
                 }
-
-                else {
-
-                    System.out.println("Not found.");
-                }
             }
 
             case 6 -> {
-
                 return false;
             }
 
-            default -> {
-                System.out.println("Invalid option.");
-            }
+            default -> System.out.println("Invalid option.");
         }
 
         return true;
