@@ -1,9 +1,12 @@
 package Entities;
+
+import Behaviour.Displayable;
+import Entities.Doctor;
+
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Department {
+public class Department implements Displayable {
 
     private String departmentId;
     private String departmentName;
@@ -15,25 +18,23 @@ public class Department {
     private int bedCapacity;
     private int availableBeds;
 
-    // Full Constructor
+    // Constructor
     public Department(String departmentId,
                       String departmentName,
                       String headDoctorId,
-                      List<Doctor> doctors,
-                      List<Nurse> nurses,
-                      int bedCapacity,
-                      int availableBeds) {
-
+                      int bedCapacity) {
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
         this.headDoctorId = headDoctorId;
-        this.doctors = doctors;
-        this.nurses = nurses;
         this.bedCapacity = bedCapacity;
-        this.availableBeds = availableBeds;
+        this.availableBeds = bedCapacity;
+
+        this.doctors = new ArrayList<>();
+        this.nurses = new ArrayList<>();
     }
 
+    // Getters and Setters
     public String getDepartmentId() {
         return departmentId;
     }
@@ -62,16 +63,8 @@ public class Department {
         return doctors;
     }
 
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
-    }
-
     public List<Nurse> getNurses() {
         return nurses;
-    }
-
-    public void setNurses(List<Nurse> nurses) {
-        this.nurses = nurses;
     }
 
     public int getBedCapacity() {
@@ -90,48 +83,36 @@ public class Department {
         this.availableBeds = availableBeds;
     }
 
-    public void displayInfo() {
+    public void assignDoctor(Doctor doctor) {
+        doctors.add(doctor);
+        System.out.println("Doctor assigned to department.");
 
+    }
+
+    public void assignNurse(Nurse nurse) {
+        nurses.add(nurse);
+        System.out.println("Nurse assigned to department.");
+
+    }
+
+    public void updateBedAvailability() {
+
+
+    }
+
+    // Display info
+    public void displayInfo() {
         System.out.println("Department ID: " + departmentId);
         System.out.println("Department Name: " + departmentName);
         System.out.println("Head Doctor ID: " + headDoctorId);
-        System.out.println("Doctors: " + doctors);
-        System.out.println("Nurses: " + nurses);
         System.out.println("Bed Capacity: " + bedCapacity);
         System.out.println("Available Beds: " + availableBeds);
+        System.out.println("Doctors: " + doctors.size());
+        System.out.println("Nurses: " + nurses.size());
     }
 
-    // Assign Doctor
-    public void assignDoctor(Doctor doctor) {
+    @Override
+    public void displaySummary() {
 
-        if (!doctors.contains(doctor)) {
-            doctors.add(doctor);
-            System.out.println("Doctor assigned successfully.");
-        } else {
-            System.out.println("Doctor already assigned.");
-        }
     }
-
-    // Assign Nurse
-    public void assignNurse(Nurse nurse) {
-
-        if (!nurses.contains(nurse)) {
-            nurses.add(nurse);
-            System.out.println("Nurse assigned successfully.");
-        } else {
-            System.out.println("Nurse already assigned.");
-        }
-    }
-
-    // Update bed availability
-    public void updateBedAvailability(int beds) {
-
-        if (beds >= 0 && beds <= bedCapacity) {
-            availableBeds = beds;
-            System.out.println("Available beds updated.");
-        } else {
-            System.out.println("Invalid bed count.");
-        }
-    }
-
 }
