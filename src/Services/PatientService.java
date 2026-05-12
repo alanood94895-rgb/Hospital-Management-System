@@ -272,9 +272,9 @@ public class PatientService {
         }
     }
 
-    // ==================================================
-    // HANDLE PATIENT MENU
-    // ==================================================
+
+
+    // Handle PatientsMenu
 
     public Boolean handlePatientsMenu(Integer patientOption) {
 
