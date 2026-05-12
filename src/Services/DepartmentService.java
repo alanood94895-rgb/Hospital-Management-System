@@ -11,58 +11,36 @@ public class DepartmentService {
 
     static Scanner scanner = new Scanner(System.in);
 
-    List<Department> departments =
-            new ArrayList<>();
+    List<Department> departments = new ArrayList<>();
 
-    // ==================================================
+
     // ADD DEPARTMENT
-    // ==================================================
-
-    public void addDepartment(
-            Department department
-    ) {
+    public void addDepartment(Department department) {
 
         departments.add(department);
-
-        System.out.println(
-                Constants.DEPARTMENT_ADDED_SUCCESSFULLY
-        );
+        System.out.println(Constants.DEPARTMENT_ADDED_SUCCESSFULLY);
     }
 
-    // ==================================================
+
     // CREATE DEPARTMENT OBJECT
-    // ==================================================
 
     public Department addDepartment() {
 
         System.out.print("Enter Department ID: ");
-
-        String departmentId =
-                scanner.nextLine();
+        String departmentId = scanner.nextLine();
 
         System.out.print("Enter Department Name: ");
-
-        String departmentName =
-                scanner.nextLine();
+        String departmentName = scanner.nextLine();
 
         System.out.print("Enter Head Doctor ID: ");
-
-        String headDoctorId =
-                scanner.nextLine();
+        String headDoctorId = scanner.nextLine();
 
         System.out.print("Enter Bed Capacity: ");
-
-        int bedCapacity =
-                Integer.parseInt(
-                        scanner.nextLine()
-                );
+        int bedCapacity = Integer.parseInt(scanner.nextLine());
 
         System.out.print("Enter Available Beds: ");
+        int availableBeds = Integer.parseInt(scanner.nextLine());
 
-        int availableBeds =
-                Integer.parseInt(
-                        scanner.nextLine()
-                );
 
         Department department =
                 new Department(
@@ -78,33 +56,17 @@ public class DepartmentService {
         return department;
     }
 
-    // ==================================================
-    // EDIT DEPARTMENT
-    // ==================================================
 
-    public void editDepartment(
-            String departmentId,
-            Department updatedDepartment
-    ) {
+    // EDIT DEPARTMENT
+    public void editDepartment(String departmentId, Department updatedDepartment) {
 
         for (Department d : departments) {
 
-            if (
-                    d.getDepartmentId()
-                            .equals(departmentId)
-            ) {
+            if (d.getDepartmentId().equals(departmentId)) {
+                d.setBedCapacity(updatedDepartment.getBedCapacity());
+                d.setAvailableBeds(updatedDepartment.getAvailableBeds());
 
-                d.setBedCapacity(
-                        updatedDepartment.getBedCapacity()
-                );
-
-                d.setAvailableBeds(
-                        updatedDepartment.getAvailableBeds()
-                );
-
-                System.out.println(
-                        Constants.DEPARTMENT_UPDATED_SUCCESSFULLY
-                );
+                System.out.println(Constants.DEPARTMENT_UPDATED_SUCCESSFULLY);
 
                 return;
             }
