@@ -163,9 +163,7 @@ public class PatientService {
 
                 p.setAddress(updatedPatient.getAddress());
 
-                System.out.println(
-                        Constants.PATIENT_UPDATED_SUCCESSFULLY
-                );
+                System.out.println(Constants.PATIENT_UPDATED_SUCCESSFULLY);
 
                 return;
             }
@@ -174,9 +172,7 @@ public class PatientService {
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    // ==================================================
     // REMOVE PATIENT
-    // ==================================================
 
     public void removePatient(String patientId) {
 
