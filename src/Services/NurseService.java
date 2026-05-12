@@ -154,17 +154,14 @@ public class NurseService {
 
         for (Nurse n : nurses) {
 
-            if (n.getShift()
-                    .equalsIgnoreCase(shift)) {
+            if (n.getShift().equalsIgnoreCase(shift)) {
 
                 n.displayInfo();
             }
         }
     }
 
-    // ==================================================
     // DISPLAY ALL NURSES
-    // ==================================================
 
     public void displayAllNurses() {
 
@@ -173,10 +170,7 @@ public class NurseService {
             n.displayInfo();
         }
     }
-
-    // ==================================================
     // HANDLE NURSE MENU
-    // ==================================================
 
     public Boolean handleNurseMenu(Integer option) {
 
@@ -191,54 +185,31 @@ public class NurseService {
 
             case 2 -> {
 
-                System.out.print(
-                        "Enter Nurse ID to edit: "
-                );
-
-                String nurseId =
-                        scanner.nextLine().trim();
-
-                Nurse updatedNurse =
-                        addNurses();
-
+                System.out.print("Enter Nurse ID to edit: ");
+                String nurseId = scanner.nextLine().trim();
+                Nurse updatedNurse = addNurses();
                 editNurse(nurseId, updatedNurse);
             }
 
             case 3 -> {
 
-                System.out.print(
-                        "Enter Nurse ID to remove: "
-                );
-
-                removeNurse(
-                        scanner.nextLine().trim()
-                );
+                System.out.print("Enter Nurse ID to remove: ");
+                removeNurse(scanner.nextLine().trim());
             }
 
             case 4 -> {
-
-                System.out.print(
-                        "Enter Department ID to filter: "
-                );
-
-                getNursesByDepartment(
-                        scanner.nextLine().trim()
-                );
+                System.out.print("Enter Department ID to filter: ");
+                getNursesByDepartment(scanner.nextLine().trim());
             }
 
             case 5 -> {
 
-                System.out.print(
-                        "Enter Shift to filter: "
-                );
+                System.out.print("Enter Shift to filter: ");
 
-                getNursesByShift(
-                        scanner.nextLine().trim()
-                );
+                getNursesByShift(scanner.nextLine().trim());
             }
 
             case 6 -> {
-
                 displayAllNurses();
             }
 
