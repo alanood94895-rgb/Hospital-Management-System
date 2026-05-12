@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//ss
 
 public class AppointmentService implements Manageable , Searchable , Appointable {
 
