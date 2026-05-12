@@ -235,9 +235,6 @@ public class PatientService {
         }
     }
 
-    // ==================================================
-    // OVERLOADED displayPatients()
-    // ==================================================
 
     // Display all
     public void displayPatients() {
@@ -255,16 +252,9 @@ public class PatientService {
 
         for (Patient p : patients) {
 
-            if (
-                    p.getInsuranceId()
-                            .equalsIgnoreCase(filter)
-                            ||
-                            p.getBloodGroup()
-                                    .equalsIgnoreCase(filter)
-                            ||
-                            p.getGender()
-                                    .equalsIgnoreCase(filter)
-            ) {
+            if (p.getInsuranceId().equalsIgnoreCase(filter) ||
+                    p.getBloodGroup().equalsIgnoreCase(filter) ||
+                    p.getGender().equalsIgnoreCase(filter)) {
 
                 p.displayInfo();
             }
