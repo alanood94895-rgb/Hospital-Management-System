@@ -1,8 +1,14 @@
 package Entities;
+
+import Behaviour.Displayable;
+import Utils.Constants;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Scanner;
 
-
-public class Appointment {
+public class Appointment implements Displayable {
+    static Scanner scanner = new Scanner(System.in);
 
     private String appointmentId;
     private String patientId;
@@ -13,75 +19,12 @@ public class Appointment {
     private String reason;
     private String notes;
 
-    public Appointment(String notes,
-                       String reason,
-                       String status,
-                       String appointmentTime,
-                       LocalDate appointmentDate,
-                       String doctorId,
-                       String patientId,
-                       String appointmentId) {
+    public String getNotes() {
+        return notes;
+    }
 
+    public void setNotes(String notes) {
         this.notes = notes;
-        this.reason = reason;
-        this.status = status;
-        this.appointmentTime = appointmentTime;
-        this.appointmentDate = appointmentDate;
-        this.doctorId = doctorId;
-        this.patientId = patientId;
-        this.appointmentId = appointmentId;
-    }
-
-    public Appointment() {
-
-    }
-
-    public String getAppointmentId() {
-        return appointmentId;
-    }
-
-    public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
-    }
-
-    public String getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
-    }
-
-    public String getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(String doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public LocalDate getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
-    }
-
-    public String getAppointmentTime() {
-        return appointmentTime;
-    }
-
-    public void setAppointmentTime(String appointmentTime) {
-        this.appointmentTime = appointmentTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getReason() {
@@ -92,18 +35,82 @@ public class Appointment {
         this.reason = reason;
     }
 
-    public String getNotes() {
-        return notes;
+    public String getStatus() {
+        return status;
     }
 
-    public void setNotes(String notes) {
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
+    }
+
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime = appointmentTime;
+    }
+
+    public LocalDate getAppointmentDate() {
+        return appointmentDate;
+    }
+
+    public void setAppointmentDate(LocalDate appointmentDate) {
+        this.appointmentDate = appointmentDate;
+    }
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public String getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(String appointmentId) {
+        this.appointmentId = appointmentId;
+    }
+
+
+    public Appointment(){;
+    }
+
+    public Appointment(String appointmentId ,
+                       String patientId,
+                       String doctorId,
+                       LocalDate appointmentDate,
+                       String appointmentTime,
+                       String status ,
+                       String reason ,
+                       String notes){
+
+        this.appointmentId = appointmentId;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.status = status;
+        this.reason = reason;
         this.notes = notes;
+
     }
 
     public void displayInfo(){
-        System.out.println("Appointment ID: " + appointmentId);
-        System.out.println("Patient ID: " + patientId);
-        System.out.println("Doctor ID: " + doctorId);
+        System.out.println("Appointment Id: " + appointmentId);
+        System.out.println("Patient Id: " + patientId);
+        System.out.println("Doctor Id: " + doctorId);
         System.out.println("Appointment Date: " + appointmentDate);
         System.out.println("Appointment Time: " + appointmentTime);
         System.out.println("Status: " + status);
@@ -111,29 +118,44 @@ public class Appointment {
         System.out.println("Notes: " + notes);
     }
 
-    // reschedule Method
-    public void reschedule(LocalDate newDate, String newTime) {
+    @Override
+    public void displaySummary() {
 
-        this.appointmentDate = newDate;
-        this.appointmentTime = newTime;
-        this.status = "Rescheduled";
-
-        System.out.println("Appointment rescheduled successfully.");
     }
 
-    // Cancel Method
-    public void cancel() {
+    public void reschedule(){
+        System.out.println("Enter new appointment date (YYYY-MM-DD): ");
+        String newDate = scanner.nextLine();
+        LocalDate appointmentDate = LocalDate.parse(newDate);
+        setAppointmentDate(appointmentDate);
 
-        this.status = "Cancelled";
+        System.out.println("Enter new appointment time: ");
+        String newTime = scanner.nextLine();
+        setAppointmentTime(newTime);
 
-        System.out.println("Appointment cancelled.");
+        setStatus("Rescheduled");
+
+        System.out.println(Constants.APPOINTMENT_RESCHEDULED_SUCCESSFULLY);
+
+    }
+    public void cancel(){
+        setStatus("Cancelled");
+
+    }
+    public void complete(){
+        setStatus("Completed");
+
+    }
+    public void addNotes(String notes){
+        this.notes = notes;
     }
 
-    // Complete Appointment
-    public void complete() {
-        this.status = "Completed";
+    public void addNotes(String notes, String addedBy) {
+        this.notes = "Note : " + notes + "Added By: " +addedBy ;
 
-        System.out.println("Appointment marked as completed.");
+    }
+    public void addNotes(String notes, String addedBy, LocalDateTime timestamp){
+        this.notes = "Note : " + notes + "Added By: " +addedBy + "....."+timestamp;
     }
 
 }
