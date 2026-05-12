@@ -142,66 +142,41 @@ public class MedicalRecordService {
         switch (option) {
 
             case 1 -> {
-
-                MedicalRecord record =
-                        addNewRecords();
-
+                MedicalRecord record = addNewRecords();
                 addRecord(record);
             }
 
             case 2 -> {
 
-                System.out.print(
-                        "Enter Record ID to edit: "
-                );
+                System.out.print("Enter Record ID to edit: ");
 
-                String recordId =
-                        scanner.nextLine().trim();
-
-                MedicalRecord updatedRecord =
-                        addNewRecords();
+                String recordId = scanner.nextLine().trim();
+                MedicalRecord updatedRecord = addNewRecords();
 
                 editMedicalRecord(
                         recordId,
-                        updatedRecord
-                );
+                        updatedRecord);
             }
 
             case 3 -> {
-
-                System.out.print(
-                        "Enter Record ID to remove: "
-                );
-
-                removeRecord(
-                        scanner.nextLine().trim()
-                );
+                System.out.print("Enter Record ID to remove: ");
+                removeRecord(scanner.nextLine().trim());
             }
 
             case 4 -> {
 
-                System.out.print(
-                        "Enter Patient ID to view history: "
-                );
+                System.out.print("Enter Patient ID to view history: ");
 
-                displayPatientHistory(
-                        scanner.nextLine().trim()
-                );
+                displayPatientHistory(scanner.nextLine().trim());
             }
 
             case 5 -> {
+                System.out.print("Enter Doctor ID to view records: ");
 
-                System.out.print(
-                        "Enter Doctor ID to view records: "
-                );
-
-                getRecordsByDoctorId(
-                        scanner.nextLine().trim()
-                );
+                getRecordsByDoctorId(scanner.nextLine().trim());
             }
 
             case 6 -> {
-
                 displayAllRecords();
             }
 
