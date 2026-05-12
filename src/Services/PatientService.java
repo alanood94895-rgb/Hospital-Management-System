@@ -1,7 +1,10 @@
 package Services;
 
+import Behaviour.Manageable;
+import Behaviour.Searchable;
 import Entities.Patient;
 import Utils.Constants;
+import Utils.HelperUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,33 +12,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class PatientService {
+public class PatientService implements Manageable, Searchable {
 
     static Scanner scanner = new Scanner(System.in);
+    private static List<Patient> patients = new ArrayList<>();
 
-    private List<Patient> patients = new ArrayList<>();
-
-    // Add multiple patient
-
-    public void addPatients() {
-
-        patients.add(addPatient());
-
-        System.out.println("Press q to quit or enter key to continue:");
-
-        if (scanner.nextLine().equalsIgnoreCase("q")) {
-            return;
-        }
-
-        addPatients();
+    // GET ALL PATIENTS
+    public static List<Patient> getPatients() {
+        return patients;
     }
 
-    // Add patient with full input
+    // ADD PATIENT
+    public static void addPatients(Patient patient) {
+        patients.add(patient);
+        System.out.println(Constants.PATIENT_ADDED_SUCCESSFULLY);
+    }
 
-    public Patient addPatient() {
-
-        System.out.println("Enter patient id:");
-        String id = scanner.nextLine();
+    // CREATE PATIENT OBJECT
+    public static Patient addPatient() {
 
         System.out.println("Enter first name:");
         String firstName = scanner.nextLine();
@@ -49,10 +43,8 @@ public class PatientService {
         System.out.println("Enter phone number:");
         String phone = scanner.nextLine();
 
-        System.out.println("Enter date of birth (yyyy-MM-dd):");
-        String DOB = scanner.nextLine();
-
-        LocalDate dateOfBirth = LocalDate.parse(DOB);
+        System.out.println("Enter DOB (yyyy-MM-dd):");
+        LocalDate dob = LocalDate.parse(scanner.nextLine());
 
         System.out.println("Enter email:");
         String email = scanner.nextLine();
@@ -69,279 +61,122 @@ public class PatientService {
         System.out.println("Enter insurance ID:");
         String insuranceId = scanner.nextLine();
 
-        System.out.println("Do you have allergies? (yes/no)");
-        String hasAllergies = scanner.nextLine();
-
+        System.out.println("Any allergies? (yes/no)");
         List<String> allergies = new ArrayList<>();
 
-        if (hasAllergies.equalsIgnoreCase("yes")) {
-
-            System.out.println("Enter allergies separated by commas:");
-
-            String allergiesInput = scanner.nextLine();
-
-            allergies = Arrays.asList(allergiesInput.split(","));
+        if (scanner.nextLine().equalsIgnoreCase("yes")) {
+            System.out.println("Enter allergies comma separated:");
+            allergies = Arrays.asList(scanner.nextLine().split(","));
         }
 
-        Patient patient = new Patient(
-                id,
+        return new Patient(
+                HelperUtils.generateId("P"),
                 firstName,
                 lastName,
-                dateOfBirth,
+                dob,
                 gender,
                 phone,
                 email,
                 address,
-                id,
                 bloodGroup,
                 emergencyContact,
                 LocalDate.now(),
-                insuranceId
+                insuranceId,
+                allergies
         );
-
-        System.out.println(Constants.PATIENT_ADDED_SUCCESSFULLY);
-
-        return patient;
     }
 
-    public void addPatient(String firstName,
-                           String lastName,
-                           String phone) {
-
-        Patient patient = new Patient();
-
-        patient.setFirstName(firstName);
-        patient.setLastName(lastName);
-        patient.setPhoneNumber(phone);
-
-        patients.add(patient);
-
-        System.out.println("Patient added with minimal info.");
-    }
-
-    // Full info
-    public void addPatient(String firstName,
-                           String lastName,
-                           String phone,
-                           String bloodGroup,
-                           String email) {
-
-        Patient patient = new Patient();
-
-        patient.setFirstName(firstName);
-        patient.setLastName(lastName);
-        patient.setPhoneNumber(phone);
-        patient.setBloodGroup(bloodGroup);
-        patient.setEmail(email);
-
-        patients.add(patient);
-
-        System.out.println("Patient added with full info.");
-    }
-
-    // Full object
-    public void addPatient(Patient patient) {
-
-        patients.add(patient);
-
-        System.out.println("Patient object added.");
-    }
-
-
-    // Update Patient
-
-    public void updatePatient(String patientId,
-                              Patient updatedPatient) {
-
+    // UPDATE
+    public void updatePatient(String id, Patient updated) {
         for (Patient p : patients) {
-
-            if (p.getId().equals(patientId)) {
-
-                p.setPhoneNumber(updatedPatient.getPhoneNumber());
-
-                p.setEmail(updatedPatient.getEmail());
-
-                p.setAddress(updatedPatient.getAddress());
+            if (p.getId().equals(id)) {
+                p.setPhoneNumber(updated.getPhoneNumber());
+                p.setEmail(updated.getEmail());
+                p.setAddress(updated.getAddress());
 
                 System.out.println(Constants.PATIENT_UPDATED_SUCCESSFULLY);
-
                 return;
             }
         }
-
         System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    // Remove Patient
-
-    public void removePatient(String patientId) {
-
-        for (Patient p : patients) {
-
-            if (p.getId().equals(patientId)) {
-
-                patients.remove(p);
-
-                System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
-
-                return;
-            }
-        }
-
-        System.out.println(Constants.PATIENT_NOT_FOUND);
+    // REMOVE
+    public void removePatient(String id) {
+        patients.removeIf(p -> p.getId().equals(id));
+        System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
     }
 
-    // Get Patient By ID
-
-    public void getPatientById(String patientId) {
-
+    // SEARCH BY NAME
+    public void searchPatients(String name) {
         for (Patient p : patients) {
-
-            if (p.getId().equals(patientId)) {
-
-                p.displayInfo();
-
-                return;
-            }
-        }
-
-        System.out.println(Constants.PATIENT_NOT_FOUND);
-    }
-
-
-    //  searchPatients()
-    public void searchPatients(String keyword) {
-
-        for (Patient p : patients) {
-
-            if (p.getFirstName().contains(keyword) || p.getLastName().contains(keyword)
-                    || p.getPhoneNumber().contains(keyword)) {
-
+            if (p.getFirstName().equalsIgnoreCase(name)
+                    || p.getLastName().equalsIgnoreCase(name)) {
                 p.displayInfo();
             }
         }
     }
 
-
-    // Search by first and last name
-    public void searchPatients(String firstName, String lastName) {
-
-        for (Patient p : patients) {
-
-            if (p.getFirstName().equalsIgnoreCase(firstName) &&
-                    p.getLastName().equalsIgnoreCase(lastName)) {
-
-                p.displayInfo();
-            }
-        }
-    }
-
-
-    // Display all
+    // DISPLAY ALL
     public void displayPatients() {
-
         for (Patient p : patients) {
-
             p.displayInfo();
         }
     }
 
-    // Display filtered
-    public void displayPatients(String filter) {
+    // MENU HANDLER (FIXED)
+    public Boolean handlePatientsMenu(Integer option) {
 
-        System.out.println("Filtered By: " + filter);
-
-        for (Patient p : patients) {
-
-            if (p.getInsuranceId().equalsIgnoreCase(filter) ||
-                    p.getBloodGroup().equalsIgnoreCase(filter) ||
-                    p.getGender().equalsIgnoreCase(filter)) {
-
-                p.displayInfo();
-            }
-        }
-    }
-
-    // Display limited number
-    public void displayPatients(int limit) {
-
-        for (int i = 0;
-             i < limit && i < patients.size();
-             i++) {
-
-            patients.get(i).displayInfo();
-        }
-    }
-
-
-
-    // Handle PatientsMenu
-
-    public Boolean handlePatientsMenu(Integer patientOption) {
-
-        switch (patientOption) {
+        switch (option) {
 
             case 1 -> {
-
-                addPatients();
+                Patient p = addPatient();
+                addPatients(p);
             }
 
             case 2 -> {
+                System.out.print("Enter Patient ID to edit: ");
+                String id = scanner.nextLine();
 
-                System.out.print(
-                        "Enter Patient ID to edit: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                Patient updatedPatient =
-                        addPatient();
-
-                updatePatient(id, updatedPatient);
+                Patient updated = addPatient();
+                updatePatient(id, updated);
             }
 
             case 3 -> {
-
-                System.out.print(
-                        "Enter Patient ID to remove: "
-                );
-
-                String id =
-                        scanner.nextLine().trim();
-
-                removePatient(id);
+                System.out.print("Enter Patient ID to remove: ");
+                removePatient(scanner.nextLine());
             }
 
             case 4 -> {
-
-                System.out.print(
-                        "Enter name to search: "
-                );
-
-                String name =
-                        scanner.nextLine().trim();
-
-                searchPatients(name);
+                System.out.print("Enter name: ");
+                searchPatients(scanner.nextLine());
             }
 
-            case 5 -> {
-
-                displayPatients();
-            }
+            case 5 -> displayPatients();
 
             case 6 -> {
-
                 return false;
             }
 
-            default -> {
-
-                System.out.println("Invalid option.");
-            }
+            default -> System.out.println("Invalid option");
         }
 
         return true;
     }
 
+    // INTERFACE METHODS (EMPTY FOR NOW)
+    @Override public void add(Object entity) {
+
+    }
+    @Override public void remove(String id) {
+
+    }
+    @Override public Void getAll() {
+        return null; }
+    @Override public void search(String keyword) {
+
+    }
+    @Override public void searchById(String id) {
+
+    }
 }
