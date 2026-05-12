@@ -1,55 +1,45 @@
 package Entities;
+import Behaviour.Displayable;
 
 import java.time.LocalDate;
 
-public class MedicalRecord {
+public class MedicalRecord implements Displayable {
     private String recordId;
     private String patientId;
     private String doctorId;
     private LocalDate visitDate;
     private String diagnosis;
-    private String prescription;
-    private String testResults;
-    private String notes;
 
-    public MedicalRecord(String recordId,
-                         String patientId,
-                         String doctorId,
-                         LocalDate visitDate,
-                         String diagnosis,
-                         String testResults,
-                         String prescription,
-                         String notes) {
+    public String getNotes() {
+        return notes;
+    }
 
-
-        this.recordId = recordId;
-        this.patientId = patientId;
-        this.doctorId = doctorId;
-        this.visitDate = visitDate;
-        this.diagnosis = diagnosis;
-        this.testResults = testResults;
-        this.prescription = prescription;
+    public void setNotes(String notes) {
         this.notes = notes;
     }
 
-    public MedicalRecord() {
-
+    public String getTestResults() {
+        return testResults;
     }
 
-    public String getRecordId() {
-        return recordId;
+    public void setTestResults(String testResults) {
+        this.testResults = testResults;
     }
 
-    public void setRecordId(String recordId) {
-        this.recordId = recordId;
+    public String getPrescription() {
+        return prescription;
     }
 
-    public String getPatientId() {
-        return patientId;
+    public void setPrescription(String prescription) {
+        this.prescription = prescription;
     }
 
-    public void setPatientId(String patientId) {
-        this.patientId = patientId;
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public LocalDate getVisitDate() {
@@ -68,49 +58,59 @@ public class MedicalRecord {
         this.doctorId = doctorId;
     }
 
-    public String getDiagnosis() {
-        return diagnosis;
+    public String getPatientId() {
+        return patientId;
     }
 
-    public void setDiagnosis(String diagnosis) {
+    public void setPatientId(String patientId) {
+        this.patientId = patientId;
+    }
+
+    public String getRecordId() {
+        return recordId;
+    }
+
+    public void setRecordId(String recordId) {
+        this.recordId = recordId;
+    }
+
+    private String prescription;
+    private String testResults;
+    private String notes;
+
+
+    public MedicalRecord(String recordId,
+                         String patientId,
+                         String doctorId,
+                         LocalDate visitDate,
+                         String diagnosis,
+                         String prescription,
+                         String testResults,
+                         String notes) {
+
+        this.recordId = recordId;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
+        this.visitDate = visitDate;
         this.diagnosis = diagnosis;
-    }
-
-    public String getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(String prescription) {
         this.prescription = prescription;
-    }
-
-    public String getTestResults() {
-        return testResults;
-    }
-
-    public void setTestResults(String testResults) {
         this.testResults = testResults;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
         this.notes = notes;
     }
 
-    public void displayInfo(){
+    public void displayInfo() {
+        System.out.println("Record ID: " + recordId);
+        System.out.println("Patient ID: " + patientId);
+        System.out.println("Doctor ID: " + doctorId);
+        System.out.println("Visit Date: " + visitDate);
+        System.out.println("Diagnosis: " + diagnosis);
+        System.out.println("Prescription: " + prescription);
+        System.out.println("Test Results: " + testResults);
+        System.out.println("Notes: " + notes);
+    }
 
-        System.out.println("record Id : " + recordId);
-        System.out.println("patient Id : " + patientId);
-        System.out.println("doctor Id : " + doctorId);
-        System.out.println("visit Date  : " + visitDate);
-        System.out.println("diagnosis  : " + diagnosis);
-        System.out.println("prescription  : " + prescription);
-        System.out.println("test Results  : " + testResults);
-        System.out.println("notes  : " + notes);
-
+    @Override
+    public void displaySummary() {
 
     }
 }
