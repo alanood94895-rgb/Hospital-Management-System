@@ -13,10 +13,14 @@ public class DoctorService {
     static Scanner scanner = new Scanner(System.in);
     private List<Doctor> doctors = new ArrayList<>();
 
+    // ADD DOCTOR
     public void addDoctor(Doctor doctor) {
+
         doctors.add(doctor);
         System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
     }
+
+    // CREATE DOCTOR OBJECT
 
     public Doctor addDoctor() {
 
@@ -58,22 +62,18 @@ public class DoctorService {
         String departmentId = scanner.nextLine();
 
         System.out.println("Enter consultation fee:");
-        double consultationFee = Double.parseDouble(scanner.nextLine());
 
+        double consultationFee = Double.parseDouble(scanner.nextLine());
         List<String> availableSlots = new ArrayList<>();
 
         System.out.println("Do you want to add available slots? (yes/no)");
         String addSlots = scanner.nextLine();
-
         if (addSlots.equalsIgnoreCase("yes")) {
 
             System.out.println("Enter slots separated by commas:");
             String slotsInput = scanner.nextLine();
-
             availableSlots = Arrays.asList(slotsInput.split(","));
         }
-
-        List<String> assignedPatients = new ArrayList<>();
 
         Doctor doctor = new Doctor(
                 doctorId,
@@ -90,68 +90,232 @@ public class DoctorService {
                 experienceYears,
                 departmentId,
                 consultationFee,
-                new ArrayList<>(),
+                availableSlots,
                 new ArrayList<>()
         );
 
         return doctor;
     }
 
-    public void editDoctor(String doctorId, Doctor updatedDoctor){
-        for(Doctor d : doctors){
-            if(d.getId().equals(doctorId)){
-                d.setPhoneNumber(updatedDoctor.getPhoneNumber());
-                d.setEmail(updatedDoctor.getEmail());
-                d.setAddress(updatedDoctor.getAddress());
+    // EDIT DOCTOR
+    public void editDoctor(String doctorId,
+                           Doctor updatedDoctor) {
 
-                System.out.println(Constants.DOCTOR_UPDATED_SUCCESSFULLY);
-                return;
-            }
-        }
-        System.out.println(Constants.DOCTOR_NOT_FOUND);
-    }
+        for (Doctor d : doctors) {
 
-    public void removeDoctor(String doctorId){
-        for(Doctor d : doctors) {
             if (d.getId().equals(doctorId)) {
+
+                d.setPhoneNumber(
+                        updatedDoctor.getPhoneNumber()
+                );
+
+                d.setEmail(
+                        updatedDoctor.getEmail()
+                );
+
+                d.setAddress(
+                        updatedDoctor.getAddress()
+                );
+
+                System.out.println(
+                        Constants.DOCTOR_UPDATED_SUCCESSFULLY
+                );
+
+                return;
+            }
+        }
+
+        System.out.println(Constants.DOCTOR_NOT_FOUND);
+    }
+
+    // ==================================================
+    // REMOVE DOCTOR
+    // ==================================================
+
+    public void removeDoctor(String doctorId) {
+
+        for (Doctor d : doctors) {
+
+            if (d.getId().equals(doctorId)) {
+
                 doctors.remove(d);
-                System.out.println(Constants.DOCTOR_REMOVED_SUCCESSFULLY);
+
+                System.out.println(
+                        Constants.DOCTOR_REMOVED_SUCCESSFULLY
+                );
+
                 return;
             }
         }
+
         System.out.println(Constants.DOCTOR_NOT_FOUND);
     }
 
-    public void  getDoctorById(String doctorId){
-        for(Doctor d : doctors){
-            if(d.getId().equals(doctorId)){
-                d.displayInfo();
-                return;
+    // ==================================================
+    // GET DOCTOR BY ID
+    // ==================================================
+
+    public Doctor getDoctorById(String doctorId) {
+
+        for (Doctor d : doctors) {
+
+            if (d.getId().equals(doctorId)) {
+
+                return d;
             }
         }
-        System.out.println(Constants.DOCTOR_NOT_FOUND);
+
+        return null;
     }
 
-    public void displayAllDoctors(){
-        for(Doctor d : doctors){
+    // ==================================================
+    // DISPLAY ALL DOCTORS
+    // ==================================================
+
+    public void displayAllDoctors() {
+
+        for (Doctor d : doctors) {
+
             d.displayInfo();
         }
     }
 
-    public void getDoctorsBySpecialization(String specialization){
-        for(Doctor d : doctors){
-            if(d.getSpecialization().equalsIgnoreCase(specialization)){
+    // ==================================================
+    // GET DOCTORS BY SPECIALIZATION
+    // ==================================================
+
+    public void getDoctorsBySpecialization(
+            String specialization
+    ) {
+
+        for (Doctor d : doctors) {
+
+            if (
+                    d.getSpecialization()
+                            .equalsIgnoreCase(
+                                    specialization
+                            )
+            ) {
+
                 d.displayInfo();
             }
         }
     }
 
-    public void getAvailableDoctors(){
-        for(Doctor d : doctors){
-            if(!d.getAvailableSlots().isEmpty()){
+    // ==================================================
+    // GET AVAILABLE DOCTORS
+    // ==================================================
+
+    public void getAvailableDoctors() {
+
+        for (Doctor d : doctors) {
+
+            if (!d.getAvailableSlots().isEmpty()) {
+
                 d.displayInfo();
             }
         }
     }
 
+    // ==================================================
+    // HANDLE DOCTOR MENU
+    // ==================================================
+
+    public Boolean handleDoctorMenu(
+            Integer doctorOption
+    ) {
+
+        switch (doctorOption) {
+
+            case 1 -> {
+
+                Doctor doctor = addDoctor();
+
+                addDoctor(doctor);
+            }
+
+            case 2 -> {
+
+                System.out.print(
+                        "Enter Doctor ID to edit: "
+                );
+
+                String id =
+                        scanner.nextLine().trim();
+
+                Doctor updatedDoctor =
+                        addDoctor();
+
+                editDoctor(id, updatedDoctor);
+            }
+
+            case 3 -> {
+
+                System.out.print(
+                        "Enter Doctor ID to remove: "
+                );
+
+                String id =
+                        scanner.nextLine().trim();
+
+                removeDoctor(id);
+            }
+
+            case 4 -> {
+
+                System.out.print(
+                        "Enter Doctor ID to search: "
+                );
+
+                String id =
+                        scanner.nextLine().trim();
+
+                Doctor d =
+                        getDoctorById(id);
+
+                if (d != null) {
+
+                    d.displayInfo();
+                }
+
+                else {
+
+                    System.out.println(
+                            "Doctor not found."
+                    );
+                }
+            }
+
+            case 5 -> {
+
+                System.out.print(
+                        "Enter specialization to search: "
+                );
+
+                String spec =
+                        scanner.nextLine().trim();
+
+                getDoctorsBySpecialization(spec);
+            }
+
+            case 6 -> {
+
+                displayAllDoctors();
+            }
+
+            case 7 -> {
+
+                return false;
+            }
+
+            default -> {
+
+                System.out.println(
+                        "Invalid option. Please choose 1-7."
+                );
+            }
+        }
+
+        return true;
+    }
 }
