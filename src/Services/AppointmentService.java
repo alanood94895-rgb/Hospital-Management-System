@@ -9,29 +9,19 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AppointmentService {
+    static Scanner scanner = new Scanner(System.in);
+    List<Appointment> appointmentList = new ArrayList<>();
 
-    static Scanner scanner =
-            new Scanner(System.in);
 
-    List<Appointment> appointmentList =
-            new ArrayList<>();
-
-    // ==================================================
     // ADD APPOINTMENT
-    // ==================================================
-
     public void addAppointment(Appointment appointment) {
 
         appointmentList.add(appointment);
-
-        System.out.println(
-                Constants.APPOINTMENT_ADDED_SUCCESSFULLY
-        );
+        System.out.println(Constants.APPOINTMENT_ADDED_SUCCESSFULLY);
     }
 
-    // ==================================================
+
     // CREATE APPOINTMENT OBJECT
-    // ==================================================
 
     public Appointment addNewAppointment() {
 
@@ -44,16 +34,12 @@ public class AppointmentService {
         System.out.println("Enter Doctor Id:");
         String doctorId = scanner.nextLine();
 
-        LocalDate appointmentDate =
-                LocalDate.now();
+        LocalDate appointmentDate = LocalDate.now();
 
         System.out.println("Enter Appointment Time:");
         String appointmentTime = scanner.nextLine();
 
-        System.out.println(
-                "Enter status (Scheduled/Completed/Cancelled/Rescheduled):"
-        );
-
+        System.out.println("Enter status (Scheduled/Completed/Cancelled/Rescheduled):");
         String status = scanner.nextLine();
 
         System.out.println("Enter reason:");
@@ -62,8 +48,7 @@ public class AppointmentService {
         System.out.println("Enter notes:");
         String notes = scanner.nextLine();
 
-        Appointment appointment =
-                new Appointment(
+        Appointment appointment = new Appointment(
                         appointmentId,
                         patientId,
                         doctorId,
@@ -77,9 +62,8 @@ public class AppointmentService {
         return appointment;
     }
 
-    // ==================================================
+
     // EDIT APPOINTMENT
-    // ==================================================
 
     public void editAppointment(
             String appointmentId,
