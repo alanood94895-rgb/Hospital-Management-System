@@ -214,13 +214,8 @@ public class PatientService {
 
         for (Patient p : patients) {
 
-            if (
-                    p.getFirstName().contains(keyword)
-                            ||
-                            p.getLastName().contains(keyword)
-                            ||
-                            p.getPhoneNumber().contains(keyword)
-            ) {
+            if (p.getFirstName().contains(keyword) || p.getLastName().contains(keyword)
+                    || p.getPhoneNumber().contains(keyword)) {
 
                 p.displayInfo();
             }
