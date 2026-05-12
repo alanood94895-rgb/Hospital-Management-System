@@ -42,15 +42,14 @@ public class DepartmentService {
         int availableBeds = Integer.parseInt(scanner.nextLine());
 
 
-        Department department =
-                new Department(
+        Department department = new Department(
                         departmentId,
                         departmentName,
                         headDoctorId,
-                        new ArrayList<>(),
-                        new ArrayList<>(),
                         bedCapacity,
-                        availableBeds
+                        availableBeds,
+                        new ArrayList<>(),
+                new ArrayList<>()
                 );
 
         return department;
