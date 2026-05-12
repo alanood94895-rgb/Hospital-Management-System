@@ -1,11 +1,9 @@
 package Entities;
-
-import Entities.Doctor;
+import Behaviour.Displayable;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-public class GeneralPractitioner extends Doctor {
+public class GeneralPractitioner extends Doctor implements Displayable {
     Boolean walkinAvailable;
     Boolean homeVisitAvailable;
     Boolean vaccinationCertified;
@@ -28,8 +26,7 @@ public class GeneralPractitioner extends Doctor {
                                Boolean homeVisitAvailable,
                                Boolean vaccinationCertified) {
 
-
-        super( id,
+        super(id,
                 firstName,
                 lastName,
                 dateOfBirth,
@@ -37,16 +34,11 @@ public class GeneralPractitioner extends Doctor {
                 phoneNumber,
                 email,
                 address,
-                id,
                 specialization,
                 qualification,
                 experienceYears,
                 departmentId,
-                consultationFee,
-                new ArrayList<>(),
-                new ArrayList<>()
-        );
-
+                consultationFee);
 
         this.walkinAvailable = walkinAvailable;
         this.homeVisitAvailable = homeVisitAvailable;
