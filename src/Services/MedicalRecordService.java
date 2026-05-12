@@ -68,21 +68,11 @@ public class MedicalRecordService {
 
             if (m.getRecordId().equals(recordId)) {
 
-                m.setDiagnosis(
-                        updatedRecord.getDiagnosis()
-                );
+                m.setDiagnosis(updatedRecord.getDiagnosis());
+                m.setPrescription(updatedRecord.getPrescription());
+                m.setNotes(updatedRecord.getNotes());
 
-                m.setPrescription(
-                        updatedRecord.getPrescription()
-                );
-
-                m.setNotes(
-                        updatedRecord.getNotes()
-                );
-
-                System.out.println(
-                        Constants.RECORD_UPDATED_SUCCESSFULLY
-                );
+                System.out.println(Constants.RECORD_UPDATED_SUCCESSFULLY);
 
                 return;
             }
@@ -91,10 +81,8 @@ public class MedicalRecordService {
         System.out.println(Constants.RECORD_NOT_FOUND);
     }
 
-    // ==================================================
-    // REMOVE RECORD
-    // ==================================================
 
+    // REMOVE RECORD
     public void removeRecord(String recordId) {
 
         for (MedicalRecord m : medicalRecords) {
