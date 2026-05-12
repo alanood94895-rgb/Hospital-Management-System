@@ -80,38 +80,19 @@ public class AppointmentService {
 
 
     // RESCHEDULE APPOINTMENT
-    // ==================================================
-
-    public void rescheduleAppointment(
-            String appointmentId,
-            LocalDate newDate,
-            String newTime
-    ) {
+    public void rescheduleAppointment(String appointmentId, LocalDate newDate, String newTime) {
 
         for (Appointment a : appointmentList) {
-
-            if (
-                    a.getAppointmentId()
-                            .equals(appointmentId)
-            ) {
-
+            if (a.getAppointmentId().equals(appointmentId)) {
                 a.setAppointmentDate(newDate);
-
                 a.setAppointmentTime(newTime);
-
                 a.setStatus("Rescheduled");
-
-                System.out.println(
-                        Constants.APPOINTMENT_RESCHEDULED_SUCCESSFULLY
-                );
+                System.out.println(Constants.APPOINTMENT_RESCHEDULED_SUCCESSFULLY);
 
                 return;
             }
         }
-
-        System.out.println(
-                Constants.APPOINTMENT_NOT_FOUND
-        );
+        System.out.println(Constants.APPOINTMENT_NOT_FOUND);
     }
 
     // ==================================================
