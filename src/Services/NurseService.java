@@ -48,8 +48,7 @@ public class NurseService {
         System.out.println("Enter date of birth (yyyy-MM-dd):");
         String DOB = scanner.nextLine();
 
-        LocalDate dateOfBirth =
-                LocalDate.parse(DOB);
+        LocalDate dateOfBirth = LocalDate.parse(DOB);
 
         System.out.println("Enter email:");
         String email = scanner.nextLine();
@@ -60,11 +59,9 @@ public class NurseService {
         System.out.println("Enter department id:");
         String departmentId = scanner.nextLine();
 
-        // FIXED
         System.out.println("Enter shift:");
         String shift = scanner.nextLine();
 
-        // FIXED
         System.out.println("Enter qualification:");
         String qualification = scanner.nextLine();
 
@@ -87,9 +84,7 @@ public class NurseService {
         return nurse;
     }
 
-    // ==================================================
-    // EDIT NURSE
-    // ==================================================
+    // Edit Nurse
 
     public void editNurse(String nurseId,
                           Nurse updatedNurse) {
