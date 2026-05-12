@@ -86,28 +86,18 @@ public class NurseService {
 
     // Edit Nurse
 
-    public void editNurse(String nurseId,
-                          Nurse updatedNurse) {
+    public void editNurse(String nurseId, Nurse updatedNurse) {
 
         for (Nurse n : nurses) {
 
             if (n.getId().equals(nurseId)) {
+                n.setPhoneNumber(updatedNurse.getPhoneNumber());
 
-                n.setPhoneNumber(
-                        updatedNurse.getPhoneNumber()
-                );
+                n.setEmail(updatedNurse.getEmail());
 
-                n.setEmail(
-                        updatedNurse.getEmail()
-                );
+                n.setAddress(updatedNurse.getAddress());
 
-                n.setAddress(
-                        updatedNurse.getAddress()
-                );
-
-                System.out.println(
-                        Constants.NURSE_UPDATED_SUCCESSFULLY
-                );
+                System.out.println(Constants.NURSE_UPDATED_SUCCESSFULLY);
 
                 return;
             }
@@ -116,22 +106,14 @@ public class NurseService {
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    // ==================================================
-    // REMOVE NURSE
-    // ==================================================
+    // Remove Nurse
 
     public void removeNurse(String nurseId) {
 
         for (Nurse n : nurses) {
-
             if (n.getId().equals(nurseId)) {
-
                 nurses.remove(n);
-
-                System.out.println(
-                        Constants.NURSE_REMOVED_SUCCESSFULLY
-                );
-
+                System.out.println(Constants.NURSE_REMOVED_SUCCESSFULLY);
                 return;
             }
         }
@@ -139,10 +121,7 @@ public class NurseService {
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    // ==================================================
-    // GET NURSE BY ID
-    // ==================================================
-
+    // Get Nurse By ID
     public void getNurseById(String nurseId) {
 
         for (Nurse n : nurses) {
