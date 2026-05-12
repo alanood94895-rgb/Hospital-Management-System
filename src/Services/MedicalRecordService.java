@@ -1,5 +1,7 @@
 package Services;
 
+import Behaviour.Manageable;
+import Behaviour.Searchable;
 import Entities.MedicalRecord;
 import Utils.Constants;
 
@@ -8,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class MedicalRecordService {
+public class MedicalRecordService implements Manageable, Searchable {
+
     List<MedicalRecord> medicalRecords = new ArrayList<>();
     static Scanner scanner = new Scanner(System.in);
-
 
     // ADD RECORD
     public void addRecord(MedicalRecord record) {
@@ -20,8 +22,9 @@ public class MedicalRecordService {
     }
 
 
-    // CREATE NEW RECORD OBJECT
+    // CREATE NEW RECORD
     public MedicalRecord addNewRecords() {
+
         System.out.println("Enter Record Id:");
         String recordId = scanner.nextLine();
 
@@ -45,19 +48,15 @@ public class MedicalRecordService {
         System.out.println("Enter notes:");
         String notes = scanner.nextLine();
 
-        MedicalRecord medicalRecord =
-                new MedicalRecord(
-                        recordId,
-                        patientId,
-                        doctorId,
-                        visitDate,
-                        diagnosis,
-                        prescription,
-                        testResults,
-                        notes
-                );
-
-        return medicalRecord;
+        return new MedicalRecord(
+                recordId,
+                patientId,
+                doctorId,
+                visitDate,
+                diagnosis,
+                prescription,
+                testResults,
+                notes);
     }
 
     // EDIT RECORD
@@ -65,15 +64,12 @@ public class MedicalRecordService {
                                   MedicalRecord updatedRecord) {
 
         for (MedicalRecord m : medicalRecords) {
-
             if (m.getRecordId().equals(recordId)) {
-
                 m.setDiagnosis(updatedRecord.getDiagnosis());
                 m.setPrescription(updatedRecord.getPrescription());
                 m.setNotes(updatedRecord.getNotes());
 
                 System.out.println(Constants.RECORD_UPDATED_SUCCESSFULLY);
-
                 return;
             }
         }
@@ -81,13 +77,13 @@ public class MedicalRecordService {
         System.out.println(Constants.RECORD_NOT_FOUND);
     }
 
-
     // REMOVE RECORD
     public void removeRecord(String recordId) {
 
         for (MedicalRecord m : medicalRecords) {
             if (m.getRecordId().equals(recordId)) {
                 medicalRecords.remove(m);
+
                 System.out.println(Constants.RECORD_REMOVED_SUCCESSFULLY);
                 return;
             }
@@ -96,30 +92,30 @@ public class MedicalRecordService {
         System.out.println(Constants.RECORD_NOT_FOUND);
     }
 
-    // GET RECORDS BY PATIENT ID
-
+    // GET BY PATIENT ID
     public void getRecordsByPatientId(String patientId) {
 
         for (MedicalRecord m : medicalRecords) {
-
             if (m.getPatientId().equals(patientId)) {
                 m.displayInfo();
             }
         }
     }
 
-    // GET RECORDS BY DOCTOR ID
+    // GET BY DOCTOR ID
     public void getRecordsByDoctorId(String doctorId) {
 
         for (MedicalRecord m : medicalRecords) {
-
             if (m.getDoctorId().equals(doctorId)) {
                 m.displayInfo();
+                return;
             }
         }
+
+        System.out.println(Constants.RECORD_NOT_FOUND);
     }
 
-    // DISPLAY ALL RECORDS
+    // DISPLAY ALL
     public void displayAllRecords() {
 
         for (MedicalRecord m : medicalRecords) {
@@ -127,21 +123,29 @@ public class MedicalRecordService {
         }
     }
 
-    // DISPLAY PATIENT HISTORY
+    // INTERFACE METHODS (EMPTY FOR NOW)
+    @Override
+    public void add(Object entity) { }
 
-    public void displayPatientHistory(String patientId) {
+    @Override
+    public void remove(String id) { }
 
-        System.out.println("Patient Medical History:");
+    @Override
+    public Void getAll() { return null; }
 
-        getRecordsByPatientId(patientId);
-    }
+    @Override
+    public void search(String keyword) { }
 
-    // HANDLE MEDICAL RECORD MENU
+    @Override
+    public void searchById(String id) { }
+
+    // MENU HANDLER
     public Boolean handleMedicalRecordMenu(Integer option) {
 
         switch (option) {
 
             case 1 -> {
+
                 MedicalRecord record = addNewRecords();
                 addRecord(record);
             }
@@ -149,34 +153,31 @@ public class MedicalRecordService {
             case 2 -> {
 
                 System.out.print("Enter Record ID to edit: ");
-
                 String recordId = scanner.nextLine().trim();
                 MedicalRecord updatedRecord = addNewRecords();
-
-                editMedicalRecord(
-                        recordId,
-                        updatedRecord);
+                editMedicalRecord(recordId, updatedRecord);
             }
 
             case 3 -> {
+
                 System.out.print("Enter Record ID to remove: ");
                 removeRecord(scanner.nextLine().trim());
             }
 
             case 4 -> {
 
-                System.out.print("Enter Patient ID to view history: ");
-
-                displayPatientHistory(scanner.nextLine().trim());
+                System.out.print("Enter Patient ID: ");
+                getRecordsByPatientId(scanner.nextLine().trim());
             }
 
             case 5 -> {
-                System.out.print("Enter Doctor ID to view records: ");
 
+                System.out.print("Enter Doctor ID: ");
                 getRecordsByDoctorId(scanner.nextLine().trim());
             }
 
             case 6 -> {
+
                 displayAllRecords();
             }
 
