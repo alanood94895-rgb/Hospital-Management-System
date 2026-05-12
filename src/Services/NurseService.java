@@ -9,15 +9,28 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NurseService {
-    static Scanner scanner = new Scanner(System.in);
-    List <Nurse> nurses = new ArrayList<>();
 
-    public void addNurse(Nurse nurse){
+    static Scanner scanner = new Scanner(System.in);
+
+    List<Nurse> nurses = new ArrayList<>();
+
+
+    // Add Nurse
+
+    public void addNurse(Nurse nurse) {
+
         nurses.add(nurse);
-        System.out.println(Constants.NURSE_ADDED_SUCCESSFULLY);
+
+        System.out.println(
+                Constants.NURSE_ADDED_SUCCESSFULLY
+        );
     }
 
-    public Nurse addNurses(){
+    // ==================================================
+    // CREATE NURSE OBJECT
+    // ==================================================
+
+    public Nurse addNurses() {
 
         System.out.println("Enter Nurse id:");
         String nurseId = scanner.nextLine();
@@ -36,7 +49,9 @@ public class NurseService {
 
         System.out.println("Enter date of birth (yyyy-MM-dd):");
         String DOB = scanner.nextLine();
-        LocalDate dateOfBirth = LocalDate.parse(DOB);
+
+        LocalDate dateOfBirth =
+                LocalDate.parse(DOB);
 
         System.out.println("Enter email:");
         String email = scanner.nextLine();
@@ -47,12 +62,13 @@ public class NurseService {
         System.out.println("Enter department id:");
         String departmentId = scanner.nextLine();
 
-        System.out.println("Enter qualification:");
+        // FIXED
+        System.out.println("Enter shift:");
         String shift = scanner.nextLine();
 
-        System.out.println("Enter shift:");
+        // FIXED
+        System.out.println("Enter qualification:");
         String qualification = scanner.nextLine();
-
 
         Nurse nurse = new Nurse(
                 nurseId,
@@ -71,63 +87,207 @@ public class NurseService {
         );
 
         return nurse;
-
-
     }
-    public void editNurse(String nurseId, Nurse updatedNurse){
-        for(Nurse n : nurses){
-            if(n.getId().equals(nurseId)){
 
-                n.setPhoneNumber(updatedNurse.getPhoneNumber());
-                n.setEmail(updatedNurse.getEmail());
-                n.setAddress(updatedNurse.getAddress());
+    // ==================================================
+    // EDIT NURSE
+    // ==================================================
 
-                System.out.println(Constants.NURSE_UPDATED_SUCCESSFULLY);
+    public void editNurse(String nurseId,
+                          Nurse updatedNurse) {
+
+        for (Nurse n : nurses) {
+
+            if (n.getId().equals(nurseId)) {
+
+                n.setPhoneNumber(
+                        updatedNurse.getPhoneNumber()
+                );
+
+                n.setEmail(
+                        updatedNurse.getEmail()
+                );
+
+                n.setAddress(
+                        updatedNurse.getAddress()
+                );
+
+                System.out.println(
+                        Constants.NURSE_UPDATED_SUCCESSFULLY
+                );
+
                 return;
             }
         }
+
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    public void removeNurse(String nurseId){
-        for(Nurse n : nurses) {
+    // ==================================================
+    // REMOVE NURSE
+    // ==================================================
+
+    public void removeNurse(String nurseId) {
+
+        for (Nurse n : nurses) {
+
             if (n.getId().equals(nurseId)) {
+
                 nurses.remove(n);
-                System.out.println(Constants.NURSE_REMOVED_SUCCESSFULLY);
+
+                System.out.println(
+                        Constants.NURSE_REMOVED_SUCCESSFULLY
+                );
+
                 return;
             }
         }
+
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    public void getNurseById(String nurseId){
-        for(Nurse n : nurses) {
+    // ==================================================
+    // GET NURSE BY ID
+    // ==================================================
+
+    public void getNurseById(String nurseId) {
+
+        for (Nurse n : nurses) {
+
             if (n.getId().equals(nurseId)) {
+
                 n.displayInfo();
+
                 return;
             }
         }
+
         System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    public void getNurseByDepartment(String departmentId){
-        for(Nurse n : nurses) {
-            if (n.getDepartmentId().equals(departmentId)) {
+    // ==================================================
+    // GET NURSES BY DEPARTMENT
+    // ==================================================
+
+    public void getNursesByDepartment(String departmentId) {
+
+        for (Nurse n : nurses) {
+
+            if (n.getDepartmentId()
+                    .equals(departmentId)) {
+
                 n.displayInfo();
-                return;
             }
         }
-        System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
-    public void  getNursesByShift(String shift){
-        for(Nurse n : nurses) {
-            if (n.getShift().equals(shift)) {
+    // ==================================================
+    // GET NURSES BY SHIFT
+    // ==================================================
+
+    public void getNursesByShift(String shift) {
+
+        for (Nurse n : nurses) {
+
+            if (n.getShift()
+                    .equalsIgnoreCase(shift)) {
+
                 n.displayInfo();
-                return;
             }
         }
-        System.out.println(Constants.NURSE_NOT_FOUND);
     }
 
+    // ==================================================
+    // DISPLAY ALL NURSES
+    // ==================================================
+
+    public void displayAllNurses() {
+
+        for (Nurse n : nurses) {
+
+            n.displayInfo();
+        }
+    }
+
+    // ==================================================
+    // HANDLE NURSE MENU
+    // ==================================================
+
+    public Boolean handleNurseMenu(Integer option) {
+
+        switch (option) {
+
+            case 1 -> {
+
+                Nurse nurse = addNurses();
+
+                addNurse(nurse);
+            }
+
+            case 2 -> {
+
+                System.out.print(
+                        "Enter Nurse ID to edit: "
+                );
+
+                String nurseId =
+                        scanner.nextLine().trim();
+
+                Nurse updatedNurse =
+                        addNurses();
+
+                editNurse(nurseId, updatedNurse);
+            }
+
+            case 3 -> {
+
+                System.out.print(
+                        "Enter Nurse ID to remove: "
+                );
+
+                removeNurse(
+                        scanner.nextLine().trim()
+                );
+            }
+
+            case 4 -> {
+
+                System.out.print(
+                        "Enter Department ID to filter: "
+                );
+
+                getNursesByDepartment(
+                        scanner.nextLine().trim()
+                );
+            }
+
+            case 5 -> {
+
+                System.out.print(
+                        "Enter Shift to filter: "
+                );
+
+                getNursesByShift(
+                        scanner.nextLine().trim()
+                );
+            }
+
+            case 6 -> {
+
+                displayAllNurses();
+            }
+
+            case 7 -> {
+
+                return false;
+            }
+
+            default -> {
+
+                System.out.println("Invalid option.");
+            }
+        }
+
+        return true;
+    }
 }

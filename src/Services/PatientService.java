@@ -222,6 +222,7 @@ public class PatientService {
         }
     }
 
+
     // Search by first and last name
     public void searchPatients(String firstName, String lastName) {
 
@@ -342,4 +343,5 @@ public class PatientService {
 
         return true;
     }
+
 }
