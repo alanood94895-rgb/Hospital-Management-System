@@ -110,8 +110,11 @@ public class Doctor extends Person implements Displayable {
                   String gender,
                   String phoneNumber,
                   String email,
-                  String address , String specialization,
-                  String qualification , Integer experienceYears , String departmentId,
+                  String address ,
+                  String specialization,
+                  String qualification ,
+                  Integer experienceYears ,
+                  String departmentId,
                   double consultationFee) {
 
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
