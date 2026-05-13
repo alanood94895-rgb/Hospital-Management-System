@@ -10,8 +10,22 @@ public class OutPatient extends Patient implements Displayable {
     LocalDate lastVisitDate;
     String preferredDoctorId;
 
-    public OutPatient(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender, String phoneNumber, String email, String address, String bloodGroup, String emergencyContact, LocalDate registrationDate, String insuranceId, List<String> allergies,
-                      Integer visitCount, LocalDate lastVisitDate, String preferredDoctorId    ) {
+    public OutPatient(String id,
+                      String firstName,
+                      String lastName,
+                      LocalDate dateOfBirth,
+                      String gender,
+                      String phoneNumber,
+                      String email,
+                      String address,
+                      String bloodGroup,
+                      String emergencyContact,
+                      LocalDate registrationDate,
+                      String insuranceId,
+                      List<String> allergies,
+                      Integer visitCount,
+                      LocalDate lastVisitDate,
+                      String preferredDoctorId    ) {
 
 
 
