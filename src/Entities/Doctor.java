@@ -106,8 +106,11 @@ public class Doctor extends Person implements Displayable {
     public Doctor(String id,
                   String firstName,
                   String lastName,
-                  LocalDate dateOfBirth, String gender, String phoneNumber,
-                  String email, String address , String specialization,
+                  LocalDate dateOfBirth,
+                  String gender,
+                  String phoneNumber,
+                  String email,
+                  String address , String specialization,
                   String qualification , Integer experienceYears , String departmentId,
                   double consultationFee) {
 
