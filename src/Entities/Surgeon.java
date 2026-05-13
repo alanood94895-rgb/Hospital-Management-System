@@ -22,10 +22,30 @@ public class Surgeon extends Doctor implements Displayable {
                    String gender,
                    String phoneNumber,
                    String email,
-                   String address, String specialization, String qualification,
-                   Integer experienceYears, String departmentId, double consultationFee , Integer surgeriesPerformed ,Boolean operationTheatreAccess) {
+                   String address,
+                   String specialization,
+                   String qualification,
+                   Integer experienceYears,
+                   String departmentId,
+                   double consultationFee ,
+                   Integer surgeriesPerformed ,
+                   Boolean operationTheatreAccess) {
 
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, specialization, qualification, experienceYears, departmentId, consultationFee);
+
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                specialization,
+                qualification,
+                experienceYears,
+                departmentId,
+                consultationFee);
+
         this.surgeriesPerformed = surgeriesPerformed;
         this.operationTheatreAccess = operationTheatreAccess;
         this.surgeryTypes = new ArrayList<>();
@@ -39,7 +59,7 @@ public class Surgeon extends Doctor implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println("===== Doctor Summary =====");
+        System.out.println(" Doctor Summary");
         System.out.println("Doctor ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Surgeries Performed: " + surgeriesPerformed);
@@ -63,8 +83,5 @@ public class Surgeon extends Doctor implements Displayable {
         }else{
             System.out.println(Constants.SURGEON_CANNOT_OPERATE);
         }
-
-
-
     }
 }
