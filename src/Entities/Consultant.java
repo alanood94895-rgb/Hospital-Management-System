@@ -55,7 +55,7 @@ public class Consultant extends Doctor implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println("===== Doctor Summary =====");
+        System.out.println("Doctor Summary");
         System.out.println("Doctor ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Online Consultation Available: " + onlineConsultationAvailable);
