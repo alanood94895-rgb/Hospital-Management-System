@@ -43,8 +43,24 @@ public class MainApp {
                                 patientService.handlePatientsMenu(patientOption);
                     }
                 }
-
                 case 2 -> {
+                    Boolean deptMenuContinue = true;
+
+                    while (deptMenuContinue) {
+
+                        System.out.println("Department Menu");
+                        System.out.print(MenuMessages.DEPARTMENT_MENU_MESSAGE);
+
+                        Integer deptOption =
+                                Integer.parseInt(input.nextLine());
+
+                        deptMenuContinue =
+                                departmentService.handleDepartmentMenu(deptOption);
+                    }
+                }
+
+
+                case 3 -> {
                     Boolean doctorMenuContinue = true;
 
                     while (doctorMenuContinue) {
@@ -60,7 +76,7 @@ public class MainApp {
                     }
                 }
 
-                case 3 -> {
+                case 4 -> {
                     Boolean nurseMenuContinue = true;
 
                     while (nurseMenuContinue) {
@@ -76,7 +92,7 @@ public class MainApp {
                     }
                 }
 
-                case 4 -> {
+                case 5 -> {
                     Boolean recordMenuContinue = true;
 
                     while (recordMenuContinue) {
@@ -92,7 +108,7 @@ public class MainApp {
                     }
                 }
 
-                case 5 -> {
+                case 6 -> {
                     Boolean appointmentMenuContinue = true;
 
                     while (appointmentMenuContinue) {
@@ -105,22 +121,6 @@ public class MainApp {
 
                         appointmentMenuContinue =
                                 appointmentService.handleAppointmentMenu(appointmentOption);
-                    }
-                }
-
-                case 6 -> {
-                    Boolean deptMenuContinue = true;
-
-                    while (deptMenuContinue) {
-
-                        System.out.println("Department Menu");
-                        System.out.print(MenuMessages.DEPARTMENT_MENU_MESSAGE);
-
-                        Integer deptOption =
-                                Integer.parseInt(input.nextLine());
-
-                        deptMenuContinue =
-                                departmentService.handleDepartmentMenu(deptOption);
                     }
                 }
 
