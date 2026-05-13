@@ -42,7 +42,9 @@ public class InPatient extends Patient implements Displayable, Billable {
                 dateOfBirth,
                 gender,
                 phoneNumber,
-                email, address, bloodGroup, emergencyContact, registrationDate, insuranceId, allergies);
+                email,
+                address,
+                bloodGroup, emergencyContact, registrationDate, insuranceId, allergies);
 
         this.admissionDate = admissionDate;
         this.dischargeDate = dischargeDate;
