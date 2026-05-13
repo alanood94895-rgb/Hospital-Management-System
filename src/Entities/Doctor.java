@@ -120,7 +120,9 @@ public class Doctor extends Person implements Displayable {
         super(id,
                 firstName,
                 lastName,
-                dateOfBirth, gender, phoneNumber, email, address);
+                dateOfBirth,
+                gender,
+                phoneNumber, email, address);
 
         this.specialization = specialization;
         this.qualification = qualification;
