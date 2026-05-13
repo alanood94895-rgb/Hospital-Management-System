@@ -35,7 +35,9 @@ public class Consultant extends Doctor implements Displayable {
                 lastName,
                 dateOfBirth,
                 gender,
-                phoneNumber, email, address, specialization, qualification, experienceYears, departmentId, consultationFee);
+                phoneNumber,
+                email,
+                address, specialization, qualification, experienceYears, departmentId, consultationFee);
         this.consultationTypes = new ArrayList<>();
     }
 
