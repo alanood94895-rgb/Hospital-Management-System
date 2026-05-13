@@ -8,6 +8,7 @@ import Entities.EmergencyPatient;
 import Entities.InPatient;
 import Entities.OutPatient;
 import Entities.Patient;
+
 import Utils.Constants;
 import Utils.HelperUtils;
 import Utils.InputHandler;
@@ -21,6 +22,14 @@ import java.util.Scanner;
 
 public class PatientService implements Manageable, Searchable, Editable {
     static Scanner scanner = new Scanner(System.in);
+
+    static public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
+    }
 
     private static List<Patient> patients = new ArrayList<>();
 
@@ -213,7 +222,7 @@ public class PatientService implements Manageable, Searchable, Editable {
                     || patient.getPhoneNumber().equalsIgnoreCase(keyword)
                     || patient.getBloodGroup().equalsIgnoreCase(keyword)
                     || patient.getEmail().equalsIgnoreCase(keyword)
-                    || patient.getId().equalsIgnoreCase(keyword)) {
+                    || patient.getId().equals(keyword)) {
 
                 patient.displayInfo();
                 return;
@@ -265,6 +274,12 @@ public class PatientService implements Manageable, Searchable, Editable {
 
     @Override
     public Void getAll() {
+        if (!HelperUtils.isNull(patients)) {
+            patients.forEach(p -> p.displayInfo());
+
+        }else {
+            System.out.println("No patients");
+        }
         return null;
     }
 
@@ -280,7 +295,7 @@ public class PatientService implements Manageable, Searchable, Editable {
                     || patient.getPhoneNumber().equalsIgnoreCase(keyword)
                     || patient.getBloodGroup().equalsIgnoreCase(keyword)
                     || patient.getEmail().equalsIgnoreCase(keyword)
-                    || patient.getId().equalsIgnoreCase(keyword)) {
+                    || patient.getId().equals(keyword)) {
 
                 patient.displayInfo();
                 return;
@@ -297,7 +312,7 @@ public class PatientService implements Manageable, Searchable, Editable {
             return;}
         for (Patient patient : patients) {
 
-            if (patient.getId().equalsIgnoreCase(id)) {
+            if (patient.getId().equals(id)) {
                 patient.displayInfo();
                 return;
             }
@@ -483,7 +498,7 @@ public class PatientService implements Manageable, Searchable, Editable {
                     registerEmergencyPatient();
                 }
                 case 5->{
-                    displayPatients();
+                    getAll();
                 }
                 case 6->{
                     String key = InputHandler.getStringInput("Search keyword: ");

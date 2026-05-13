@@ -23,11 +23,13 @@ public class DoctorService implements Manageable, Searchable {
 
     public void addDoctor(Doctor doctor) {
         if (HelperUtils.isNull(doctor)) { System.out.println("  [!] Cannot add null doctor."); return; }
-        if (HelperUtils.isNotNull(getDoctorById(doctor.getId()))){
-            System.out.println("Doctor with ID " + doctor.getId() + " already exists."); return;
+        if (!HelperUtils.isNotNull(getDoctorById(String.valueOf(doctor.getId())))) {
+            doctors.add(doctor);
+            System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
+        } else {
+            System.out.println("Doctor with ID " + doctor.getId() + " already exists.");
+            return;
         }
-        doctors.add(doctor);
-        System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
 
     }
 
@@ -247,7 +249,7 @@ public class DoctorService implements Manageable, Searchable {
 
     public void  assignPatient(Doctor doctor, Patient patient){
         if (HelperUtils.isNull(doctor) || HelperUtils.isNull(patient)) return;
-        doctor.assignPatient(patient.getId());
+        doctor.assignPatient(String.valueOf(patient.getId()));
         System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
 
@@ -255,7 +257,9 @@ public class DoctorService implements Manageable, Searchable {
         Doctor d = getDoctorById(doctorId);
         if (HelperUtils.isNull(d)) { System.out.println(Constants.DOCTOR_NOT_FOUND); return; }
         if (HelperUtils.isNull(patientIds)) return;
-        patientIds.forEach(d::assignPatient);
+        patientIds.forEach(patient -> {
+            d.assignPatient(patient);
+        });
         System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
 
@@ -289,15 +293,16 @@ public class DoctorService implements Manageable, Searchable {
             return;}
         for (Doctor doctor : doctors) {
 
-            if (doctor.getFirstName().equalsIgnoreCase(keyword)
-                    || doctor.getLastName().equalsIgnoreCase(keyword)
-                    || doctor.getPhoneNumber().equalsIgnoreCase(keyword)
-                    || doctor.getEmail().equalsIgnoreCase(keyword)
-                    || doctor.getId().equalsIgnoreCase(keyword)) {
-
-                doctor.displayInfo();
-                return;
+            if (!doctor.getFirstName().equalsIgnoreCase(keyword)
+                    && !doctor.getLastName().equalsIgnoreCase(keyword)
+                    && !doctor.getPhoneNumber().equalsIgnoreCase(keyword)
+                    && !doctor.getEmail().equalsIgnoreCase(keyword)
+                    && !doctor.getId().equals(keyword)) {
+                continue;
             }
+
+            doctor.displayInfo();
+            return;
         }
         System.out.println(Constants.DOCTOR_NOT_FOUND);
 

@@ -39,8 +39,7 @@ public class MainApp {
                         Integer patientOption =
                                 Integer.parseInt(input.nextLine());
 
-                        patientMenuContinue =
-                                patientService.handlePatientsMenu(patientOption);
+                        patientService.handlePatientMenu();
                     }
                 }
                 case 2 -> {

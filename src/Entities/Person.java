@@ -96,7 +96,7 @@ public class Person implements Displayable {
         this.firstName = firstName;
     }
 
-    public String getId() {
+    public Patient getId() {
         return id;
     }
 

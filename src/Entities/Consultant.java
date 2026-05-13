@@ -47,6 +47,9 @@ public class Consultant extends Doctor implements Displayable {
         this.consultationTypes = new ArrayList<>();
     }
 
+    public Consultant(String id, String firstName, String lastName, LocalDate dob, String gender, String phone, String email, String address, String specialization, String qualification, int experience, String deptId, double fee, ArrayList<Object> objects, boolean online, int dur) {
+    }
+
     @Override
     public void displayInfo() {
         super.displayInfo();
