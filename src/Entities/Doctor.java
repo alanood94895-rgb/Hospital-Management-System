@@ -117,7 +117,10 @@ public class Doctor extends Person implements Displayable {
                   String departmentId,
                   double consultationFee) {
 
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth, gender, phoneNumber, email, address);
 
         this.specialization = specialization;
         this.qualification = qualification;
