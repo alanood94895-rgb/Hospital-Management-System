@@ -56,7 +56,7 @@ public class OutPatient extends Patient implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println("===== Out Patient Summary =====");
+        System.out.println(" Out Patient Summary ");
         System.out.println("Patient ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Visit Count: " + visitCount);
