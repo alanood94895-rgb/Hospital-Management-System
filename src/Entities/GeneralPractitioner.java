@@ -10,8 +10,14 @@ public class GeneralPractitioner extends Doctor implements Displayable {
     Boolean vaccinationCertified;
 
 
-    public GeneralPractitioner(String id, String firstName, String lastName, LocalDate dateOfBirth,
-                               String gender, String phoneNumber, String email, String address,
+    public GeneralPractitioner(String id,
+                               String firstName,
+                               String lastName,
+                               LocalDate dateOfBirth,
+                               String gender,
+                               String phoneNumber,
+                               String email,
+                               String address,
                                String specialization, String qualification, Integer experienceYears,
                                String departmentId, double consultationFee,Boolean walkinAvailable, Boolean homeVisitAvailable,
                                Boolean vaccinationCertified) {
