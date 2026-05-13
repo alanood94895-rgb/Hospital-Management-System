@@ -78,4 +78,3 @@ public class GeneralPractitioner extends Doctor implements Displayable {
         }
     }
 }
-//dfdd
