@@ -17,7 +17,9 @@ public class Surgeon extends Doctor implements Displayable {
 
     public Surgeon(String id,
                    String firstName,
-                   String lastName, LocalDate dateOfBirth, String gender,
+                   String lastName,
+                   LocalDate dateOfBirth,
+                   String gender,
                    String phoneNumber, String email, String address, String specialization, String qualification,
                    Integer experienceYears, String departmentId, double consultationFee , Integer surgeriesPerformed ,Boolean operationTheatreAccess) {
 
