@@ -21,7 +21,6 @@ public class InputHandler {
         return input;
     }
 
-    /** Reads an integer from the console. */
     public static int getIntInput(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -77,5 +76,4 @@ public class InputHandler {
             System.out.println("Please enter 'y' or 'n'");
         }
     }
-
 }
