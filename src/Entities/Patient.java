@@ -1,8 +1,10 @@
 package Entities;
 
 import Behaviour.Displayable;
+import Entities.MedicalRecord;
 import Entities.Person;
 import Utils.Constants;
+import Utils.HelperUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -60,12 +62,12 @@ public class Patient extends Person implements Displayable {
 
 
 
-    public List<String> getMedicalRecords() {
+    public List<MedicalRecord> getMedicalRecords() {
 
         return medicalRecords;
     }
 
-    public void setMedicalRecords(List<String> medicalRecords) {
+    public void setMedicalRecords(List<MedicalRecord> medicalRecords) {
         this.medicalRecords = medicalRecords;
     }
 
@@ -82,7 +84,7 @@ public class Patient extends Person implements Displayable {
     private String emergencyContact;
     private LocalDate registrationDate;
     private String insuranceId;
-    private List<String> medicalRecords;
+    private List<MedicalRecord> medicalRecords;
     private List<String> appointments;
 
     public void setAppointments(List<String> appointments) {
@@ -109,6 +111,7 @@ public class Patient extends Person implements Displayable {
                    String insuranceId,
                    List<String> allergies) {
 
+
         super(id,
                 firstName,
                 lastName,
@@ -128,11 +131,13 @@ public class Patient extends Person implements Displayable {
     }
 
 
+
+
     //Display patient information
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("Blood Group :"+bloodGroup );
+        System.out.println("Blood Group  :"+bloodGroup );
         System.out.println("Allergies");
         for(String x : allergies){
             System.out.print(x + ",");
@@ -140,11 +145,11 @@ public class Patient extends Person implements Displayable {
 
         System.out.println("Emergency Contact :"+emergencyContact);
         System.out.println("Registration Date :"+registrationDate);
-        System.out.println("Insurance Id:"+insuranceId);
+        System.out.println("Insurance Id  :"+insuranceId);
 
         System.out.println("Medical Records");
         System.out.println();
-        for(String x : medicalRecords){
+        for(MedicalRecord x : medicalRecords){
             System.out.print(x + ",");
 
         }System.out.println("Appointments");
@@ -160,9 +165,8 @@ public class Patient extends Person implements Displayable {
 
     }
 
-    public void addMedicalRecord(){
-        System.out.println(Constants.ADD_MEDICAL_RECORD);
-        medicalRecords.add(scanner.nextLine());
+    public void addMedicalRecord(MedicalRecord record) {
+        if (HelperUtils.isNotNull(record)) medicalRecords.add(record);
     }
 
     public void addAppointment(){
