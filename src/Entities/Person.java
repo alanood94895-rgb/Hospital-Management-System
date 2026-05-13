@@ -23,7 +23,8 @@ public class Person implements Displayable {
                   String gender,
                   String phoneNumber,
                   String email,
-                  String address){
+                  String address)
+    {
 
         this.id = id;
         this.firstName = firstName;
@@ -38,8 +39,8 @@ public class Person implements Displayable {
     public Person() {
 
     }
-
     // getters ans setters
+
     public String getAddress() {
         return address;
     }
@@ -96,7 +97,7 @@ public class Person implements Displayable {
         this.firstName = firstName;
     }
 
-    public Patient getId() {
+    public String getId() {
         return id;
     }
 
@@ -108,11 +109,11 @@ public class Person implements Displayable {
         System.out.println("ID:"+ id);
         System.out.println("First Name:"+ firstName);
         System.out.println("Last Name:"+lastName );
-        System.out.println("Date of Birth  :"+dateOfBirth );
+        System.out.println("Date of Birth:"+dateOfBirth );
         System.out.println("Gender:"+ gender);
-        System.out.println("Phone Number  :"+ phoneNumber);
+        System.out.println("Phone Number:"+ phoneNumber);
         System.out.println("Email:"+email );
-        System.out.println("Address :"+ address);
+        System.out.println("Address:"+ address);
     }
 
     @Override
