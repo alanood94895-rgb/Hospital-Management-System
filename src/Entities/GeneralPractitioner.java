@@ -23,11 +23,26 @@ public class GeneralPractitioner extends Doctor implements Displayable {
                                Integer experienceYears,
                                String departmentId,
                                double consultationFee,
-                               Boolean walkinAvailable, Boolean homeVisitAvailable,
+                               Boolean walkinAvailable,
+                               Boolean homeVisitAvailable,
                                Boolean vaccinationCertified) {
 
 
-        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, specialization, qualification, experienceYears, departmentId, consultationFee);
+        super(id,
+                firstName,
+                lastName,
+                dateOfBirth,
+                gender,
+                phoneNumber,
+                email,
+                address,
+                specialization,
+                qualification,
+                experienceYears,
+                departmentId,
+                consultationFee);
+
+
         this.walkinAvailable = walkinAvailable;
         this.homeVisitAvailable = homeVisitAvailable;
         this.vaccinationCertified = vaccinationCertified;
@@ -41,7 +56,7 @@ public class GeneralPractitioner extends Doctor implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println("===== Doctor Summary =====");
+        System.out.println(" Doctor Summary ");
         System.out.println("Doctor ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Walk in Available: " + walkinAvailable);
@@ -62,6 +77,5 @@ public class GeneralPractitioner extends Doctor implements Displayable {
             System.out.println("Vaccination Certified");
         }
     }
-
 
 }
