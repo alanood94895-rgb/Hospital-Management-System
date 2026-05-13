@@ -77,5 +77,5 @@ public class GeneralPractitioner extends Doctor implements Displayable {
             System.out.println("Vaccination Certified");
         }
     }
-
 }
+//dfdd
