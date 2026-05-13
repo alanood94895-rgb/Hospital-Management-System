@@ -40,7 +40,10 @@ public class Consultant extends Doctor implements Displayable {
                 address,
                 specialization,
                 qualification,
-                experienceYears, departmentId, consultationFee);
+                experienceYears,
+                departmentId,
+                consultationFee);
+
         this.consultationTypes = new ArrayList<>();
     }
 
