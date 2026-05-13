@@ -2,105 +2,124 @@ package Services;
 
 import Behaviour.Manageable;
 import Behaviour.Searchable;
+import Entities.Consultant;
 import Entities.Doctor;
+import Entities.GeneralPractitioner;
+import Entities.Surgeon;
 import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
+import Utils.InputHandler;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import static Services.PatientService.getPatients;
 
 public class DoctorService implements Manageable, Searchable {
     static Scanner scanner = new Scanner(System.in);
     private List<Doctor> doctors = new ArrayList<>();
 
+
     public void addDoctor(Doctor doctor) {
+        if (HelperUtils.isNull(doctor)) { System.out.println("  [!] Cannot add null doctor."); return; }
+        if (HelperUtils.isNotNull(getDoctorById(doctor.getId()))){
+            System.out.println("Doctor with ID " + doctor.getId() + " already exists."); return;
+        }
         doctors.add(doctor);
         System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
+
     }
 
-    public Doctor addDoctor() {
+    private Doctor addDoctor() {
 
-        System.out.println("Enter first name:");
-        String firstName = scanner.nextLine();
+        String id    = HelperUtils.generateId("DOC-",4);
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+        LocalDate dob = InputHandler.getDateInput("Date of Birth");
+        String gender = InputHandler.getStringInput("Gender: ");
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address  = InputHandler.getStringInput("Address: ");
+        String specialization   = InputHandler.getStringInput("Specialization: ");
+        String qualification   = InputHandler.getStringInput("Qualification: ");
+        int    experience    = InputHandler.getIntInput("Experience (years): ", 0, 60);
+        String deptId   = InputHandler.getStringInput("Department ID: ");
+        double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
+        Doctor d = new Doctor(id, firstName, lastName, dob, gender, phone, email, address,
+                specialization, qualification, experience, deptId, fee);
+        add(d);
+        return d;
+    }
 
-        System.out.println("Enter last name:");
-        String lastName = scanner.nextLine();
+    private void addSurgeon() {
+        String id    = HelperUtils.generateId("Surg-",4);
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+        LocalDate dob = InputHandler.getDateInput("Date of Birth");
+        String gender = InputHandler.getStringInput("Gender: ");
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address  = InputHandler.getStringInput("Address: ");
+        String specialization   = InputHandler.getStringInput("Specialization: ");
+        String qualification   = InputHandler.getStringInput("Qualification: ");
+        int    experience    = InputHandler.getIntInput("Experience (years): ", 0, 60);
+        String deptId   = InputHandler.getStringInput("Department ID: ");
+        double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
+        boolean  operationTheatreAccess   = InputHandler.getConfirmation("Operation Theatre Access ?");
+        Surgeon s = new Surgeon(id, firstName, lastName, dob, gender, phone, email, address,
+                specialization, qualification, experience, deptId, fee, null, operationTheatreAccess);
+        add(s);
+    }
 
-        System.out.println("Enter gender:");
-        String gender = scanner.nextLine();
 
-        System.out.println("Enter phone number:");
-        String phone = scanner.nextLine();
+    private void addConsultant() {
+        String id    = HelperUtils.generateId("Cons-",4);
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+        LocalDate dob = InputHandler.getDateInput("Date of Birth");
+        String gender = InputHandler.getStringInput("Gender: ");
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address  = InputHandler.getStringInput("Address: ");
+        String specialization   = InputHandler.getStringInput("Specialization: ");
+        String qualification   = InputHandler.getStringInput("Qualification: ");
+        int    experience    = InputHandler.getIntInput("Experience (years): ", 0, 60);
+        String deptId   = InputHandler.getStringInput("Department ID: ");
+        double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
+        boolean online = InputHandler.getConfirmation(" Online consultations?");
+        int dur        = InputHandler.getIntInput(" Duration (minutes): ", 15, 120);
+        Consultant c = new Consultant(id, firstName, lastName, dob, gender, phone, email, address,
+                specialization, qualification, experience, deptId, fee, new ArrayList<>(), online, dur);
+        add(c);
+    }
 
-        System.out.println("Enter date of birth (yyyy-MM-dd):");
-        String DOB = scanner.nextLine();
-        LocalDate dateOfBirth = LocalDate.parse(DOB);
 
-        System.out.println("Enter email:");
-        String email = scanner.nextLine();
-
-        System.out.println("Enter address:");
-        String address = scanner.nextLine();
-
-        System.out.println("Enter specialization:");
-        String specialization = scanner.nextLine();
-
-        System.out.println("Enter qualification:");
-        String qualification = scanner.nextLine();
-
-        System.out.println("Enter years of experience:");
-        int experienceYears = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Enter department id:");
-        String departmentId = scanner.nextLine();
-
-        System.out.println("Enter consultation fee:");
-        double consultationFee = Double.parseDouble(scanner.nextLine());
-
-        List<String> availableSlots = new ArrayList<>();
-
-        System.out.println("Do you want to add available slots? (yes/no)");
-        String addSlots = scanner.nextLine();
-
-        if (addSlots.equalsIgnoreCase("yes")) {
-
-            System.out.println("Enter slots separated by commas:");
-            String slotsInput = scanner.nextLine();
-
-            availableSlots = Arrays.asList(slotsInput.split(","));
-        }
-
-        List<String> assignedPatients = new ArrayList<>();
-
-        Doctor doctor = new Doctor(
-                HelperUtils.generateId("Dc."),
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phone,
-                email,
-                address,
-                specialization,
-                qualification,
-                experienceYears,
-                departmentId,
-                consultationFee
-
-        );
-
-        return doctor;
+    private void addGeneralPractitioner() {
+        String id    = HelperUtils.generateId("GP-",4);
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+        LocalDate dob = InputHandler.getDateInput("Date of Birth");
+        String gender = InputHandler.getStringInput("Gender: ");
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address  = InputHandler.getStringInput("Address: ");
+        String specialization   = InputHandler.getStringInput("Specialization: ");
+        String qualification   = InputHandler.getStringInput("Qualification: ");
+        int    experience    = InputHandler.getIntInput("Experience (years): ", 0, 60);
+        String deptId   = InputHandler.getStringInput("Department ID: ");
+        double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
+        boolean walkin = InputHandler.getConfirmation("Walk-in available?");
+        boolean home   = InputHandler.getConfirmation("Home visits available?");
+        boolean vacc   = InputHandler.getConfirmation("Vaccination certified?");
+        GeneralPractitioner gp = new GeneralPractitioner(id, firstName, lastName, dob, gender, phone, email, address,
+                specialization, qualification, experience, deptId, fee, walkin, home, vacc);
+        add(gp);
     }
 
     public void addDoctor(String name, String specialization, String phone){
         Doctor doctor = new Doctor();
-
+        doctor.setId(HelperUtils.generateId("DOC",4));
         doctor.setFirstName(name);
         doctor.setSpecialization(specialization);
         doctor.setPhoneNumber(phone);
@@ -110,7 +129,7 @@ public class DoctorService implements Manageable, Searchable {
 
     public void addDoctor(String name, String specialization, String phone, double consultationFee){
         Doctor doctor = new Doctor();
-
+        doctor.setId(HelperUtils.generateId("DOC",4));
         doctor.setFirstName(name);
         doctor.setSpecialization(specialization);
         doctor.setPhoneNumber(phone);
@@ -118,20 +137,48 @@ public class DoctorService implements Manageable, Searchable {
 
         doctors.add(doctor);
     }
+    public static Doctor updatePatient( ){
+        Doctor doctor = new Doctor();
+
+        System.out.print("Enter First Name: ");
+        String firstName = scanner.nextLine();
+        doctor.setFirstName(firstName);
+
+        System.out.print("Enter Last Name: ");
+        String lastName = scanner.nextLine();
+        doctor.setLastName(lastName);
+
+        System.out.print("Enter Specialization: ");
+        String specialization = scanner.nextLine();
+        doctor.setSpecialization(specialization);
+
+        System.out.print("Enter Qualification: ");
+        String qualification = scanner.nextLine();
+        doctor.setQualification(qualification);
+
+        System.out.print("Enter Experience Years: ");
+        int experienceYears = scanner.nextInt();
+        doctor.setExperienceYears(experienceYears);
+
+
+        return doctor;
+
+    }
 
 
     public void editDoctor(String doctorId, Doctor updatedDoctor){
-        for(Doctor d : doctors){
-            if(d.getId().equals(doctorId)){
-                d.setPhoneNumber(updatedDoctor.getPhoneNumber());
-                d.setEmail(updatedDoctor.getEmail());
-                d.setAddress(updatedDoctor.getAddress());
-
-                System.out.println(Constants.DOCTOR_UPDATED_SUCCESSFULLY);
-                return;
-            }
+        Doctor existing = getDoctorById(doctorId);
+        if (HelperUtils.isNull(existing)) { System.out.println(Constants.DOCTOR_NOT_FOUND);
+            return;
         }
-        System.out.println(Constants.DOCTOR_NOT_FOUND);
+
+        existing.setFirstName(updatedDoctor.getFirstName());
+        existing.setLastName(updatedDoctor.getLastName());
+        existing.setSpecialization(updatedDoctor.getSpecialization());
+        existing.setQualification(updatedDoctor.getQualification());
+        existing.setExperienceYears(updatedDoctor.getExperienceYears());
+        existing.updateFee(updatedDoctor.getConsultationFee());
+        System.out.println(Constants.DOCTOR_UPDATED_SUCCESSFULLY);
     }
 
     public void removeDoctor(String doctorId){
@@ -145,15 +192,19 @@ public class DoctorService implements Manageable, Searchable {
         System.out.println(Constants.DOCTOR_NOT_FOUND);
     }
 
-    public Doctor getDoctorById(String doctorId){
+    public Doctor  getDoctorById(String doctorId){
+        Doctor doctor = new Doctor();
         for(Doctor d : doctors){
             if(d.getId().equals(doctorId)){
-                d.displayInfo();
-                return d;
+                doctor =  d;
+            }else{
+                System.out.println(Constants.DOCTOR_NOT_FOUND);
+                break;
+
             }
         }
-        System.out.println(Constants.DOCTOR_NOT_FOUND);
-        return null;
+        return doctor;
+
     }
 
     public void displayDoctors(){
@@ -185,84 +236,84 @@ public class DoctorService implements Manageable, Searchable {
         }
     }
 
-    public void assignPatient(String doctorId, String patientId){
-        for (Doctor doctor : doctors){
-
-            for(Patient p : getPatients()){
-                if(doctor.getId().equals(doctorId)){
-                    if(p.getId().equals(patientId)){
-                        doctor.getAssignedPatients().add(p);
-                        System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
-                        return;
-                    }
-                    System.out.println(Constants.PATIENT_NOT_FOUND);
-
-
-                }
-                System.out.println(Constants.DOCTOR_NOT_FOUND);
-            }
-
-        }
-
-
+    public void assignPatient(String doctorId, String patientId) {
+        Doctor d = getDoctorById(doctorId);
+        if (HelperUtils.isNull(d)) { System.out.println(Constants.DOCTOR_NOT_FOUND); return; }
+        d.assignPatient(patientId);
+        System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
+
+
 
     public void  assignPatient(Doctor doctor, Patient patient){
-        doctor.getAssignedPatients().add(patient);
+        if (HelperUtils.isNull(doctor) || HelperUtils.isNull(patient)) return;
+        doctor.assignPatient(patient.getId());
+        System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
 
-    public void  assignPatient(String doctorId, List<String> patientIds) {
-        for (Doctor doctor : doctors){
-            if(doctor.getId().equals(doctorId)){
-                for(Patient p : getPatients()){
-                    for(String x : patientIds){
-                        if(p.getId().equals(x)){
-                            doctor.getAssignedPatients().add(p);
-                            System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
-                        }else{
-                            System.out.println(Constants.PATIENT_NOT_FOUND);
-                        }
-
-                    }
-
-                }
-
-            }else{
-                System.out.println(Constants.DOCTOR_NOT_FOUND);
-            }
-
-
-        }
-
+    public void assignPatient(String doctorId, List<String> patientIds) {
+        Doctor d = getDoctorById(doctorId);
+        if (HelperUtils.isNull(d)) { System.out.println(Constants.DOCTOR_NOT_FOUND); return; }
+        if (HelperUtils.isNull(patientIds)) return;
+        patientIds.forEach(d::assignPatient);
+        System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
 
 
-    // INTERFACE METHODS
+
     @Override
     public void add(Object entity) {
-
+        Doctor doctor = (Doctor) entity;
+        addDoctor(doctor);
     }
 
     @Override
     public void remove(String id) {
+        Doctor doctor = getDoctorById(id);
+        if (HelperUtils.isNull(doctor)) { System.out.println(Constants.DOCTOR_NOT_FOUND); return; }
+        doctors.remove(doctor);
+        System.out.println(Constants.DOCTOR_REMOVED_SUCCESSFULLY);
+
 
     }
 
     @Override
     public Void getAll() {
-        return null;
+        return null ;
     }
 
     @Override
     public void search(String keyword) {
+        if (HelperUtils.isNull(doctors)) {
+            System.out.println("No Doctors registered.");
+            return;}
+        for (Doctor doctor : doctors) {
+
+            if (doctor.getFirstName().equalsIgnoreCase(keyword)
+                    || doctor.getLastName().equalsIgnoreCase(keyword)
+                    || doctor.getPhoneNumber().equalsIgnoreCase(keyword)
+                    || doctor.getEmail().equalsIgnoreCase(keyword)
+                    || doctor.getId().equalsIgnoreCase(keyword)) {
+
+                doctor.displayInfo();
+                return;
+            }
+        }
+        System.out.println(Constants.DOCTOR_NOT_FOUND);
+
+
 
     }
 
     @Override
     public void searchById(String id) {
+        for(Doctor doctor : doctors){
+            if(doctor.getId().equals(id)){
+                doctor.displayInfo();
+            }
+        }
 
     }
-
     // HANDLE DOCTOR MENU
     public Boolean handleDoctorMenu(Integer doctorOption) {
 
