@@ -14,7 +14,10 @@ public class Consultant extends Doctor implements Displayable {
     Integer consultationDuration;
 
 
-    public Consultant(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+    public Consultant(String id,
+                      String firstName,
+                      String lastName,
+                      LocalDate dateOfBirth, String gender,
                       String phoneNumber, String email, String address, String specialization, String qualification,
                       Integer experienceYears, String departmentId, double consultationFee
     ) {
