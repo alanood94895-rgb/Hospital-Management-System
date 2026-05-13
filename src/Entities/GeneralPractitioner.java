@@ -18,7 +18,9 @@ public class GeneralPractitioner extends Doctor implements Displayable {
                                String phoneNumber,
                                String email,
                                String address,
-                               String specialization, String qualification, Integer experienceYears,
+                               String specialization,
+                               String qualification,
+                               Integer experienceYears,
                                String departmentId, double consultationFee,Boolean walkinAvailable, Boolean homeVisitAvailable,
                                Boolean vaccinationCertified) {
 
