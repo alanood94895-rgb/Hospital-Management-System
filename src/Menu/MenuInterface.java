@@ -1,7 +1,6 @@
 package Menu;
 
-public class MenuInterface {
-    void displayMenu() {
+public interface MenuInterface {
+    void displayMenu();
 
-    }
 }
