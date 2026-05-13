@@ -8,4 +8,9 @@ public class Menu implements MenuInterface{
     public void displayMenu() {
         System.out.println(MenuMessages.MAIN_MENU_MESSAGE);
     }
+
+    @Override
+    public void exitMune() {
+
+    }
 }
