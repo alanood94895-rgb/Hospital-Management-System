@@ -20,7 +20,9 @@ public class InPatient extends Patient implements Displayable, Billable {
                      String firstName,
                      String lastName,
                      LocalDate dateOfBirth,
-                     String gender, String phoneNumber, String email, String address,
+                     String gender,
+                     String phoneNumber,
+                     String email, String address,
                      String bloodGroup, String emergencyContact, LocalDate registrationDate,
                      String insuranceId, List<String> allergies, LocalDate admissionDate , LocalDate dischargeDate,
                      String roomNumber , String bedNumber,String admittingDoctorId,Double dailyCharges) {
