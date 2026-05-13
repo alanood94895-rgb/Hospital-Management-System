@@ -111,7 +111,6 @@ public class Patient extends Person implements Displayable {
                    String insuranceId,
                    List<String> allergies) {
 
-
         super(id,
                 firstName,
                 lastName,
@@ -137,7 +136,7 @@ public class Patient extends Person implements Displayable {
     @Override
     public void displayInfo() {
         super.displayInfo();
-        System.out.println("Blood Group  :"+bloodGroup );
+        System.out.println("Blood Group:"+bloodGroup );
         System.out.println("Allergies");
         for(String x : allergies){
             System.out.print(x + ",");
@@ -145,7 +144,7 @@ public class Patient extends Person implements Displayable {
 
         System.out.println("Emergency Contact :"+emergencyContact);
         System.out.println("Registration Date :"+registrationDate);
-        System.out.println("Insurance Id  :"+insuranceId);
+        System.out.println("Insurance Id :"+insuranceId);
 
         System.out.println("Medical Records");
         System.out.println();

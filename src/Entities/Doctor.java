@@ -5,6 +5,7 @@ import Entities.Patient;
 import Entities.Person;
 import Services.PatientService;
 import Utils.Constants;
+import Utils.HelperUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -137,6 +138,8 @@ public class Doctor extends Person implements Displayable {
 
 
     public void assignPatient() {
+        if (HelperUtils.isNotNull(patientId) && !assignedPatients.contains(patientId))
+            assignedPatients.add(patientId);
 
     }
 
