@@ -71,7 +71,7 @@ public class MainApp {
                                 Integer.parseInt(input.nextLine());
 
                         doctorMenuContinue =
-                                doctorService.handleDoctorMenu(doctorOption);
+                                doctorService.handleDoctorMenu();
                     }
                 }
 

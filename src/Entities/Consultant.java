@@ -10,8 +10,8 @@ import java.util.List;
 public class Consultant extends Doctor implements Displayable {
 
     private List<String> consultationTypes;
-    Boolean onlineConsultationAvailable;
-    Integer consultationDuration;
+    private Boolean onlineConsultationAvailable;
+    private Integer consultationDuration;
 
 
     public Consultant(String id,
@@ -26,9 +26,11 @@ public class Consultant extends Doctor implements Displayable {
                       String qualification,
                       Integer experienceYears,
                       String departmentId,
-                      double consultationFee
+                      double consultationFee,
+                      List<String> consultationTypes ,
+                      Boolean onlineConsultationAvailable,
+                      Integer consultationDuration
     ) {
-
 
         super(id,
                 firstName,
@@ -44,10 +46,8 @@ public class Consultant extends Doctor implements Displayable {
                 departmentId,
                 consultationFee);
 
-        this.consultationTypes = new ArrayList<>();
-    }
 
-    public Consultant(String id, String firstName, String lastName, LocalDate dob, String gender, String phone, String email, String address, String specialization, String qualification, int experience, String deptId, double fee, ArrayList<Object> objects, boolean online, int dur) {
+        this.consultationTypes = new ArrayList<>();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Consultant extends Doctor implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println("Doctor Summary");
+        System.out.println("===== Doctor Summary =====");
         System.out.println("Doctor ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Online Consultation Available: " + onlineConsultationAvailable);

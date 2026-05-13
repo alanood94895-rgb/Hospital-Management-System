@@ -246,35 +246,51 @@ public class SampleData {
 
         Consultant d1 = new Consultant(
                 "D001",
-                "Said",
-                "Abdullah",
-                LocalDate.of(2000,6,22),
+                "Hamed",
+                "Sultan",
+                LocalDate.of(1985, 5, 10),
                 "Male",
-                "91111111",
-                "Said@hospital.com",
+                "97770000",
+                "hamed@hospital.com",
                 "Muscat",
-                "Cardiology",
+                "Oncology",
                 "MBBS",
                 15,
-                "DEP01",
-                25.0
+                "DEP-001",
+                35.0,
+                new ArrayList<>(Arrays.asList(
+                        "Cancer Consultation",
+                        "Follow-up Consultation",
+                        "Online Consultation"
+                )),
+                true,
+                30
         );
 
         Consultant d2 = new Consultant(
                 "D002",
-                "Alanoud",
-                "Mohammed",
-                LocalDate.of(2003,7,2),
+                "Rania",
+                "Khalid",
+                LocalDate.of(1988, 8, 20),
                 "Female",
-                "92222222",
-                "Alanoud@hospital.com",
-                "Matrah",
-                "Dermatology",
+                "98880000",
+                "rania@hospital.com",
+                "Sohar",
+                "Radiology",
                 "MD",
                 12,
-                "DEP02",
-                20.0
+                "DEP-002",
+                28.0,
+                new ArrayList<>(Arrays.asList(
+                        "MRI Review",
+                        "X-Ray Consultation",
+                        "CT Scan Review"
+                )),
+                true,
+                25
         );
+
+
 
         GeneralPractitioner d3 = new GeneralPractitioner(
                 "D003",
@@ -351,20 +367,28 @@ public class SampleData {
         );
 
         Consultant d7 = new Consultant(
-                "D007",
-                "Alazhar",
-                "Zahran",
-                LocalDate.of(1980,10,28),
+                "D001",
+                "Ahmed",
+                "Salim",
+                LocalDate.of(1985, 4, 15),
                 "Male",
-                "97777777",
-                "Alazhar@hospital.com",
-                "Barka",
-                "Pediatrics",
+                "97770000",
+                "ahmed@hospital.com",
+                "Muscat",
+                "Cardiology",
                 "MBBS",
-                14,
-                "DEP05",
-                22.0
+                15,
+                "DEP-001",
+                35.0,
+                new ArrayList<>(Arrays.asList(
+                        "Heart Consultation",
+                        "ECG Review",
+                        "Online Consultation"
+                )),
+                true,
+                30
         );
+
 
         GeneralPractitioner d8 = new GeneralPractitioner(
                 "D008",
@@ -386,7 +410,7 @@ public class SampleData {
         );
 
 
-        //sample data for databases
+        //sample data for Nurse
         Nurse n1 = new Nurse(
                 "N001",
                 "Ibtisam",

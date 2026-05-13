@@ -10,6 +10,7 @@ import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
 import Utils.InputHandler;
+import Utils.MenuMessages;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,17 +24,15 @@ public class DoctorService implements Manageable, Searchable {
 
     public void addDoctor(Doctor doctor) {
         if (HelperUtils.isNull(doctor)) { System.out.println("  [!] Cannot add null doctor."); return; }
-        if (!HelperUtils.isNotNull(getDoctorById(String.valueOf(doctor.getId())))) {
-            doctors.add(doctor);
-            System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
-        } else {
-            System.out.println("Doctor with ID " + doctor.getId() + " already exists.");
-            return;
+        if (HelperUtils.isNotNull(getDoctorById(doctor.getId()))){
+            System.out.println("Doctor with ID " + doctor.getId() + " already exists."); return;
         }
+        doctors.add(doctor);
+        System.out.println(Constants.DOCTOR_ADDED_SUCCESSFULLY);
 
     }
 
-    private Doctor addDoctor() {
+    private void addDoctor() {
 
         String id    = HelperUtils.generateId("DOC-",4);
         String firstName    = InputHandler.getStringInput("First Name: ");
@@ -51,8 +50,8 @@ public class DoctorService implements Manageable, Searchable {
         Doctor d = new Doctor(id, firstName, lastName, dob, gender, phone, email, address,
                 specialization, qualification, experience, deptId, fee);
         add(d);
-        return d;
     }
+
 
     private void addSurgeon() {
         String id    = HelperUtils.generateId("Surg-",4);
@@ -74,7 +73,6 @@ public class DoctorService implements Manageable, Searchable {
         add(s);
     }
 
-
     private void addConsultant() {
         String id    = HelperUtils.generateId("Cons-",4);
         String firstName    = InputHandler.getStringInput("First Name: ");
@@ -95,7 +93,6 @@ public class DoctorService implements Manageable, Searchable {
                 specialization, qualification, experience, deptId, fee, new ArrayList<>(), online, dur);
         add(c);
     }
-
 
     private void addGeneralPractitioner() {
         String id    = HelperUtils.generateId("GP-",4);
@@ -139,7 +136,8 @@ public class DoctorService implements Manageable, Searchable {
 
         doctors.add(doctor);
     }
-    public static Doctor updatePatient( ){
+
+    public static Doctor updateDoctor( ){
         Doctor doctor = new Doctor();
 
         System.out.print("Enter First Name: ");
@@ -170,10 +168,8 @@ public class DoctorService implements Manageable, Searchable {
 
     public void editDoctor(String doctorId, Doctor updatedDoctor){
         Doctor existing = getDoctorById(doctorId);
-        if (HelperUtils.isNull(existing)) { System.out.println(Constants.DOCTOR_NOT_FOUND);
-            return;
-        }
-
+        if (HelperUtils.isNull(existing)) { System.out.println(Constants.DOCTOR_NOT_FOUND
+        ); return; }
         existing.setFirstName(updatedDoctor.getFirstName());
         existing.setLastName(updatedDoctor.getLastName());
         existing.setSpecialization(updatedDoctor.getSpecialization());
@@ -257,9 +253,8 @@ public class DoctorService implements Manageable, Searchable {
         Doctor d = getDoctorById(doctorId);
         if (HelperUtils.isNull(d)) { System.out.println(Constants.DOCTOR_NOT_FOUND); return; }
         if (HelperUtils.isNull(patientIds)) return;
-        patientIds.forEach(patient -> {
-            d.assignPatient(patient);
-        });
+        //d.assignPatient(patientId)
+        patientIds.forEach(d::assignPatient);
         System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }
 
@@ -283,7 +278,9 @@ public class DoctorService implements Manageable, Searchable {
 
     @Override
     public Void getAll() {
-        return null ;
+        doctors.forEach(d -> d.displayInfo());
+
+        return null;
     }
 
     @Override
@@ -293,16 +290,15 @@ public class DoctorService implements Manageable, Searchable {
             return;}
         for (Doctor doctor : doctors) {
 
-            if (!doctor.getFirstName().equalsIgnoreCase(keyword)
-                    && !doctor.getLastName().equalsIgnoreCase(keyword)
-                    && !doctor.getPhoneNumber().equalsIgnoreCase(keyword)
-                    && !doctor.getEmail().equalsIgnoreCase(keyword)
-                    && !doctor.getId().equals(keyword)) {
-                continue;
-            }
+            if (doctor.getFirstName().equalsIgnoreCase(keyword)
+                    || doctor.getLastName().equalsIgnoreCase(keyword)
+                    || doctor.getPhoneNumber().equalsIgnoreCase(keyword)
+                    || doctor.getEmail().equalsIgnoreCase(keyword)
+                    || doctor.getId().equals(keyword)) {
 
-            doctor.displayInfo();
-            return;
+                doctor.displayInfo();
+                return;
+            }
         }
         System.out.println(Constants.DOCTOR_NOT_FOUND);
 
@@ -319,72 +315,46 @@ public class DoctorService implements Manageable, Searchable {
         }
 
     }
-    // HANDLE DOCTOR MENU
-    public Boolean handleDoctorMenu(Integer doctorOption) {
 
-        switch (doctorOption) {
-
-            case 1 -> {
-
-                Doctor doctor = addDoctor();
-
-                addDoctor(doctor);
-            }
-
-            case 2 -> {
-
-                System.out.print("Enter Doctor ID to edit: ");
-                String id = scanner.nextLine().trim();
-                Doctor updatedDoctor = addDoctor();
-                editDoctor(id, updatedDoctor);
-            }
-
-            case 3 -> {
-
-                System.out.print("Enter Doctor ID to remove: ");
-                String id = scanner.nextLine().trim();
-                removeDoctor(id);
-            }
-
-            case 4 -> {
-
-                System.out.print("Enter Doctor ID to search: ");
-                String id = scanner.nextLine().trim();
-                Doctor d = getDoctorById(id);
-
-                if (d != null) {
-
-                    d.displayInfo();
-
-                } else {
-
-                    System.out.println("Doctor not found.");
+    public Boolean handleDoctorMenu(){
+        Boolean doctorMenu = true;
+        while (doctorMenu) {
+            System.out.println(MenuMessages.DOCTOR_MENU_MESSAGE);
+            int option = InputHandler.getIntInput(Constants.ENTER_OPTION,0,9);
+            switch (option) {
+                case 1-> addDoctor();
+                case 2-> addSurgeon();
+                case 3-> addConsultant();
+                case 4-> addGeneralPractitioner();
+                case 5->getAll();
+                case 6 ->{
+                    String spe = InputHandler.getStringInput("Search Specialization: ");
+                    displayDoctors(spe);
                 }
+                case 7->getAvailableDoctors();
+                case 8-> {
+                    String doctorId = InputHandler.getStringInput("Doctor ID: ");
+                    String patientId = InputHandler.getStringInput("Patient ID: ");
+                    assignPatient(doctorId,patientId);
+                }
+                case 9-> {
+                    String doctorId = InputHandler.getStringInput("Doctor ID: ");
+                    editDoctor(doctorId,updateDoctor());
+                }
+
+
+
+                case 0 ->{
+                    doctorMenu = false;
+                }
+
             }
 
-            case 5 -> {
-
-                System.out.print("Enter specialization to search: ");
-                String spec = scanner.nextLine().trim();
-                displayDoctors(spec);
-            }
-
-            case 6 -> {
-
-                displayDoctors();
-            }
-
-            case 7 -> {
-
-                return false;
-            }
-
-            default -> {
-
-                System.out.println("Invalid option. Please choose 1-7.");
-            }
         }
 
-        return true;
+        return doctorMenu;
     }
+
+
+
 }
