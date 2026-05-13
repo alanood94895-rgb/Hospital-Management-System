@@ -331,7 +331,8 @@ public class DoctorService implements Manageable, Searchable {
                     String spe = InputHandler.getStringInput("Search Specialization: ");
                     displayDoctors(spe);
                 }
-                case 7->getAvailableDoctors();
+                case 7->
+                        getAvailableDoctors();
                 case 8-> {
                     String doctorId = InputHandler.getStringInput("Doctor ID: ");
                     String patientId = InputHandler.getStringInput("Patient ID: ");

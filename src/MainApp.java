@@ -123,7 +123,13 @@ public class MainApp {
                     }
                 }
 
-                case 7 -> {
+                case 7 -> { ;
+
+                }
+
+
+
+                case 8 -> {
                     System.out.println("Exiting System...");
                     mainMenuContinue = false;
                 }
