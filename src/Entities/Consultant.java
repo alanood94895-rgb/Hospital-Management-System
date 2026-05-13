@@ -14,51 +14,31 @@ public class Consultant extends Doctor implements Displayable {
     Integer consultationDuration;
 
 
-    public Consultant(String id,
-                      String firstName,
-                      String lastName,
-                      LocalDate dateOfBirth,
-                      String gender,
-                      String phoneNumber,
-                      String email,
-                      String address,
-                      String specialization,
-                      String qualification,
-                      Integer experienceYears,
-                      String departmentId,
-                      double consultationFee
+    public Consultant(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+                      String phoneNumber, String email, String address, String specialization, String qualification,
+                      Integer experienceYears, String departmentId, double consultationFee
     ) {
-
-        super(id,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phoneNumber,
-                email,
-                address,
-                specialization,
-                qualification,
-                experienceYears,
-                departmentId,
-                consultationFee);
-
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, specialization, qualification, experienceYears, departmentId, consultationFee);
         this.consultationTypes = new ArrayList<>();
     }
 
     @Override
     public void displayInfo() {
         super.displayInfo();
+
+    }
+
+    @Override
+    public void displaySummary() {
+        System.out.println("===== Doctor Summary =====");
+        System.out.println("Doctor ID: " + getId());
+        System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Online Consultation Available: " + onlineConsultationAvailable);
         System.out.println("Consultation Duration: " + consultationDuration);
         System.out.println("Consultation Types");
         for(String x : consultationTypes) {
             System.out.print(x + " , ");
         }
-    }
-
-    @Override
-    public void displaySummary() {
 
     }
 
