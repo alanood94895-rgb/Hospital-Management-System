@@ -20,6 +20,7 @@ public class Doctor extends Person implements Displayable {
     }
 
     public void setAssignedPatients(List<Patient> assignedPatients) {
+
         this.assignedPatients = assignedPatients;
     }
 
@@ -52,9 +53,10 @@ public class Doctor extends Person implements Displayable {
     }
 
     public void setExperienceYears(Integer experienceYears) {
-        this.experienceYears = experienceYears;
+        if (Utils.HelperUtils.isPositive(experienceYears)) {
+            this.experienceYears = experienceYears;
+        }
     }
-
     public String getQualification() {
         return qualification;
     }
@@ -96,7 +98,6 @@ public class Doctor extends Person implements Displayable {
     private List<Patient> assignedPatients;
 
     //call parent constructor
-
     public Doctor() {
         super();
 
@@ -105,26 +106,12 @@ public class Doctor extends Person implements Displayable {
     public Doctor(String id,
                   String firstName,
                   String lastName,
-                  LocalDate dateOfBirth,
-                  String gender,
-                  String phoneNumber,
-                  String email,
-                  String address ,
-                  String specialization,
-                  String qualification ,
-                  Integer experienceYears ,
-                  String departmentId,
+                  LocalDate dateOfBirth, String gender, String phoneNumber,
+                  String email, String address , String specialization,
+                  String qualification , Integer experienceYears , String departmentId,
                   double consultationFee) {
 
-
-        super(id,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phoneNumber,
-                email,
-                address);
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
 
         this.specialization = specialization;
         this.qualification = qualification;
@@ -183,6 +170,9 @@ public class Doctor extends Person implements Displayable {
         this.consultationFee = fee;
     }
 
+    /*public void updateFee(double fee , String reason){
+        this.consultationFee = fee;
+    }*/
 
     public void addAvailability(String slot){
         this.availableSlots.add(slot);
