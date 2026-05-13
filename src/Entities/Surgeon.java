@@ -15,9 +15,12 @@ public class Surgeon extends Doctor implements Displayable {
     private Boolean operationTheatreAccess;
 
 
-    public Surgeon(String id, String firstName, String lastName, LocalDate dateOfBirth, String gender,
+    public Surgeon(String id,
+                   String firstName,
+                   String lastName, LocalDate dateOfBirth, String gender,
                    String phoneNumber, String email, String address, String specialization, String qualification,
                    Integer experienceYears, String departmentId, double consultationFee , Integer surgeriesPerformed ,Boolean operationTheatreAccess) {
+
         super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address, specialization, qualification, experienceYears, departmentId, consultationFee);
         this.surgeriesPerformed = surgeriesPerformed;
         this.operationTheatreAccess = operationTheatreAccess;
