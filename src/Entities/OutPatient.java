@@ -34,7 +34,9 @@ public class OutPatient extends Patient implements Displayable {
                 lastName,
                 dateOfBirth,
                 gender,
-                phoneNumber, email, address, bloodGroup, emergencyContact, registrationDate, insuranceId, allergies);
+                phoneNumber,
+                email,
+                address, bloodGroup, emergencyContact, registrationDate, insuranceId, allergies);
 
 
         this.visitCount = visitCount;
