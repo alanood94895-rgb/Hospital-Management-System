@@ -104,29 +104,13 @@ public class Doctor extends Person implements Displayable {
 
     }
 
-    public Doctor(String id,
-                  String firstName,
-                  String lastName,
-                  LocalDate dateOfBirth,
-                  String gender,
-                  String phoneNumber,
-                  String email,
-                  String address ,
-                  String specialization,
-                  String qualification ,
-                  Integer experienceYears ,
-                  String departmentId,
+    public Doctor(String id, String firstName, String lastName,
+                  LocalDate dateOfBirth, String gender, String phoneNumber,
+                  String email, String address , String specialization,
+                  String qualification , Integer experienceYears , String departmentId,
                   double consultationFee) {
 
-        super(id,
-                firstName,
-                lastName,
-                dateOfBirth,
-                gender,
-                phoneNumber,
-                email,
-                address);
-
+        super(id, firstName, lastName, dateOfBirth, gender, phoneNumber, email, address);
 
         this.specialization = specialization;
         this.qualification = qualification;
@@ -142,8 +126,7 @@ public class Doctor extends Person implements Displayable {
         if(assignedPatients.isEmpty()) {
             assignedPatients.add(patientId);
         }
-        if (HelperUtils.isNotNull(patientId)
-                && !assignedPatients.contains(patientId))
+        if (HelperUtils.isNotNull(patientId) && !assignedPatients.contains(patientId))
             assignedPatients.add(patientId);
     }
 
@@ -163,17 +146,19 @@ public class Doctor extends Person implements Displayable {
 
     @Override
     public void displayInfo() {
+        System.out.println("______________________________");
         super.displayInfo();
-        System.out.println(specialization);
-        System.out.println(qualification);
-        System.out.println(experienceYears);
-        System.out.println(departmentId);
-        System.out.println(consultationFee);
-
-        System.out.println("Available Slots");
+        System.out.println("Specialization    :" + specialization);
+        System.out.println("Qualification     :" + qualification);
+        System.out.println("Experience Years  :" + experienceYears);
+        System.out.println("Department ID     :" + departmentId);
+        System.out.println("Consultation Fee  :" + consultationFee);
+        System.out.println("Available Slots   :");
         for(String slot : availableSlots){
             System.out.print(slot + ",");
         }
+        System.out.println("______________________________");
+        System.out.println();
 
         System.out.println("Assigned Patients");
         for(String patient : assignedPatients){
@@ -184,19 +169,32 @@ public class Doctor extends Person implements Displayable {
     @Override
     public void displaySummary() {
 
+        System.out.println("Doctor ID: " + getId());
+        System.out.println("Name: " + getFirstName() + " " + getLastName());
+        System.out.println("Specialization: " + specialization);
+        System.out.println("Department: " + departmentId);
     }
 
-    public void updateFee(double fee){
+    public void updateFee(double fee) {
+
+        if (fee < 0) {
+            System.out.println("Invalid fee amount");
+            return;
+        }
+
         this.consultationFee = fee;
+        System.out.println("Consultation fee updated successfully");
     }
 
-    public void updateFee(double fee , String reason){
-        this.consultationFee = fee;
+    public void addAvailability(String slot) {
+
+        if (availableSlots == null) {
+            availableSlots = new ArrayList<>();
+        }
+
+        availableSlots.add(slot);
     }
 
-    public void addAvailability(String slot){
-        this.availableSlots.add(slot);
-    }
 
     public void addAvailability(List<String> slots){
         this.availableSlots = slots;
