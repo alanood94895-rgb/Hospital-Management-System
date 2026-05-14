@@ -87,15 +87,9 @@ public class Appointment implements Displayable {
     public Appointment(){;
     }
 
-    public Appointment(String appointmentId ,
-                       String patientId,
-                       String doctorId,
-                       LocalDate appointmentDate,
-                       String appointmentTime,
-                       String status ,
-                       String reason ,
-                       String notes){
-
+    public Appointment(String appointmentId , String patientId,
+                       String doctorId, LocalDate appointmentDate,String appointmentTime,
+                       String status , String reason , String notes){
         this.appointmentId = appointmentId;
         this.patientId = patientId;
         this.doctorId = doctorId;
@@ -116,6 +110,7 @@ public class Appointment implements Displayable {
         System.out.println("Status: " + status);
         System.out.println("Reason: " + reason);
         System.out.println("Notes: " + notes);
+        System.out.println();
     }
 
     @Override

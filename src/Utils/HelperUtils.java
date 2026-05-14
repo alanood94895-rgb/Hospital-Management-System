@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class HelperUtils {
-
     //Null Check Methods
     public static Boolean isNull(Object obj){
         return obj == null;
@@ -92,6 +91,9 @@ public class HelperUtils {
         Date today = new Date();
         return date.before(today);
     }
+    public static Boolean isPastDate(LocalDate date, LocalDate newDate){
+        return newDate.isBefore(date);
+    }
     public static Boolean isToday(Date date){
         Date today = new Date();
         return date.equals(today);
@@ -135,36 +137,6 @@ public class HelperUtils {
 
         return age >= 0 && age <= 120;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

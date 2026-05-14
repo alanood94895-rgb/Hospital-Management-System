@@ -57,7 +57,7 @@ public class PatientService implements Manageable, Searchable, Editable {
             allergies.add(Arrays.toString(allergiesInput.split(",")));
         }
 
-        Patient p = new Patient(HelperUtils.generateId("P",4), firstName, lastName, DOB, gender, phone, email,address,
+        Patient p = new Patient(HelperUtils.generateId("P",3), firstName, lastName, DOB, gender, phone, email,address,
                 bloodGroup, emergencyContact,LocalDate.now(),insuranceId,allergies);
         addPatients(p);
     }
@@ -90,7 +90,7 @@ public class PatientService implements Manageable, Searchable, Editable {
         String drId   = InputHandler.getStringInput("Admitting Doctor ID: ");
         double daily  = InputHandler.getDoubleInput("Daily Charges : ");
 
-        InPatient inPatient  = new InPatient(HelperUtils.generateId("InP",4), firstName, lastName, DOB, gender, phone, email, address,
+        InPatient inPatient  = new InPatient(HelperUtils.generateId("InP",3), firstName, lastName, DOB, gender, phone, email, address,
                 bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,
                 LocalDate.now(),null,room, bed, drId, daily);
         addPatients(inPatient);
@@ -121,7 +121,7 @@ public class PatientService implements Manageable, Searchable, Editable {
         }
         String prefDr = InputHandler.getStringInput(" Preferred Doctor ID: ");
 
-        OutPatient outPatient = new OutPatient(HelperUtils.generateId("OutP",4), firstName, lastName, DOB, gender, phone, email, address,
+        OutPatient outPatient = new OutPatient(HelperUtils.generateId("OUTP",3), firstName, lastName, DOB, gender, phone, email, address,
                 bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,null, null,
                 prefDr);
         addPatients(outPatient);
@@ -446,7 +446,6 @@ public class PatientService implements Manageable, Searchable, Editable {
     }
 
 
-    // Handle Mune Message
     public void handlePatientMenu(){
         Boolean patientExit = true;
         while (patientExit) {
