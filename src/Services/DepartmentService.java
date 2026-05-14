@@ -129,7 +129,7 @@ public class DepartmentService implements Manageable, Searchable , Editable {
 
 
     @Override
-    public  void add(Object entity) {
+    public void add(Object entity) {
         Department department = (Department) entity;
         for(Department d : departments){
             if (d.getDepartmentId().equals(department.getDepartmentId())) {
@@ -150,10 +150,9 @@ public class DepartmentService implements Manageable, Searchable , Editable {
     }
 
     @Override
-    public Void getAll() {
+    public void getAll() {
         departments.forEach(d -> d.displayInfo());
 
-        return null;
     }
 
     @Override
@@ -208,8 +207,8 @@ public class DepartmentService implements Manageable, Searchable , Editable {
 
         String departmentName = InputHandler.getStringInput("Enter new department name: ");
         String headDoctorId   = InputHandler.getStringInput("Enter new head doctor ID: ");
-        int bedCapacity        = InputHandler.getIntInput("Enter new bed capacity: ");
-        int availableBeds      = InputHandler.getIntInput("Enter new available beds: ");
+        int bedCapacity   = InputHandler.getIntInput("Enter new bed capacity: ");
+        int availableBeds   = InputHandler.getIntInput("Enter new available beds: ");
 
         Department updatedDepartment = new Department();
         updatedDepartment.setDepartmentId(departmentId);
@@ -226,11 +225,11 @@ public class DepartmentService implements Manageable, Searchable , Editable {
             System.out.println(Constants.DEPARTMENT_NOT_FOUND);
             return;
         }
-        System.out.println("========== Department Statistics ==========");
+        System.out.println("Department Statistics ");
         for (Department d : departments) {
-            System.out.println("Department  : " + d.getDepartmentName());
-            System.out.println("Doctors     : " + d.getDoctors().size());
-            System.out.println("Nurses      : " + d.getNurses().size());
+            System.out.println("Department : " + d.getDepartmentName());
+            System.out.println("Doctors   : " + d.getDoctors().size());
+            System.out.println("Nurses   : " + d.getNurses().size());
             System.out.println("Bed Capacity: " + d.getBedCapacity());
             System.out.println("Available Beds : " + d.getAvailableBeds());
 
@@ -247,9 +246,13 @@ public class DepartmentService implements Manageable, Searchable , Editable {
 
             int option = InputHandler.getIntInput(Constants.ENTER_OPTION, 0, 7);
             switch (option) {
-                case 1 -> addDepartment();
-                case 2 -> getDepartments();
-                case 3 -> viewDepartmentDetails();
+                case 1 ->
+                        addDepartment();
+                case 2 ->
+                        getDepartments();
+                case 3 ->
+                        viewDepartmentDetails();
+
                 case 4-> {
                     String doctorId     = InputHandler.getStringInput("Enter doctor ID: ");
                     String departmentId = InputHandler.getStringInput("Enter department ID: ");
@@ -260,9 +263,12 @@ public class DepartmentService implements Manageable, Searchable , Editable {
                     String departmentId = InputHandler.getStringInput("Enter department ID: ");
                     assignNurseToDepartment(nurseId,departmentId);
                 }
-                case 6 -> updateDepartment();
-                case 7-> viewDepartmentStatistics();
-                case 0-> departmentExit = false;
+                case 6 ->
+                        updateDepartment();
+                case 7->
+                        viewDepartmentStatistics();
+                case 0->
+                        departmentExit = false;
 
             }
         }
@@ -289,5 +295,22 @@ public class DepartmentService implements Manageable, Searchable , Editable {
     public void validate() {
 
     }
-}
 
+    public void departmentOccupancyReport() {
+        System.out.println(" Department Occupancy Report");
+        if (HelperUtils.isNull(departments)) {
+            System.out.println("No departments found");
+            return;
+        }
+
+        for (Department department : departments) {
+            int occupiedBeds = department.getBedCapacity() - department.getAvailableBeds();
+            System.out.println("Department: " + department.getDepartmentName() );
+            department.displaySummary();
+            System.out.println("Bed Capacity: " + department.getBedCapacity());
+            System.out.println("Available Beds: " + department.getAvailableBeds());
+            System.out.println("Occupied Beds: " + occupiedBeds);
+            System.out.println("");
+        }
+    }
+}
