@@ -18,18 +18,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class PatientService implements Manageable, Searchable, Editable {
-    static Scanner scanner = new Scanner(System.in);
-
-    static public List<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
-    }
 
     private static List<Patient> patients = new ArrayList<>();
 
@@ -44,58 +34,140 @@ public class PatientService implements Manageable, Searchable, Editable {
         patients.add(patient);
         System.out.println(Constants.PATIENT_ADDED_SUCCESSFULLY);
     }
-    public static Patient addPatient(){
-        scanner.nextLine();
 
-        System.out.println("Enter patient id:");
-        String id = scanner.nextLine();
+    private static void registerPatient() {
 
-        System.out.println("Enter first name:");
-        String firstName = scanner.nextLine();
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
 
-        System.out.println("Enter last name:");
-        String lastName = scanner.nextLine();
+        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
+        String gender = InputHandler.getStringInput("Gender: ");
 
-        System.out.println("Enter gender:");
-        String gender = scanner.nextLine();
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address   = InputHandler.getStringInput("Address: ");
 
-        System.out.println("Enter phone number:");
-        String phone = scanner.nextLine();
-
-        System.out.println("Enter date of birth (yyyy-MM-dd):");
-        String DOB = scanner.nextLine();
-        LocalDate dateOfBirth = LocalDate.parse(DOB);
-
-        System.out.println("Enter email:");
-        String email = scanner.nextLine();
-
-        System.out.println("Enter address:");
-        String address = scanner.nextLine();
-
-        System.out.println("Enter blood group:");
-        String bloodGroup = scanner.nextLine();
-
-        System.out.println("Enter emergency contact:");
-        String emergencyContact = scanner.nextLine();
-
-        System.out.println("Enter insurance ID:");
-        String insuranceId = scanner.nextLine();
-
-        System.out.println("Do have any allergies? (yes/no)");
-        String hasAllergies = scanner.nextLine();
-
+        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
+        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
+        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
+        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
         List<String> allergies = new ArrayList<>();
-        if(hasAllergies.equalsIgnoreCase("yes")){
-            System.out.println("Enter allergies separated by commas:");
-            String allergiesInput = scanner.nextLine();
+        if(hasAllergies){
+            String allergiesInput = InputHandler.getStringInput("Enter allergies separated by commas: ");
             allergies.add(Arrays.toString(allergiesInput.split(",")));
         }
 
-        Patient patient= new Patient(
-                HelperUtils.generateId("P"),
+        Patient p = new Patient(HelperUtils.generateId("P",4), firstName, lastName, DOB, gender, phone, email,address,
+                bloodGroup, emergencyContact,LocalDate.now(),insuranceId,allergies);
+        addPatients(p);
+    }
+
+    private static void registerInPatient() {
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+
+        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
+        String gender = InputHandler.getStringInput("Gender: ");
+
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+        String address   = InputHandler.getStringInput("Address: ");
+
+        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
+        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
+        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
+        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
+        List<String> allergies = new ArrayList<>();
+        if(hasAllergies){
+            System.out.println("Enter allergies separated by commas:");
+            String allergiesInput = InputHandler.getStringInput("Enter allergies separated by commas: ");
+            allergies.add(Arrays.toString(allergiesInput.split(",")));
+        }
+
+        String room   = InputHandler.getStringInput(" Room Number: ");
+        String bed    = InputHandler.getStringInput(" Bed Number: ");
+
+        String drId   = InputHandler.getStringInput("Admitting Doctor ID: ");
+        double daily  = InputHandler.getDoubleInput("Daily Charges : ");
+
+        InPatient inPatient  = new InPatient(HelperUtils.generateId("InP",4), firstName, lastName, DOB, gender, phone, email, address,
+                bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,
+                LocalDate.now(),null,room, bed, drId, daily);
+        addPatients(inPatient);
+    }
+
+    private static void registerOutPatient() {
+
+        String firstName    = InputHandler.getStringInput("First Name: ");
+        String lastName    = InputHandler.getStringInput("Last Name: ");
+
+        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
+        String gender = InputHandler.getStringInput("Gender: ");
+
+        String phone  = InputHandler.getStringInput("Phone: ");
+        String email  = InputHandler.getStringInput("Email: ");
+
+        String address   = InputHandler.getStringInput("Address: ");
+        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
+
+        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
+        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
+        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
+        List<String> allergies = new ArrayList<>();
+        if(hasAllergies){
+            System.out.println("Enter allergies separated by commas:");
+            String allergiesInput = InputHandler.getStringInput("Enter allergies separated by commas: ");
+            allergies.add(Arrays.toString(allergiesInput.split(",")));
+        }
+        String prefDr = InputHandler.getStringInput(" Preferred Doctor ID: ");
+
+        OutPatient outPatient = new OutPatient(HelperUtils.generateId("OutP",4), firstName, lastName, DOB, gender, phone, email, address,
+                bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,null, null,
+                prefDr);
+        addPatients(outPatient);
+    }
+
+    private static void registerEmergencyPatient() {
+
+        String firstName = InputHandler.getStringInput("First Name: ");
+        String lastName = InputHandler.getStringInput("Last Name: ");
+
+        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
+        String gender = InputHandler.getStringInput("Gender: ");
+
+        String phone = InputHandler.getStringInput("Phone: ");
+        String email = InputHandler.getStringInput("Email: ");
+
+        String address = InputHandler.getStringInput("Address: ");
+        String bloodGroup = InputHandler.getStringInput("Blood Group: ");
+
+        String emergencyContact = InputHandler.getStringInput("Emergency Contact: ");
+        String insuranceId = InputHandler.getStringInput("Insurance ID: ");
+
+        Boolean hasAllergies = InputHandler.getConfirmation("Do you have any allergies? ");
+        List<String> allergies = new ArrayList<>();
+
+        if (hasAllergies) {
+            System.out.println("Enter allergies separated by commas:");
+            String allergiesInput = InputHandler.getStringInput("Enter allergies separated by commas: ");
+            allergies = Arrays.asList(allergiesInput.split(","));
+        }
+
+        String room = InputHandler.getStringInput("Room Number: ");
+        String bed = InputHandler.getStringInput("Bed Number: ");
+
+        String drId = InputHandler.getStringInput("Admitting Doctor ID: ");
+        String eType = InputHandler.getStringInput("Emergency Type: ");
+        String mode = InputHandler.getStringInput("Arrival Mode: ");
+        int triage = InputHandler.getIntInput("Triage Level (1-5): ", 1, 5);
+
+        Boolean admittedViaER = InputHandler.getConfirmation("Admitted via ER? ");
+
+        EmergencyPatient emergencyPatient = new EmergencyPatient(
+                HelperUtils.generateId("EmergP",4),
                 firstName,
                 lastName,
-                dateOfBirth,
+                DOB,
                 gender,
                 phone,
                 email,
@@ -104,40 +176,57 @@ public class PatientService implements Manageable, Searchable, Editable {
                 emergencyContact,
                 LocalDate.now(),
                 insuranceId,
-                allergies
+                allergies,
+                LocalDate.now(),
+                null,
+                room,
+                bed,
+                drId,
+                7.0,
+                eType,
+                mode,
+                triage,
+                admittedViaER
         );
 
-        return patient;
+        addPatients(emergencyPatient);
+    }
 
-    }
-    public static void updatePatient( Patient updatedPatient){
-        updatedPatient.setEmail(InputHandler.getStringInput("Enter new email: "));
-        updatedPatient.setPhoneNumber(InputHandler.getStringInput("Enter new phone number: "));
-        updatedPatient.setEmergencyContact(InputHandler.getStringInput("Enter Emergency Contact: "));
-        updatedPatient.setAddress(InputHandler.getStringInput("Enter new address: "));
-        System.out.println(Constants.PATIENT_UPDATED_SUCCESSFULLY);
-    }
-    public void removePatient(String patientId){
-        for(Patient p : patients){
-            if(p.getId().equals(patientId)){
+    public void addPatient(String firstName, String lastName, String phone){
 
-                patients.remove(p);
-                System.out.println(Constants.PATIENT_REMOVED_SUCCESSFULLY);
-            }
-        }
-    }
-    public static Patient  getPatientById(String patientId){
         Patient patient = new Patient();
+
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setPhoneNumber(phone);
+
+        patients.add(patient);
+
+    }
+
+    public void addPatient(String firstName, String lastName, String phone , String bloodGroup, String email){
+        Patient patient = new Patient();
+
+        patient.setFirstName(firstName);
+        patient.setLastName(lastName);
+        patient.setPhoneNumber(phone);
+        patient.setPhoneNumber(bloodGroup);
+        patient.setPhoneNumber(email);
+
+        patients.add(patient);
+
+    }
+
+
+    public static Patient  getPatientById(String patientId){
         for(Patient p : patients){
             if(p.getId().equals(patientId)){
-                patient= p;
-            }else{
-                System.out.println(Constants.PATIENT_NOT_FOUND);
-                break;
+                return p ;
             }
         }
 
-        return patient;
+        System.out.println(Constants.PATIENT_NOT_FOUND);
+        return null;
     }
 
     public void searchPatientsByName(String name){
@@ -147,7 +236,16 @@ public class PatientService implements Manageable, Searchable, Editable {
             }
         }
     }
+    public void searchPatients(String firstName, String lastName){
+        for(Patient p : patients){
+            if(p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)){
+                p.displayInfo();
+                return;
+            }
+        }
+        System.out.println(Constants.PATIENT_NOT_FOUND);
 
+    }
 
     public static void displayPatients(){
         if (HelperUtils.isNull(patients)) { System.out.println("No patients registered."); return; }
@@ -186,62 +284,6 @@ public class PatientService implements Manageable, Searchable, Editable {
     }
 
 
-
-    public void addPatient(String firstName, String lastName, String phone){
-
-        Patient patient = new Patient();
-
-        patient.setFirstName(firstName);
-        patient.setLastName(lastName);
-        patient.setPhoneNumber(phone);
-
-        patients.add(patient);
-
-    }
-
-    public void addPatient(String firstName, String lastName, String phone , String bloodGroup, String email){
-        Patient patient = new Patient();
-
-        patient.setFirstName(firstName);
-        patient.setLastName(lastName);
-        patient.setPhoneNumber(phone);
-        patient.setPhoneNumber(bloodGroup);
-        patient.setPhoneNumber(email);
-
-        patients.add(patient);
-
-    }
-    public static void searchPatients(String keyword) {
-        if (HelperUtils.isNull(patients)) {
-            System.out.println("No patients registered.");
-            return;}
-        for (Patient patient : patients) {
-
-            if (patient.getFirstName().equalsIgnoreCase(keyword)
-                    || patient.getLastName().equalsIgnoreCase(keyword)
-                    || patient.getPhoneNumber().equalsIgnoreCase(keyword)
-                    || patient.getBloodGroup().equalsIgnoreCase(keyword)
-                    || patient.getEmail().equalsIgnoreCase(keyword)
-                    || patient.getId().equals(keyword)) {
-
-                patient.displayInfo();
-                return;
-            }
-        }
-        System.out.println(Constants.PATIENT_NOT_FOUND);
-    }
-
-    public void searchPatients(String firstName, String lastName){
-        for(Patient p : patients){
-            if(p.getFirstName().equals(firstName) && p.getLastName().equals(lastName)){
-                p.displayInfo();
-                return;
-            }
-        }
-        System.out.println(Constants.PATIENT_NOT_FOUND);
-
-    }
-
     public void displayPatientHistory(String patientId) {
         Patient p = getPatientById(patientId);
         if (HelperUtils.isNull(p)) { System.out.println(Constants.PATIENT_NOT_FOUND); return; }
@@ -254,11 +296,48 @@ public class PatientService implements Manageable, Searchable, Editable {
         }
     }
 
+    public void updatePatient(){
 
+        String patientId = InputHandler.getStringInput("Enter patient ID: ");
+
+        Patient existingPatient = getPatientById(patientId);
+
+        if(HelperUtils.isNull(existingPatient)){
+            return;
+        }
+
+        String phone = InputHandler.getStringInput("Enter new phone number: ");
+
+        String email = InputHandler.getStringInput("Enter new email: ");
+
+        String address = InputHandler.getStringInput("Enter new address: ");
+
+        String emergencyContact = InputHandler.getStringInput("Enter new emergency contact: ");
+
+        String insuranceId = InputHandler.getStringInput("Enter new insurance ID: ");
+
+        Patient updatedPatient = new Patient();
+
+        updatedPatient.setId(patientId);
+        updatedPatient.setPhoneNumber(phone);
+        updatedPatient.setEmail(email);
+        updatedPatient.setAddress(address);
+        updatedPatient.setEmergencyContact(emergencyContact);
+        updatedPatient.setInsuranceId(insuranceId);
+
+        edit(updatedPatient);
+    }
 
 
     @Override
     public void add(Object entity) {
+        Patient patient = (Patient) entity;
+        for(Patient p : patients){
+            if (p.getId().equals(patient.getId())) {
+                return;
+            }
+        }
+        patients.add(patient);
 
     }
     @Override
@@ -271,7 +350,6 @@ public class PatientService implements Manageable, Searchable, Editable {
 
 
     }
-
     @Override
     public Void getAll() {
         if (!HelperUtils.isNull(patients)) {
@@ -282,29 +360,39 @@ public class PatientService implements Manageable, Searchable, Editable {
         }
         return null;
     }
-
     @Override
     public void search(String keyword) {
-        if (HelperUtils.isNull(patients)) {
-            System.out.println("No patients registered.");
-            return;}
-        for (Patient patient : patients) {
 
-            if (patient.getFirstName().equalsIgnoreCase(keyword)
-                    || patient.getLastName().equalsIgnoreCase(keyword)
-                    || patient.getPhoneNumber().equalsIgnoreCase(keyword)
-                    || patient.getBloodGroup().equalsIgnoreCase(keyword)
-                    || patient.getEmail().equalsIgnoreCase(keyword)
-                    || patient.getId().equals(keyword)) {
+        boolean found = false;
 
-                patient.displayInfo();
-                return;
+        for(Patient p : patients){
+
+            if(
+
+                    p.getId().equalsIgnoreCase(keyword) ||
+                            p.getFirstName().equalsIgnoreCase(keyword) ||
+                            p.getLastName().equalsIgnoreCase(keyword) ||
+                            p.getGender().equalsIgnoreCase(keyword) ||
+                            p.getPhoneNumber().equalsIgnoreCase(keyword) ||
+                            p.getEmail().equalsIgnoreCase(keyword) ||
+                            p.getAddress().equalsIgnoreCase(keyword) ||
+                            p.getBloodGroup().equalsIgnoreCase(keyword) ||
+                            p.getEmergencyContact().equalsIgnoreCase(keyword) ||
+                            p.getInsuranceId().equalsIgnoreCase(keyword) ||
+                            p.getDateOfBirth().toString().equalsIgnoreCase(keyword) ||
+                            p.getRegistrationDate().toString().equalsIgnoreCase(keyword)
+
+            ){
+
+                p.displayInfo();
+                found = true;
             }
         }
-        System.out.println(Constants.PATIENT_NOT_FOUND);
 
+        if(!found){
+            System.out.println(Constants.PATIENT_NOT_FOUND);
+        }
     }
-
     @Override
     public void searchById(String id) {
         if (HelperUtils.isNull(patients)) {
@@ -312,7 +400,7 @@ public class PatientService implements Manageable, Searchable, Editable {
             return;}
         for (Patient patient : patients) {
 
-            if (patient.getId().equals(id)) {
+            if (patient.getId().equalsIgnoreCase(id)) {
                 patient.displayInfo();
                 return;
             }
@@ -324,160 +412,41 @@ public class PatientService implements Manageable, Searchable, Editable {
 
     }
 
+    @Override
+    public void edit(Object updatedData) {
 
-    private static void registerPatient() {
-        String id    = HelperUtils.generateId("P",4);
-        String firstName    = InputHandler.getStringInput("First Name: ");
-        String lastName    = InputHandler.getStringInput("Last Name: ");
-        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
-        String gender = InputHandler.getStringInput("Gender: ");
-        String phone  = InputHandler.getStringInput("Phone: ");
-        String email  = InputHandler.getStringInput("Email: ");
-        String address   = InputHandler.getStringInput("Address: ");
-        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
-        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
-        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
-        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
-        List<String> allergies = new ArrayList<>();
-        if(hasAllergies){
-            System.out.println("Enter allergies separated by commas:");
-            String allergiesInput = scanner.nextLine();
-            allergies.add(Arrays.toString(allergiesInput.split(",")));
-        }
-        Patient p = new Patient(id, firstName, lastName, DOB, gender, phone, email,address,
-                bloodGroup, emergencyContact,LocalDate.now(),insuranceId,allergies);
-        addPatients(p);
-    }
-
-    private static void registerInPatient() {
-        String id     = HelperUtils.generateId("InP",4);
-        String firstName    = InputHandler.getStringInput("First Name: ");
-        String lastName    = InputHandler.getStringInput("Last Name: ");
-        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
-        String gender = InputHandler.getStringInput("Gender: ");
-        String phone  = InputHandler.getStringInput("Phone: ");
-        String email  = InputHandler.getStringInput("Email: ");
-        String address   = InputHandler.getStringInput("Address: ");
-        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
-        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
-        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
-        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
-        List<String> allergies = new ArrayList<>();
-        if(hasAllergies){
-            System.out.println("Enter allergies separated by commas:");
-            String allergiesInput = scanner.nextLine();
-            allergies.add(Arrays.toString(allergiesInput.split(",")));
-        }
-        String room   = InputHandler.getStringInput(" Room Number: ");
-        String bed    = InputHandler.getStringInput(" Bed Number: ");
-        String drId   = InputHandler.getStringInput("Admitting Doctor ID: ");
-        double daily  = InputHandler.getDoubleInput("Daily Charges : ");
-        InPatient inPatient  = new InPatient(id, firstName, lastName, DOB, gender, phone, email, address,
-                bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,
-                LocalDate.now(),null,room, bed, drId, daily);
-        addPatients(inPatient);
-    }
-
-    private static void registerOutPatient() {
-        String id     = HelperUtils.generateId("OutP",4);
-        String firstName    = InputHandler.getStringInput("First Name: ");
-        String lastName    = InputHandler.getStringInput("Last Name: ");
-        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
-        String gender = InputHandler.getStringInput("Gender: ");
-        String phone  = InputHandler.getStringInput("Phone: ");
-        String email  = InputHandler.getStringInput("Email: ");
-        String address   = InputHandler.getStringInput("Address: ");
-        String bloodGroup  = InputHandler.getStringInput("Blood Group: ");
-        String emergencyContact     = InputHandler.getStringInput("Emergency Contact: ");
-        String insuranceId    = InputHandler.getStringInput("Insurance ID: ");
-        Boolean hasAllergies = InputHandler.getConfirmation("Do have any allergies? ");
-        List<String> allergies = new ArrayList<>();
-        if(hasAllergies){
-            System.out.println("Enter allergies separated by commas:");
-            String allergiesInput = scanner.nextLine();
-            allergies.add(Arrays.toString(allergiesInput.split(",")));
-        }
-        String prefDr = InputHandler.getStringInput(" Preferred Doctor ID: ");
-        OutPatient outPatient = new OutPatient(id, firstName, lastName, DOB, gender, phone, email, address,
-                bloodGroup,emergencyContact,LocalDate.now(),insuranceId,allergies,null, null,
-                prefDr);
-        addPatients(outPatient);
-    }
-
-    private static void registerEmergencyPatient() {
-
-        String id = HelperUtils.generateId("EmergP");
-
-        String firstName = InputHandler.getStringInput("First Name: ");
-        String lastName = InputHandler.getStringInput("Last Name: ");
-        LocalDate DOB = InputHandler.getDateInput("Date of Birth: ");
-        String gender = InputHandler.getStringInput("Gender: ");
-        String phone = InputHandler.getStringInput("Phone: ");
-        String email = InputHandler.getStringInput("Email: ");
-        String address = InputHandler.getStringInput("Address: ");
-
-        String bloodGroup = InputHandler.getStringInput("Blood Group: ");
-        String emergencyContact = InputHandler.getStringInput("Emergency Contact: ");
-        String insuranceId = InputHandler.getStringInput("Insurance ID: ");
-
-        Boolean hasAllergies = InputHandler.getConfirmation("Do you have any allergies? ");
-        List<String> allergies = new ArrayList<>();
-
-        if (hasAllergies) {
-            System.out.println("Enter allergies separated by commas:");
-            String allergiesInput = scanner.nextLine();
-
-            allergies = Arrays.asList(allergiesInput.split(","));
+        if(!(updatedData instanceof Patient)){
+            System.out.println("Invalid patient data");
+            return;
         }
 
-        String room = InputHandler.getStringInput("Room Number: ");
-        String bed = InputHandler.getStringInput("Bed Number: ");
-        String drId = InputHandler.getStringInput("Admitting Doctor ID: ");
+        Patient updatedPatient = (Patient) updatedData;
 
-        String eType = InputHandler.getStringInput("Emergency Type: ");
-        String mode = InputHandler.getStringInput("Arrival Mode: ");
+        for(Patient p : patients){
 
-        int triage = InputHandler.getIntInput("Triage Level (1-5): ", 1, 5);
+            if(p.getId().equals(updatedPatient.getId())){
 
-        Boolean admittedViaER = InputHandler.getConfirmation("Admitted via ER? ");
+                p.setPhoneNumber(updatedPatient.getPhoneNumber());
+                p.setEmail(updatedPatient.getEmail());
+                p.setAddress(updatedPatient.getAddress());
+                p.setEmergencyContact(updatedPatient.getEmergencyContact());
+                p.setInsuranceId(updatedPatient.getInsuranceId());
 
-        EmergencyPatient emergencyPatient = new EmergencyPatient(
-                id,
-                firstName,
-                lastName,
-                DOB,
-                gender,
-                phone,
-                email,
-                address,
-                bloodGroup,
-                emergencyContact,
-                LocalDate.now(),
-                insuranceId,
-                allergies,
-                LocalDate.now(),
-                null,
-                room,
-                bed,
-                drId,
-                7.0,
-                eType,
-                mode,
-                triage,
-                admittedViaER
-        );
+                System.out.println(Constants.PATIENT_UPDATED_SUCCESSFULLY);
+                return;
+            }
+        }
 
-        addPatients(emergencyPatient);
+        System.out.println(Constants.PATIENT_NOT_FOUND);
     }
 
-    private static void updatePatient() {
-        String id = InputHandler.getStringInput("Patient ID to update: ");
-        Patient existing = getPatientById(id);
-        if (HelperUtils.isNull(existing)) { System.out.println(Constants.PATIENT_NOT_FOUND); return; }
-        updatePatient(existing);
+    @Override
+    public void validate() {
+
     }
 
 
+    // Handle Mune Message
     public void handlePatientMenu(){
         Boolean patientExit = true;
         while (patientExit) {
@@ -525,15 +494,4 @@ public class PatientService implements Manageable, Searchable, Editable {
 
     }
 
-
-    @Override
-    public void edit(Object updatedData) {
-
-
-    }
-
-    @Override
-    public void validate() {
-
-    }
 }
