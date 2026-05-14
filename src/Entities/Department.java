@@ -12,8 +12,8 @@ public class Department implements Displayable {
     private String departmentName;
     private String headDoctorId;
 
-    private List<Doctor> doctors;
-    private List<Nurse> nurses;
+    private List<String> doctors;
+    private List<String> nurses;
 
     private int bedCapacity;
     private int availableBeds;
@@ -22,10 +22,7 @@ public class Department implements Displayable {
     public Department(String departmentId,
                       String departmentName,
                       String headDoctorId,
-                      List<Doctor> doctors,
-                      List<Nurse> nurses,
-                      int bedCapacity,
-                      int availableBeds) {
+                      int bedCapacity) {
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
@@ -37,10 +34,7 @@ public class Department implements Displayable {
         this.nurses = new ArrayList<>();
     }
 
-    public Department(String departmentId, String generalMedicine, String headDoctorId, int i) {
-    }
-
-    // Getters and Setters
+    // Get and Set
     public String getDepartmentId() {
         return departmentId;
     }
@@ -65,11 +59,11 @@ public class Department implements Displayable {
         this.headDoctorId = headDoctorId;
     }
 
-    public List<Doctor> getDoctors() {
+    public List<String> getDoctors() {
         return doctors;
     }
 
-    public List<Nurse> getNurses() {
+    public List<String> getNurses() {
         return nurses;
     }
 
@@ -89,14 +83,14 @@ public class Department implements Displayable {
         this.availableBeds = availableBeds;
     }
 
-    public void assignDoctor(Doctor doctor) {
-        doctors.add(doctor);
+    public void assignDoctor(String doctorid) {
+        doctors.add(doctorid);
         System.out.println("Doctor assigned to department.");
 
     }
 
-    public void assignNurse(Nurse nurse) {
-        nurses.add(nurse);
+    public void assignNurse(String nurseId) {
+        nurses.add(nurseId);
         System.out.println("Nurse assigned to department.");
 
     }
