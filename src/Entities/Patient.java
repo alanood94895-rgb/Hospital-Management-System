@@ -1,8 +1,6 @@
 package Entities;
 
 import Behaviour.Displayable;
-import Entities.MedicalRecord;
-import Entities.Person;
 import Utils.Constants;
 import Utils.HelperUtils;
 
@@ -168,7 +166,7 @@ public class Patient extends Person implements Displayable {
         if (HelperUtils.isNotNull(record)) medicalRecords.add(record);
     }
 
-    public void addAppointment(){
+    public void addAppointment(Appointment appointment){
         System.out.println(Constants.ADD_APPOINTMENT);
         appointments.add(scanner.nextLine());
     }
