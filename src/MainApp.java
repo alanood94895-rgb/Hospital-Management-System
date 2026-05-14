@@ -106,8 +106,7 @@ public class MainApp{
                         Integer recordOption =
                                 Integer.parseInt(input.nextLine());
 
-                        recordMenuContinue =
-                                medicalRecordService.handleMedicalRecordMenu(recordOption);
+                        medicalRecordService.handleMedicalREcordMenu(recordOption);
                     }
                 }
 

@@ -163,7 +163,7 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
     }
 
 
-    public void handleMedicalREcordMenu() {
+    public void handleMedicalREcordMenu(Integer recordOption) {
 
         Boolean exit = true;
 
