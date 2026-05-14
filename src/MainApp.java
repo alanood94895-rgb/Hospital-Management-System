@@ -7,7 +7,7 @@ import Utils.SampleData;
 
 import java.util.Scanner;
 
-    public class MainApp{
+public class MainApp{
 
     static Scanner input = new Scanner(System.in);
 
@@ -22,6 +22,7 @@ import java.util.Scanner;
 
         Boolean mainMenuContinue = true;
         while (mainMenuContinue) {
+            System.out.println(MenuMessages.MAIN_MENU_MESSAGE);
             int choice = InputHandler.getIntInput(Constants.ENTER_OPTION, 1, 8);
 
 
@@ -75,8 +76,7 @@ import java.util.Scanner;
                         Integer doctorOption =
                                 Integer.parseInt(input.nextLine());
 
-                        doctorMenuContinue =
-                                doctorService.handleDoctorMenu();
+                        doctorService.handleDoctorMenu();
                     }
                 }
 
@@ -91,8 +91,7 @@ import java.util.Scanner;
                         Integer nurseOption =
                                 Integer.parseInt(input.nextLine());
 
-                        nurseMenuContinue =
-                                nurseService.handleNurseMenu(nurseOption);
+                        nurseService.handleNurseMenu();
                     }
                 }
 
@@ -123,7 +122,7 @@ import java.util.Scanner;
                         Integer appointmentOption =
                                 Integer.parseInt(input.nextLine());
 
-                        appointmentService.handleAppointmentMenu(appointmentOption);
+                        appointmentService.handleAppointmentMenu();
                     }
                 }
 

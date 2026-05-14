@@ -17,6 +17,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static Services.DepartmentService.*;
+
 public class SampleData {
 
     public static void loadPatients() {
@@ -27,7 +29,6 @@ public class SampleData {
         AppointmentService appointmentService = new AppointmentService();
 
 
-        DepartmentService.add(new Department("DEP-001", "Oncology",     "DOC-001", 30));
         departmentService.add(new Department("DEP-002", "General Medicine",      "DOC-002", 15));
         departmentService.add(new Department("DEP-003", "Emergency",     "DOC-003", 50));
         departmentService.add(new Department("DEP-004", "Pediatrics",      "DOC-004", 54));
@@ -487,12 +488,6 @@ public class SampleData {
                 "BSc Nursing"
         );
 
-        NurseService.add(n1);
-        NurseService.add(n2);
-        NurseService.add(n3);
-        NurseService.add(n4);
-        NurseService.add(n5);
-
 
         // Department sample data
         Department dep1 = new Department(
@@ -516,9 +511,6 @@ public class SampleData {
                 50
         );
 
-        DepartmentService.add(dep1);
-        DepartmentService.add(dep2);
-        DepartmentService.add(dep3);
 
 
         //Appointment sample data
@@ -687,21 +679,6 @@ public class SampleData {
                 "Routine checkup"
         );
 
-        AppointmentService.add(a1);
-        AppointmentService.add(a2);
-        AppointmentService.add(a3);
-        AppointmentService.add(a4);
-        AppointmentService.add(a5);
-        AppointmentService.add(a6);
-        AppointmentService.add(a7);
-        AppointmentService.add(a8);
-        AppointmentService.add(a9);
-        AppointmentService.add(a10);
-        AppointmentService.add(a11);
-        AppointmentService.add(a12);
-        AppointmentService.add(a13);
-        AppointmentService.add(a14);
-        AppointmentService.add(a15);
 
 
 

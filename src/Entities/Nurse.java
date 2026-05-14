@@ -1,15 +1,17 @@
 package Entities;
 
 import Behaviour.Displayable;
-import Entities.Patient;
 import Utils.Constants;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Nurse extends Person implements Displayable {
+
+    public Nurse() {
+
+    }
 
     public String getDepartmentId() {
         return departmentId;
@@ -23,7 +25,7 @@ public class Nurse extends Person implements Displayable {
 
     private String shift;
     private String qualification;
-    private List<Patient> assignedPatients;
+    private List<String> assignedPatients;
 
     public Nurse(String id,
                  String firstName,
@@ -50,7 +52,7 @@ public class Nurse extends Person implements Displayable {
         this.shift = shift;
         this.qualification = qualification;
 
-        this.assignedPatients = new ArrayList<>();
+        this.assignedPatients = new ArrayList<String>();
     }
 
     @Override
@@ -68,7 +70,7 @@ public class Nurse extends Person implements Displayable {
     }
 
     // Assign patient
-    public void assignPatient(Patient patient) {
+    public void assignPatient(String patient) {
         assignedPatients.add(patient);
         System.out.println(Constants.PATIENT_ASSIGNED_SUCCESSFULLY);
     }

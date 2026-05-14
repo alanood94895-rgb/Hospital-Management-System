@@ -129,7 +129,7 @@ public class DepartmentService implements Manageable, Searchable , Editable {
 
 
     @Override
-    public void add(Object entity) {
+    public  void add(Object entity) {
         Department department = (Department) entity;
         for(Department d : departments){
             if (d.getDepartmentId().equals(department.getDepartmentId())) {

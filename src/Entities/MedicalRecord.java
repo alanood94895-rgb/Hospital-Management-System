@@ -1,4 +1,5 @@
 package Entities;
+
 import Behaviour.Displayable;
 
 import java.time.LocalDate;
@@ -77,15 +78,14 @@ public class MedicalRecord implements Displayable {
     private String prescription;
     private String testResults;
     private String notes;
+    public MedicalRecord(){
+        super();
+    }
 
 
-    public MedicalRecord(String recordId,
-                         String patientId,
-                         String doctorId,
-                         LocalDate visitDate,
-                         String diagnosis,
-                         String prescription,
-                         String testResults,
+    public MedicalRecord(String recordId, String patientId, String doctorId,
+                         LocalDate visitDate, String diagnosis,
+                         String prescription, String testResults,
                          String notes) {
 
         this.recordId = recordId;
@@ -107,6 +107,7 @@ public class MedicalRecord implements Displayable {
         System.out.println("Prescription: " + prescription);
         System.out.println("Test Results: " + testResults);
         System.out.println("Notes: " + notes);
+        System.out.println();
     }
 
     @Override

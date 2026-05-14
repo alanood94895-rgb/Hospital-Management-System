@@ -3,9 +3,7 @@ package Services;
 import Behaviour.Editable;
 import Behaviour.Manageable;
 import Behaviour.Searchable;
-import Entities.Doctor;
 import Entities.Nurse;
-import Entities.Patient;
 import Utils.Constants;
 import Utils.HelperUtils;
 import Utils.InputHandler;
@@ -14,7 +12,6 @@ import Utils.MenuMessages;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class NurseService implements Manageable, Searchable , Editable {
     private static List <Nurse> nurses = new ArrayList<>();
@@ -167,8 +164,9 @@ public class NurseService implements Manageable, Searchable , Editable {
     }
 
     @Override
-    public void getAll() {
+    public Void getAll() {
         nurses.forEach(nurse -> nurse.displayInfo());
+        return null;
     }
 
     @Override
@@ -185,7 +183,7 @@ public class NurseService implements Manageable, Searchable , Editable {
                             n.getAddress().equalsIgnoreCase(keyword) ||
                             n.getDepartmentId().equalsIgnoreCase(keyword) ||
                             n.getShift().equalsIgnoreCase(keyword) ||
-                            n.getQualification().equalsIgnoreCase(keyword) ||
+                            n.getShift().equalsIgnoreCase(keyword) ||
                             n.getDateOfBirth().toString().equalsIgnoreCase(keyword)
             ){
 
