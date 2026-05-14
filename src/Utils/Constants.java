@@ -54,4 +54,11 @@ public class Constants {
         public static String NOT_IN_RANGE = "Value is not in range";
         public static String INVALID_DATE = "Invalid date format. Use yyyy-MM-dd.";
 
+        public static  String DOCTOR_ASSIGNED_SUCCESSFULLY     = "Doctor assigned to department successfully.";
+        public static  String NURSE_ASSIGNED_SUCCESSFULLY      = "Nurse assigned to department successfully.";
+
+
+
+
+
 }

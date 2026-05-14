@@ -333,7 +333,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
 
     }
 
-    public void handleDoctorMenu(){
+    public Boolean handleDoctorMenu(){
         Boolean doctorMenu = true;
         while (doctorMenu) {
             System.out.println(MenuMessages.DOCTOR_MENU_MESSAGE);
@@ -378,6 +378,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
 
         }
 
+        return doctorMenu;
     }
 
     @Override

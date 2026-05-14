@@ -34,6 +34,10 @@ public class Department implements Displayable {
         this.nurses = new ArrayList<>();
     }
 
+    public Department() {
+
+    }
+
     // Get and Set
     public String getDepartmentId() {
         return departmentId;

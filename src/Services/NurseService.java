@@ -126,7 +126,7 @@ public class NurseService implements Manageable, Searchable {
     }
 
     // GET BY ID
-    public void getNurseById(String nurseId) {
+    public Nurse getNurseById(String nurseId) {
 
         for (Nurse n : nurses) {
 
@@ -134,11 +134,12 @@ public class NurseService implements Manageable, Searchable {
 
                 n.displayInfo();
 
-                return;
+                return n;
             }
         }
 
         System.out.println(Constants.NURSE_NOT_FOUND);
+        return null;
     }
 
     // GET BY DEPARTMENT
