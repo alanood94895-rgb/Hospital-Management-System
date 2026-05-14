@@ -19,10 +19,8 @@ public class Department implements Displayable {
     private int availableBeds;
 
     // Constructor
-    public Department(String departmentId,
-                      String departmentName,
-                      String headDoctorId,
-                      int bedCapacity) {
+    public Department(String departmentId, String departmentName,
+                      String headDoctorId, int bedCapacity) {
 
         this.departmentId = departmentId;
         this.departmentName = departmentName;
@@ -35,10 +33,10 @@ public class Department implements Displayable {
     }
 
     public Department() {
-
+        super();
     }
 
-    // Get and Set
+    // Getters and Setters
     public String getDepartmentId() {
         return departmentId;
     }
@@ -89,13 +87,11 @@ public class Department implements Displayable {
 
     public void assignDoctor(String doctorid) {
         doctors.add(doctorid);
-        System.out.println("Doctor assigned to department.");
 
     }
 
     public void assignNurse(String nurseId) {
         nurses.add(nurseId);
-        System.out.println("Nurse assigned to department.");
 
     }
 
@@ -113,6 +109,7 @@ public class Department implements Displayable {
         System.out.println("Available Beds: " + availableBeds);
         System.out.println("Doctors: " + doctors.size());
         System.out.println("Nurses: " + nurses.size());
+        System.out.println();
     }
 
     @Override
