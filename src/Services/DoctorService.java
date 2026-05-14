@@ -50,7 +50,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
         String deptId   = InputHandler.getStringInput("Department ID: ");
         double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
 
-        Doctor d = new Doctor(HelperUtils.generateId("DOC-",4), firstName, lastName, dob, gender, phone, email, address,
+        Doctor d = new Doctor(HelperUtils.generateId("DOC",3), firstName, lastName, dob, gender, phone, email, address,
                 specialization, qualification, experience, deptId, fee);
         addDoctor(d);
     }
@@ -73,7 +73,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
         double fee    = InputHandler.getDoubleInput("Consultation Fee: ");
         boolean  operationTheatreAccess   = InputHandler.getConfirmation("Operation Theatre Access ?");
 
-        Surgeon s = new Surgeon(HelperUtils.generateId("Surg-",4), firstName, lastName, dob, gender, phone, email, address,
+        Surgeon s = new Surgeon(HelperUtils.generateId("SURG",3), firstName, lastName, dob, gender, phone, email, address,
                 specialization, qualification, experience, deptId, fee, null, operationTheatreAccess);
         add(s);
     }
@@ -96,7 +96,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
         boolean online = InputHandler.getConfirmation(" Online consultations?");
         int dur        = InputHandler.getIntInput(" Duration (minutes): ", 15, 120);
 
-        Consultant c = new Consultant(HelperUtils.generateId("Cons-",4), firstName, lastName, dob, gender, phone, email, address,
+        Consultant c = new Consultant(HelperUtils.generateId("CONS",3), firstName, lastName, dob, gender, phone, email, address,
                 specialization, qualification, experience, deptId, fee, new ArrayList<>(), online, dur);
         addDoctor(c);
     }
@@ -122,14 +122,14 @@ public class DoctorService implements Manageable, Searchable , Editable {
         boolean home   = InputHandler.getConfirmation("Home visits available?");
         boolean vacc   = InputHandler.getConfirmation("Vaccination certified?");
 
-        GeneralPractitioner gp = new GeneralPractitioner(HelperUtils.generateId("GP-",4), firstName, lastName, dob, gender, phone, email, address,
+        GeneralPractitioner gp = new GeneralPractitioner(HelperUtils.generateId("GP",3), firstName, lastName, dob, gender, phone, email, address,
                 specialization, qualification, experience, deptId, fee, walkin, home, vacc);
         addDoctor(gp);
     }
 
     public void addDoctor(String name, String specialization, String phone){
         Doctor doctor = new Doctor();
-        doctor.setId(HelperUtils.generateId("DOC",4));
+        doctor.setId(HelperUtils.generateId("DOC",3));
         doctor.setFirstName(name);
         doctor.setSpecialization(specialization);
         doctor.setPhoneNumber(phone);
@@ -139,7 +139,7 @@ public class DoctorService implements Manageable, Searchable , Editable {
 
     public void addDoctor(String name, String specialization, String phone, double consultationFee){
         Doctor doctor = new Doctor();
-        doctor.setId(HelperUtils.generateId("DOC",4));
+        doctor.setId(HelperUtils.generateId("DOC",3));
         doctor.setFirstName(name);
         doctor.setSpecialization(specialization);
         doctor.setPhoneNumber(phone);
@@ -333,30 +333,22 @@ public class DoctorService implements Manageable, Searchable , Editable {
 
     }
 
-    public Boolean handleDoctorMenu(){
+    public void handleDoctorMenu(){
         Boolean doctorMenu = true;
         while (doctorMenu) {
             System.out.println(MenuMessages.DOCTOR_MENU_MESSAGE);
             int option = InputHandler.getIntInput(Constants.ENTER_OPTION,0,10);
             switch (option) {
-                case 1->
-                        addDoctor();
-                case 2->
-                        addSurgeon();
-                case 3->
-                        addConsultant();
-                case 4->
-                        addGeneralPractitioner();
-                case 5->
-                        displayDoctors();
-
+                case 1-> addDoctor();
+                case 2-> addSurgeon();
+                case 3-> addConsultant();
+                case 4-> addGeneralPractitioner();
+                case 5->displayDoctors();
                 case 6 ->{
                     String spe = InputHandler.getStringInput("Search Specialization: ");
                     displayDoctors(spe);
                 }
-                case 7->
-                        getAvailableDoctors();
-
+                case 7->getAvailableDoctors();
                 case 8-> {
                     String doctorId = InputHandler.getStringInput("Doctor ID: ");
                     String patientId = InputHandler.getStringInput("Patient ID: ");
@@ -378,7 +370,6 @@ public class DoctorService implements Manageable, Searchable , Editable {
 
         }
 
-        return doctorMenu;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class SampleData {
         AppointmentService appointmentService = new AppointmentService();
 
 
-        departmentService.add(new Department("DEP-001", "Oncology",     "DOC-001", 30));
+        DepartmentService.add(new Department("DEP-001", "Oncology",     "DOC-001", 30));
         departmentService.add(new Department("DEP-002", "General Medicine",      "DOC-002", 15));
         departmentService.add(new Department("DEP-003", "Emergency",     "DOC-003", 50));
         departmentService.add(new Department("DEP-004", "Pediatrics",      "DOC-004", 54));

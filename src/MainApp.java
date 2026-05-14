@@ -1,9 +1,13 @@
+import Menu.Menu;
 import Services.*;
+import Utils.Constants;
+import Utils.InputHandler;
 import Utils.MenuMessages;
+import Utils.SampleData;
 
 import java.util.Scanner;
 
-public class MainApp {
+    public class MainApp{
 
     static Scanner input = new Scanner(System.in);
 
@@ -18,6 +22,8 @@ public class MainApp {
 
         Boolean mainMenuContinue = true;
         while (mainMenuContinue) {
+            int choice = InputHandler.getIntInput(Constants.ENTER_OPTION, 1, 8);
+
 
             System.out.println("********** Hospital Management System **********");
             System.out.print(MenuMessages.MAIN_MENU_MESSAGE);
@@ -53,8 +59,7 @@ public class MainApp {
                         Integer deptOption =
                                 Integer.parseInt(input.nextLine());
 
-                        deptMenuContinue =
-                                departmentService.handleDepartmentMenu(deptOption);
+                        departmentService.handleDepartmentMenu();
                     }
                 }
 
@@ -118,8 +123,7 @@ public class MainApp {
                         Integer appointmentOption =
                                 Integer.parseInt(input.nextLine());
 
-                        appointmentMenuContinue =
-                                appointmentService.handleAppointmentMenu(appointmentOption);
+                        appointmentService.handleAppointmentMenu(appointmentOption);
                     }
                 }
 

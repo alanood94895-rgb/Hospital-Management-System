@@ -57,6 +57,7 @@ public class Constants {
         public static  String DOCTOR_ASSIGNED_SUCCESSFULLY     = "Doctor assigned to department successfully.";
         public static  String NURSE_ASSIGNED_SUCCESSFULLY      = "Nurse assigned to department successfully.";
 
+        public static  String INVALID_TIME = "Invalid time. Try again.";
 
 
 

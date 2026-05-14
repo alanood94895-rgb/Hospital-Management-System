@@ -39,7 +39,7 @@ public class DepartmentService implements Manageable, Searchable , Editable {
         System.out.print("Enter Available Beds: ");
         int availableBeds = InputHandler.getIntInput("Enter Available Beds: ");
         Department department = new Department(
-                HelperUtils.generateId("D-"),
+                HelperUtils.generateId("DEP",2),
                 departmentName,
                 headDoctorId,
                 bedCapacity
@@ -226,7 +226,7 @@ public class DepartmentService implements Manageable, Searchable , Editable {
             System.out.println(Constants.DEPARTMENT_NOT_FOUND);
             return;
         }
-        System.out.println(" Department Statistics ");
+        System.out.println("========== Department Statistics ==========");
         for (Department d : departments) {
             System.out.println("Department  : " + d.getDepartmentName());
             System.out.println("Doctors     : " + d.getDoctors().size());
@@ -240,8 +240,6 @@ public class DepartmentService implements Manageable, Searchable , Editable {
 
 
 
-
-    // Handle Department Menu
     public void handleDepartmentMenu() {
         boolean departmentExit = true;
         while (departmentExit) {
@@ -291,6 +289,4 @@ public class DepartmentService implements Manageable, Searchable , Editable {
     public void validate() {
 
     }
-
-
 }

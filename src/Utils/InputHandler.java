@@ -1,6 +1,7 @@
 package Utils;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class InputHandler {
         return input;
     }
 
+    /** Reads an integer from the console. */
     public static int getIntInput(String prompt) {
         while (true) {
             System.out.print(prompt);
@@ -76,4 +78,23 @@ public class InputHandler {
             System.out.println("Please enter 'y' or 'n'");
         }
     }
+
+    public static LocalTime getTimeInput(String prompt) {
+        while (true) {
+            System.out.print(prompt + " (HH:mm): ");
+            String raw = scanner.nextLine().trim();
+
+            try {
+                return LocalTime.parse(raw);
+            } catch (DateTimeParseException e) {
+                System.out.println(Constants.INVALID_TIME);
+            }
+        }
+    }
+
+
+
+
+
+
 }
