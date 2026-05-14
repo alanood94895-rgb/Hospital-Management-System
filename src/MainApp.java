@@ -19,6 +19,7 @@ public class MainApp{
         MedicalRecordService medicalRecordService = new MedicalRecordService();
         DepartmentService departmentService = new DepartmentService();
         AppointmentService appointmentService = new AppointmentService();
+        ReportsServices reportsServices = new ReportsServices();
 
         Boolean mainMenuContinue = true;
         while (mainMenuContinue) {
@@ -106,7 +107,7 @@ public class MainApp{
                         Integer recordOption =
                                 Integer.parseInt(input.nextLine());
 
-                        medicalRecordService.handleMedicalREcordMenu(recordOption);
+                        medicalRecordService.handleMedicalRecordMenu();
                     }
                 }
 
@@ -125,8 +126,22 @@ public class MainApp{
                     }
                 }
 
-                case 7 -> { ;
+                case 7 -> {
+                    ;
+                    boolean exit = true;
+                    while (exit) {
+                        System.out.println(MenuMessages.ReportsMenu);
+                        switch (InputHandler.getIntInput(Constants.ENTER_OPTION, 0, 5)) {
+                            case 1 -> appointmentService.ViewUpcomingAppointments();
+                            case 2-> {;
+                            }
+                            case 3 -> departmentService.departmentOccupancyReport();
+                            case 4 -> patientService.patientStatisticsReport();
+                            case 5 -> patientService.emergencyCasesReport();
+                            case 0 -> exit = false;
+                        }
 
+                }
                 }
 
 

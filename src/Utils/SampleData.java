@@ -489,6 +489,7 @@ public class SampleData {
         );
 
 
+
         // Department sample data
         Department dep1 = new Department(
                 "DEP01",
@@ -678,7 +679,6 @@ public class SampleData {
                 "General Consultation",
                 "Routine checkup"
         );
-
 
 
 
