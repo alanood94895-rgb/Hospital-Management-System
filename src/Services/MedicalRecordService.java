@@ -121,6 +121,19 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
             m.displayInfo();
         }
     }
+    public void getRecords(MedicalRecord medicalRecord){
+        if (HelperUtils.isNull(medicalRecords)){
+            System.out.println(Constants.RECORD_NOT_FOUND);
+            return;
+        }
+
+        for(MedicalRecord m : medicalRecords) {
+            if(m.getRecordId().equals(medicalRecord.getRecordId())){
+                m.displayInfo();
+
+            }
+        }
+    }
     public MedicalRecord getRecordById(String recordId){
         for(MedicalRecord record : medicalRecords) {
             if (record.getRecordId().equals(recordId)) {
@@ -264,25 +277,19 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
             int option = InputHandler.getIntInput(Constants.ENTER_OPTION, 0, 7);
 
             switch (option) {
-                case 1->
-                        addNewRecords();
-                case 2->
-                        getRecords();
-                case 3->
-                        getRecordsByPatientId(InputHandler.getStringInput("Enter Patient Id"));
-                case 4->
-                        getRecordsByDoctorId(InputHandler.getStringInput("Enter Doctor Id"));
-                case 5->
-                        updateMedicalRecord();
-                case 6->
-                        remove(InputHandler.getStringInput("Enter Patient Id"));
-                case 7->
-                        generatePatientHistoryReport(InputHandler.getStringInput("Enter Patient Id"));
-                case 0->
-                        exit = false;
+                case 1->addNewRecords();
+                case 2->getRecords();
+                case 3->getRecordsByPatientId(InputHandler.getStringInput("Enter Patient Id"));
+                case 4->getRecordsByDoctorId(InputHandler.getStringInput("Enter Doctor Id"));
+                case 5-> updateMedicalRecord();
+                case 6-> remove(InputHandler.getStringInput("Enter Patient Id"));
+                case 7-> generatePatientHistoryReport(InputHandler.getStringInput("Enter Patient Id"));
+                case 0-> exit = false;
             }
         }
     }
+
+
 
     @Override
     public void validate() {
