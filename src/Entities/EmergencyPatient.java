@@ -9,6 +9,39 @@ public class EmergencyPatient extends InPatient implements Displayable {
 
     String emergencyType;
     String arrivalMode;
+
+    public Boolean getAdmittedViaER() {
+        return admittedViaER;
+    }
+
+    public void setAdmittedViaER(Boolean admittedViaER) {
+        this.admittedViaER = admittedViaER;
+    }
+
+    public String getEmergencyType() {
+        return emergencyType;
+    }
+
+    public void setEmergencyType(String emergencyType) {
+        this.emergencyType = emergencyType;
+    }
+
+    public String getArrivalMode() {
+        return arrivalMode;
+    }
+
+    public void setArrivalMode(String arrivalMode) {
+        this.arrivalMode = arrivalMode;
+    }
+
+    public Integer getTriageLevel() {
+        return triageLevel;
+    }
+
+    public void setTriageLevel(Integer triageLevel) {
+        this.triageLevel = triageLevel;
+    }
+
     Integer triageLevel;
     Boolean admittedViaER;
     public EmergencyPatient(
@@ -77,13 +110,15 @@ public class EmergencyPatient extends InPatient implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println(" Emergency Summary");
+        System.out.println("===== Emergency Summary =====");
         System.out.println("Patient ID: " + getId());
         System.out.println("Name: " + getFirstName() + " " + getLastName());
         System.out.println("Emergency Type: " + emergencyType);
         System.out.println("Arrival Mode: " + arrivalMode);
         System.out.println("Triage Level: " + triageLevel);
         System.out.println("Admitted Via ER: " + admittedViaER);
+
+
 
     }
 }
