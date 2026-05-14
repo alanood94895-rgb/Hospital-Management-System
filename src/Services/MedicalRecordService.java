@@ -19,8 +19,13 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
     PatientService patientService = new PatientService();
 
     public void addRecord(MedicalRecord record){
-        medicalRecords.add(record);
+
         Patient patient = patientService.getPatientById(record.getPatientId());
+        if (HelperUtils.isNull(patient)){
+            System.out.println(Constants.PATIENT_NOT_FOUND);
+            return;
+        }
+        medicalRecords.add(record);
         patient.addMedicalRecord(record);
         System.out.println(Constants.RECORD_ADDED_SUCCESSFULLY);
     }
@@ -50,33 +55,50 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
 
     }
 
-    public void updateMedicalRecord(){
+    public void updateMedicalRecord() {
+
         String recordId = InputHandler.getStringInput("Enter record ID: ");
+
         MedicalRecord record = getRecordById(recordId);
-        if(HelperUtils.isNull(record)){
+
+        if (HelperUtils.isNull(record)) {
             return;
         }
+
         String diagnosis = InputHandler.getStringInput("Enter new diagnosis: ");
         String prescription = InputHandler.getStringInput("Enter new prescription: ");
         String testResults = InputHandler.getStringInput("Enter new testResults: ");
-        MedicalRecord updateMedicalRecord = new MedicalRecord();
-        updateMedicalRecord.setDiagnosis(diagnosis);
-        updateMedicalRecord.setPrescription(prescription);
-        updateMedicalRecord.setTestResults(testResults);
 
+        MedicalRecord updatedRecord = new MedicalRecord();
+        updatedRecord.setRecordId(recordId);
+        updatedRecord.setDiagnosis(diagnosis);
+        updatedRecord.setPrescription(prescription);
+        updatedRecord.setTestResults(testResults);
 
+        edit(updatedRecord);
     }
     @Override
     public void edit(Object updatedData) {
-        MedicalRecord medicalRecord = (MedicalRecord) updatedData;
-        MedicalRecord m = getRecordById(medicalRecord.getRecordId());
-        if (HelperUtils.isNotNull(m)){
-            m.setDiagnosis(medicalRecord.getDiagnosis());
-            m.setPrescription(medicalRecord.getPrescription());
-            m.setTestResults(medicalRecord.getTestResults());
+
+        if (!(updatedData instanceof MedicalRecord)) {
+            System.out.println("Invalid medical record data");
+            return;
+        }
+        MedicalRecord updated = (MedicalRecord) updatedData;
+
+        for (MedicalRecord m : medicalRecords) {
+
+            if (m.getRecordId().equals(updated.getRecordId())) {
+
+                m.setDiagnosis(updated.getDiagnosis());
+                m.setPrescription(updated.getPrescription());
+                m.setTestResults(updated.getTestResults());
+                System.out.println(Constants.RECORD_UPDATED_SUCCESSFULLY);
+                return;
+            }
         }
 
-
+        System.out.println(Constants.RECORD_NOT_FOUND);
     }
 
     public void removeRecord(String recordId) {
@@ -139,31 +161,99 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
 
     @Override
     public void add(Object entity) {
+        MedicalRecord medicalRecord = (MedicalRecord) entity;
+        medicalRecords.add(medicalRecord);
 
     }
 
     @Override
     public void remove(String id) {
+        MedicalRecord medicalRecord = getRecordById(id);
+        if(HelperUtils.isNotNull(medicalRecord)){
+            medicalRecords.remove(medicalRecord);
+        }
 
     }
 
     @Override
     public Void getAll() {
+
+        if(HelperUtils.isNull(medicalRecords)){
+            return null;
+        }
+        medicalRecords.forEach(MedicalRecord::displayInfo);
         return null;
     }
 
     @Override
     public void search(String keyword) {
 
+        boolean found = false;
+
+        for (MedicalRecord m : medicalRecords) {
+
+            if (
+                    m.getRecordId().equals(keyword)||
+                            m.getDiagnosis().equals(keyword)||
+                            m.getPrescription().equals(keyword)||
+                            m.getPatientId().equals(keyword)||
+                            m.getDoctorId().equals(keyword)
+            ) {
+
+                m.displaySummary();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println(Constants.RECORD_NOT_FOUND);
+        }
     }
 
     @Override
     public void searchById(String id) {
+        MedicalRecord medicalRecord = getRecordById(id);
+        if(HelperUtils.isNotNull(medicalRecord)){
+            medicalRecord.displayInfo();
+        }
 
     }
 
+    public void generatePatientHistoryReport(String patientId) {
 
-    public void handleMedicalREcordMenu(Integer recordOption) {
+        Patient patient = patientService.getPatientById(patientId);
+
+        if (HelperUtils.isNull(patient)) {
+            return;
+        }
+
+        System.out.println("PATIENT HISTORY REPORT");
+        System.out.println("=======================");
+
+        System.out.println("Patient ID: " + patient.getId());
+        System.out.println("Name: " + patient.getFirstName() + " " + patient.getLastName());
+        System.out.println("Blood Group: " + patient.getBloodGroup());
+
+        System.out.println();
+        System.out.println("MEDICAL RECORDS:");
+        System.out.println("----------------------------------");
+
+        boolean found = false;
+
+        for (MedicalRecord record : medicalRecords) {
+            if (record.getPatientId().equals(patientId)) {
+                record.displaySummary();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println(Constants.RECORD_NOT_FOUND);
+        }
+    }
+
+
+    public void handleMedicalRecordMenu() {
 
         Boolean exit = true;
 
@@ -171,22 +261,31 @@ public class MedicalRecordService implements Manageable, Searchable, Editable {
 
             System.out.println(MenuMessages.MEDICAL_RECORD_MENU_MESSAGE);
 
-            int option = InputHandler.getIntInput(Constants.ENTER_OPTION, 0, 9);
+            int option = InputHandler.getIntInput(Constants.ENTER_OPTION, 0, 7);
 
             switch (option) {
-                case 1->addNewRecords();
-                case 2->getRecords();
-                case 3->getRecordsByPatientId(InputHandler.getStringInput("Enter Patient Id"));
-                case 4->getRecordsByDoctorId(InputHandler.getStringInput("Enter Doctor Id"));
-
+                case 1->
+                        addNewRecords();
+                case 2->
+                        getRecords();
+                case 3->
+                        getRecordsByPatientId(InputHandler.getStringInput("Enter Patient Id"));
+                case 4->
+                        getRecordsByDoctorId(InputHandler.getStringInput("Enter Doctor Id"));
+                case 5->
+                        updateMedicalRecord();
+                case 6->
+                        remove(InputHandler.getStringInput("Enter Patient Id"));
+                case 7->
+                        generatePatientHistoryReport(InputHandler.getStringInput("Enter Patient Id"));
+                case 0->
+                        exit = false;
             }
         }
     }
-
 
     @Override
     public void validate() {
 
     }
 }
-
