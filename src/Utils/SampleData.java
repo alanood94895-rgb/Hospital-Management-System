@@ -27,11 +27,11 @@ public class SampleData {
         AppointmentService appointmentService = new AppointmentService();
 
 
-        departmentService.add(new Department("DEP-001", "Cardiology",     "DOC-001", 40));
-        departmentService.add(new Department("DEP-002", "Neurology",      "DOC-002", 30));
-        departmentService.add(new Department("DEP-003", "Pediatrics",     "DOC-003", 25));
-        departmentService.add(new Department("DEP-004", "Emergency",      "DOC-004", 20));
-        departmentService.add(new Department("DEP-005", "General Medicine","DOC-005", 50));
+        departmentService.add(new Department("DEP-001", "Oncology",     "DOC-001", 30));
+        departmentService.add(new Department("DEP-002", "General Medicine",      "DOC-002", 15));
+        departmentService.add(new Department("DEP-003", "Emergency",     "DOC-003", 50));
+        departmentService.add(new Department("DEP-004", "Pediatrics",      "DOC-004", 54));
+        departmentService.add(new Department("DEP-005", "Cardiology ","DOC-005", 35));
 
 
         Patient p1 = new Patient(
@@ -248,7 +248,7 @@ public class SampleData {
                 "D001",
                 "Hamed",
                 "Sultan",
-                LocalDate.of(1985, 5, 10),
+                LocalDate.of(1997, 9, 19),
                 "Male",
                 "97770000",
                 "hamed@hospital.com",
@@ -257,37 +257,35 @@ public class SampleData {
                 "MBBS",
                 15,
                 "DEP-001",
-                35.0,
+                25.0,
                 new ArrayList<>(Arrays.asList(
                         "Cancer Consultation",
-                        "Follow-up Consultation",
-                        "Online Consultation"
+                        "Follow-up Consultation"
                 )),
                 true,
-                30
+                35
         );
 
         Consultant d2 = new Consultant(
-                "D002",
-                "Rania",
+                "D001",
+                "Sara",
                 "Khalid",
-                LocalDate.of(1988, 8, 20),
+                LocalDate.of(1990, 2, 13),
                 "Female",
                 "98880000",
-                "rania@hospital.com",
+                "Sara@hospital.com",
                 "Sohar",
-                "Radiology",
+                " Oncology",
                 "MD",
                 12,
                 "DEP-002",
-                28.0,
+                22.0,
                 new ArrayList<>(Arrays.asList(
                         "MRI Review",
-                        "X-Ray Consultation",
-                        "CT Scan Review"
+                        "X-Ray Consultation"
                 )),
                 true,
-                25
+                27
         );
 
 
@@ -295,11 +293,11 @@ public class SampleData {
         GeneralPractitioner d3 = new GeneralPractitioner(
                 "D003",
                 "Sultan",
-                "Khalid",
-                LocalDate.of(1999,10,5),
+                "Samer",
+                LocalDate.of(2020,12,15),
                 "Male",
                 "93333333",
-                "hassan@hospital.com",
+                "Sultan@hospital.com",
                 "Sur",
                 "General Medicine",
                 "MBBS",
@@ -408,6 +406,14 @@ public class SampleData {
                 true,
                 false
         );
+        doctorService.add(d1);
+        doctorService.add(d2);
+        doctorService.add(d3);
+        doctorService.add(d4);
+        doctorService.add(d5);
+        doctorService.add(d6);
+        doctorService.add(d7);
+        doctorService.add(d8);
 
 
         //sample data for Nurse
@@ -421,7 +427,7 @@ public class SampleData {
                 "Ibtisam@hospital.com",
                 "Muscat",
                 "DEP01",
-                "Morning",
+                "Night",
                 "BSc Nursing"
         );
 
@@ -435,7 +441,7 @@ public class SampleData {
                 "Rashed@hospital.com",
                 "Sohar",
                 "DEP02",
-                "Night",
+                "Morning",
                 "Diploma Nursing"
         );
 
@@ -481,36 +487,46 @@ public class SampleData {
                 "BSc Nursing"
         );
 
-        // Department sample data
+        NurseService.add(n1);
+        NurseService.add(n2);
+        NurseService.add(n3);
+        NurseService.add(n4);
+        NurseService.add(n5);
 
+
+        // Department sample data
         Department dep1 = new Department(
                 "DEP01",
                 "Cardiology",
                 "D001",
-                50
+                35
         );
 
         Department dep2 = new Department(
                 "DEP02",
                 "Dermatology",
                 "D002",
-                30
+                20
         );
 
         Department dep3 = new Department(
                 "DEP03",
                 "General Medicine",
                 "D003",
-                70
+                50
         );
 
-        //Appointment sample data
+        DepartmentService.add(dep1);
+        DepartmentService.add(dep2);
+        DepartmentService.add(dep3);
 
+
+        //Appointment sample data
         Appointment a1 = new Appointment(
                 "A001",
                 "P001",
                 "D001",
-                LocalDate.of(2026,5,15),
+                LocalDate.of(2026,11,11),
                 "07:30 AM",
                 "Scheduled",
                 "Heart Checkup",
@@ -521,7 +537,7 @@ public class SampleData {
                 "A002",
                 "P002",
                 "D002",
-                LocalDate.of(2026,5,16),
+                LocalDate.of(2026,11,12),
                 "10:00 AM",
                 "Completed",
                 "Skin Allergy",
@@ -532,7 +548,7 @@ public class SampleData {
                 "A003",
                 "P003",
                 "D003",
-                LocalDate.of(2026,5,17),
+                LocalDate.of(2026,11,13),
                 "01:00 PM",
                 "Scheduled",
                 "General Fever",
@@ -543,7 +559,7 @@ public class SampleData {
                 "A004",
                 "P005",
                 "D004",
-                LocalDate.of(2026,5,18),
+                LocalDate.of(2026,11,14),
                 "09:45 AM",
                 "Cancelled",
                 "Routine Checkup",
@@ -554,7 +570,7 @@ public class SampleData {
                 "A005",
                 "P008",
                 "D005",
-                LocalDate.of(2026,5,19),
+                LocalDate.of(2026,11,15),
                 "03:00 PM",
                 "Scheduled",
                 "Knee Surgery Consultation",
@@ -565,7 +581,7 @@ public class SampleData {
                 "A006",
                 "P004",
                 "D001",
-                LocalDate.of(2026,5,20),
+                LocalDate.of(2026,11,16),
                 "08:00 AM",
                 "Scheduled",
                 "Asthma Checkup",
@@ -576,7 +592,7 @@ public class SampleData {
                 "A007",
                 "P006",
                 "D002",
-                LocalDate.of(2026,5,21),
+                LocalDate.of(2026,11,17),
                 "11:30 AM",
                 "Completed",
                 "Back Pain Review",
@@ -587,7 +603,7 @@ public class SampleData {
                 "A008",
                 "P007",
                 "D003",
-                LocalDate.of(2026,5,22),
+                LocalDate.of(2026,11,18),
                 "12:15 AM",
                 "Scheduled",
                 "Cold & Fever",
@@ -598,7 +614,7 @@ public class SampleData {
                 "A009",
                 "P008",
                 "D004",
-                LocalDate.of(2026,5,23),
+                LocalDate.of(2026,11,19),
                 "03:00 PM",
                 "Scheduled",
                 "Injury Follow-up",
@@ -609,7 +625,7 @@ public class SampleData {
                 "A010",
                 "P009",
                 "D005",
-                LocalDate.of(2026,5,24),
+                LocalDate.of(2026,11,20),
                 "09:30 AM",
                 "Completed",
                 "Anemia Check",
@@ -620,7 +636,7 @@ public class SampleData {
                 "A011",
                 "P010",
                 "D006",
-                LocalDate.of(2026,5,25),
+                LocalDate.of(2026,11,22),
                 "02:15 PM",
                 "Scheduled",
                 "Fracture Review",
@@ -631,7 +647,7 @@ public class SampleData {
                 "A012",
                 "P003",
                 "D007",
-                LocalDate.of(2026,5,26),
+                LocalDate.of(2026,11,23),
                 "03:00 PM",
                 "Cancelled",
                 "General Checkup",
@@ -642,7 +658,7 @@ public class SampleData {
                 "A013",
                 "P002",
                 "D008",
-                LocalDate.of(2026,5,27),
+                LocalDate.of(2026,11,24),
                 "09:00 AM",
                 "Scheduled",
                 "Skin Review",
@@ -653,7 +669,7 @@ public class SampleData {
                 "A014",
                 "P001",
                 "D002",
-                LocalDate.of(2026,5,28),
+                LocalDate.of(2026,11,25),
                 "10:45 AM",
                 "Completed",
                 "Hypertension Follow-up",
@@ -664,19 +680,37 @@ public class SampleData {
                 "A015",
                 "P005",
                 "D003",
-                LocalDate.of(2026,5,29),
+                LocalDate.of(2026,11,26),
                 "11:30 AM",
                 "Scheduled",
                 "General Consultation",
                 "Routine checkup"
         );
 
+        AppointmentService.add(a1);
+        AppointmentService.add(a2);
+        AppointmentService.add(a3);
+        AppointmentService.add(a4);
+        AppointmentService.add(a5);
+        AppointmentService.add(a6);
+        AppointmentService.add(a7);
+        AppointmentService.add(a8);
+        AppointmentService.add(a9);
+        AppointmentService.add(a10);
+        AppointmentService.add(a11);
+        AppointmentService.add(a12);
+        AppointmentService.add(a13);
+        AppointmentService.add(a14);
+        AppointmentService.add(a15);
+
+
+
         //Medical records sample data
         MedicalRecord mr1 = new MedicalRecord(
                 "MR001",
                 "P001",
                 "D001",
-                LocalDate.of(2026,5,1),
+                LocalDate.of(2026,11,1),
                 "Hypertension",
                 "Amlodipine 5mg",
                 "Blood pressure slightly high",
@@ -687,7 +721,7 @@ public class SampleData {
                 "MR002",
                 "P002",
                 "D002",
-                LocalDate.of(2026,5,2),
+                LocalDate.of(2026,11,2),
                 "Skin Allergy",
                 "Antihistamine tablets",
                 "Allergy test positive",
@@ -698,7 +732,7 @@ public class SampleData {
                 "MR003",
                 "P003",
                 "D003",
-                LocalDate.of(2026,5,3),
+                LocalDate.of(2026,11,3),
                 "Viral Fever",
                 "Paracetamol 500mg",
                 "Blood test normal",
@@ -709,7 +743,7 @@ public class SampleData {
                 "MR004",
                 "P005",
                 "D004",
-                LocalDate.of(2026,5,4),
+                LocalDate.of(2026,11,4),
                 "Migraine",
                 "Ibuprofen",
                 "CT scan normal",
@@ -720,7 +754,7 @@ public class SampleData {
                 "MR005",
                 "P008",
                 "D005",
-                LocalDate.of(2026,5,5),
+                LocalDate.of(2026,11,5),
                 "Knee Injury",
                 "Pain relief medication",
                 "MRI shows ligament tear",
@@ -731,7 +765,7 @@ public class SampleData {
                 "MR006",
                 "P006",
                 "D006",
-                LocalDate.of(2026,5,6),
+                LocalDate.of(2026,11,6),
                 "Back Pain",
                 "Muscle Relaxant",
                 "X-ray normal",
@@ -742,7 +776,7 @@ public class SampleData {
                 "MR007",
                 "P007",
                 "D007",
-                LocalDate.of(2026,5,7),
+                LocalDate.of(2026,11,7),
                 "Common Cold",
                 "Cough Syrup",
                 "Temperature slightly elevated",
@@ -753,7 +787,7 @@ public class SampleData {
                 "MR008",
                 "P009",
                 "D008",
-                LocalDate.of(2026,5,8),
+                LocalDate.of(2026,11,8),
                 "Anemia",
                 "Iron Supplements",
                 "Hemoglobin level low",
@@ -764,7 +798,7 @@ public class SampleData {
                 "MR009",
                 "P010",
                 "D005",
-                LocalDate.of(2026,5,9),
+                LocalDate.of(2026,11,9),
                 "Fracture",
                 "Painkillers",
                 "X-ray confirms arm fracture",
@@ -775,7 +809,7 @@ public class SampleData {
                 "MR010",
                 "P001",
                 "D003",
-                LocalDate.of(2026,5,10),
+                LocalDate.of(2026,11,10),
                 "Diabetes",
                 "Metformin",
                 "Blood sugar elevated",
@@ -786,7 +820,7 @@ public class SampleData {
                 "MR011",
                 "P004",
                 "D001",
-                LocalDate.of(2026,5,11),
+                LocalDate.of(2026,11,11),
                 "Asthma",
                 "Inhaler",
                 "Breathing test abnormal",
@@ -797,7 +831,7 @@ public class SampleData {
                 "MR012",
                 "P002",
                 "D004",
-                LocalDate.of(2026,5,12),
+                LocalDate.of(2026,11,12),
                 "Vitamin D Deficiency",
                 "Vitamin D Capsules",
                 "Vitamin D level low",

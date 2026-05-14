@@ -175,7 +175,7 @@ public class NurseService implements Manageable, Searchable {
 
     // INTERFACE METHODS (EMPTY)
     @Override
-    public void add(Object entity) { }
+    public static void add(Object entity) { }
 
     @Override
     public void remove(String id) { }

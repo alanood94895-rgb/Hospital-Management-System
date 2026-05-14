@@ -193,7 +193,7 @@ public class AppointmentService implements Manageable , Searchable , Appointable
 
 
     @Override
-    public void add(Object entity) {
+    public static void add(Object entity) {
 
     }
 

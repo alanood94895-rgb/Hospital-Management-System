@@ -98,7 +98,7 @@ public class DepartmentService implements Manageable, Searchable {
 
 
     @Override
-    public void add(Object entity) {}
+    public static void add(Object entity) {}
 
     @Override
     public void remove(String id) {}
